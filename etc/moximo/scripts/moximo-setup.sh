@@ -12,6 +12,7 @@ MASTER_TEMPLATE="/etc/sysconfig/network-scripts/ifcfg-eth0:0.MASTER"
 IF_TEMPLATE="/etc/sysconfig/network-scripts/ifcfg-eth0:0.TEMPLATE"
 FIRSTBOOT_IP="10.253.0.254"
 MASTER="10.253.0.1"
+PORT="8081"
 
 # If there's the first time it boots it uses the last IP in
 # the segment
@@ -51,7 +52,7 @@ function start_if {
 
 
 function get_next_ip {
-  CURR_IP=$(curl --connect-timeout 2 http://$MASTER:1111/next_ip 2> /dev/null)
+  CURR_IP=$(curl --connect-timeout 2 http://${MASTER}:${PORT}/next_ip 2> /dev/null)
   LAST=$(echo $CURR_IP |  cut -d"." -f4)
   NODE_NAME=$LAST
 }
@@ -63,14 +64,18 @@ fi
 # check if there's a master
 
 echo "Checking for if a master is available"
-IS_MASTER=$(curl --connect-timeout 2 http://$MASTER:1111 2> /dev/null)
+IS_MASTER=$(curl --connect-timeout 2 http://${MASTER}:${PORT} 2> /dev/null)
+
+if [[ ${IS_MASTER} == "IM_THE_CHOSEN_ONE" ]]; then
+  echo "This is the master node yeeeei!!"
+  exit
+fi
 
 if [[ ${IS_MASTER} == "MASTER_OK" ]]; then
   setup_slave
   setup_normal_boot
   exit
 fi
-
 
 #If there's no master then i am the masteeer!!
 setup_master
