@@ -34,6 +34,16 @@ function setup_slave {
   sed s/{{IP}}/$NEXT_IP/ $IF_TEMPLATE > $IF_FILE
   setup_normal_boot
   hostnamectl set-hostname --static "${NODE_NAME}"
+  echo "Enabling services for slave"
+  systemctl enable kubelet.service
+  systemctl enable cockpit
+  echo "Starting services for slave"
+  systemctl start kubelet.service
+  systemctl start cockpit
+
+
+
+
 }
 
 function setup_master {
@@ -43,6 +53,26 @@ function setup_master {
   start_if
   hostnamectl set-hostname --static "moximo-master"
   systemctl start moximo-master
+
+  echo "Enabling services for master"
+  systemctl enable etcd
+  systemctl enable kube-apiserver
+  systemctl enable kube-controller-manager
+  systemctl enable kube-proxy
+  systemctl enable kube-scheduler
+  systemctl enable kubelet.service
+  systemctl enable cockpit
+
+  echo "Starting services for master"
+  systemctl start etcd
+  systemctl start kube-apiserver
+  systemctl start kube-controller-manager
+  systemctl start kube-proxy
+  systemctl start kube-scheduler
+  systemctl start kubelet.service
+  systemctl start cockpit
+
+
 }
 
 function start_if {
