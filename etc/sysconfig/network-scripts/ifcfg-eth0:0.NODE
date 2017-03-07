@@ -1,0 +1,4 @@
+DEVICE=eth0:0
+BOOTPROTO=dhcp
+ONBOOT=yes
+PEERDNS=no

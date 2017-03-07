@@ -1,0 +1,9 @@
+# on firstboot we set the IP address to the last one
+# in the segment
+# TODO: check for a better solution
+DEVICE=eth0:0
+BOOTPROTO=none
+ONBOOT=yes
+NETMASK=255.255.255.0
+IPADDR=10.253.0.254
+DNS1=10.253.0.1

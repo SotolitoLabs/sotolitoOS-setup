@@ -1,0 +1,9 @@
+[Unit]
+Description=Setup Moximo on First boot
+
+[Service]
+Type=oneshot
+ExecStart=/etc/moximo/scripts/moximo-setup.sh
+
+[Install]
+WantedBy=multi-user.target
