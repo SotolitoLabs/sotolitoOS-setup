@@ -43,52 +43,20 @@ exit
 For this task you'd need to use parted or some other partition management tool.
 (Out of scope for now)
 
+### Copy root partition from SD Card to hard drive
 
+Reproducible steps:
+- Create mounting point
+- Mount hard drive's partition
+- tar the system's / partition (exclude /mnt)
+- untar in hard drive's corresponding partition
 
- 5  su - moximo
- 6  dnf install sfdisk
- 7  dnf provides sfdisk
- 8  sfdisk
- 9  sfdisk -d
-10  sfdisk -d /dev/sda
-11  fdisk -l
-12  visudo
-13  
-15  dnf install parted
-16  parted /dev/sda
-17  exit
-18  su - moximo
-19  fdisk -l
-20  exit
-21  fdisk /l
-22  fdisk -l
-23  mount
-24  hostnamectl //help
-25  hostnamectl --help
-26  
-27  ip addr show
-28  shutdown -r now
-29  dnf install docker cockpit
-30  uname -a
-31  dnf install docker cockpit
-32  dnf update
-33  dnf clean all
-34  dnf update
-35  vi /etc/yum.repos.d/fedora.repo
-36  echo $RELEASEVER
-37  vi /etc/dnf/dnf.conf
-38  ping redhat.com
-39  dnf update
-40  vi /etc/yum.repos.d/fedora.repo
-41  dnf update
-42  vi /etc/yum.repos.d/fedora.repo
-43  dnf update --refresh
-44  vi /etc/yum.repos.d/fedora.repo
-45  dnf -4 update --refresh
-46  clear
-47  rpm -qv --verify fedora-repos
-48  rpm -q dnf librepo python-librepo
-49  
-50  history
-51  dnf install docker cockpit
-52  mount
+### Change boot Configuration
+
+This has to be done in order to command the system to use hard drive's newly copied root partition instead of the one in the SD Card
+
+Edit /boot/extlinux/extlinux.conf and substitute root=UUID for root=/dev/sda2
+
+### Install cloud Tools
+
+`dnf install docker cookpit`
