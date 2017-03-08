@@ -4,21 +4,47 @@ Configuration assumes using Fedora 23 minimal, so many of the features may be al
 
 ### Install required packages
 
+```
 dnf group install "Development Tools" -y
 dnf install parted -y
 dnf install librepo --releasever=23 -y
+```
 
 
 ### Change hostname
 
-hostnamectl set-hostname moximo
+`hostnamectl set-hostname moximo`
+
+After this step is completed you have to restart the system
+
+`shutdown -r now`
+
+### Create local user moximo
+
+`useradd moximo`
+
+### Clone code repo
+
+This has to be performed as user moximo, so change user before cloning
+
+```
+su - moximo
+git clone https://github.com/SotolitoLabs/moximo-setup.git  
+exit
+```
+
+### Copy filesystem structure from file to hard drive
+
+`sfdisk /dev/sda < /home/moximo/moximo-setup/sys/hd/sdd.sfdisk`
+
+
+### Extend hard drive's third partition (var) to maximum space available
+
+For this task you'd need to use parted or some other partition management tool.
+(Out of scope for now)
 
 
 
-1  useradd moximo
- 2  vi /etc/passwd
- 3  id moximo
- 4  
  5  su - moximo
  6  dnf install sfdisk
  7  dnf provides sfdisk
@@ -27,8 +53,7 @@ hostnamectl set-hostname moximo
 10  sfdisk -d /dev/sda
 11  fdisk -l
 12  visudo
-13  cd /home/moximo/moximo-setup/sys/hd/
-14  sfdisk /dev/sda < sdd.sfdisk
+13  
 15  dnf install parted
 16  parted /dev/sda
 17  exit
