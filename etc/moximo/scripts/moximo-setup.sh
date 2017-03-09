@@ -52,6 +52,7 @@ function setup_master {
   echo "10.253.0.2" > $NODES
   start_if
   hostnamectl set-hostname --static "moximo-master"
+  systemctl enable moximo-master
   systemctl start moximo-master
 
   echo "Enabling services for master"
