@@ -70,4 +70,14 @@ TODO:  Define where the rpms are going to be retrieved from
 
 Once you have the kubernetes rpms in moximo's home, install all of them and their dependencies by issuing the following command:
 
-dnf install -y /home/moximo/*.rpm
+`dnf install -y /home/moximo/*.rpm`
+
+
+
+Copy configuration files from repo, overwrite if needed
+
+```
+yes | cp -rf /home/moximo/moximo-setup/etc/etcd/* /etc/etcd/
+yes | cp -rf /home/moximo/moximo-setup/etc/kubernetes/* /etc/kubernetes/
+yes | cp -rf /home/moximo/moximo-setup/usr/share/cockpit/branding/* /usr/share/cockpit/branding/
+```
