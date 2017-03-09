@@ -22,7 +22,7 @@ After this step is completed you have to restart the system
 
 ### Create local user moximo
 
-`useradd moximo`
+`useradd -c "Moximo Cloud Appliance Admin User" moximo`
 
 ### Clone code repo
 
@@ -70,4 +70,51 @@ TODO:  Define where the rpms are going to be retrieved from
 
 Once you have the kubernetes rpms in moximo's home, install all of them and their dependencies by issuing the following command:
 
-dnf install -y /home/moximo/*.rpm
+`dnf install -y /home/moximo/*.rpm`
+
+
+
+Copy configuration files from repo, overwrite if needed
+
+```
+yes | cp -rf /home/moximo/moximo-setup/etc/etcd/* /etc/etcd/
+yes | cp -rf /home/moximo/moximo-setup/etc/kubernetes/* /etc/kubernetes/
+yes | cp -rf /home/moximo/moximo-setup/usr/share/cockpit/branding/* /usr/share/cockpit/branding/
+```
+
+### Copy moximo-master to /usr/bin
+
+`cp /root/moximo-master /usr/bin/`
+
+
+### Copy systemd unit files
+
+`cp /home/moximo/moximo-setup/init/systemd/moximo-setup.service /usr/lib/systemd/system/`
+
+
+### Enable moximo-setup
+
+`systemctl enable moximo-setup`
+
+
+### copy moximo scripts
+
+```
+mkdir /etc/moximo/scripts
+cp /home/moximo/moximo-setup/etc/moximo/scripts/moximo-setup.sh /etc/moximo/scripts/
+```
+
+### Clone moximo
+
+Change to moximo user
+
+```
+su - moximo
+git clone https://github.com/SotolitoLabs/moximo-master.git
+exit
+```
+
+
+### Copy moximo master service from repo to system
+
+`cp /home/moximo/moximo-master/contrib/systemd/moximo-master.service /usr/lib/systemd/system/`
