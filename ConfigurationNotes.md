@@ -104,7 +104,7 @@ mkdir /etc/moximo/scripts
 cp /home/moximo/moximo-setup/etc/moximo/scripts/moximo-setup.sh /etc/moximo/scripts/
 ```
 
-### Clone moximo
+### Clone moximo-master
 
 Change to moximo user
 
@@ -118,3 +118,31 @@ exit
 ### Copy moximo master service from repo to system
 
 `cp /home/moximo/moximo-master/contrib/systemd/moximo-master.service /usr/lib/systemd/system/`
+
+
+
+### Copy network scripts from repo
+
+`cp /home/moximo/moximo-setup/etc/sysconfig/network-scripts/ifcfg-eth0* /etc/sysconfig/network-scripts/`
+
+### clone moximo cockpit fork
+
+```
+su - moximo
+git clone https://github.com/SotolitoLabs/cockpit.git
+exit
+```
+
+
+### copy cockpit from repo
+
+```
+cd /home/moximo/cockpit/
+git checkout moximo-0.2.0
+cp -R pkg/moximo /usr/share/cockpit/
+cp -R pkg/kubernetes /usr/share/cockpit/
+```
+
+### Reboot and test
+
+`shutdown -r now`
