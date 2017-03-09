@@ -10,6 +10,7 @@ dnf install parted -y
 dnf install librepo --releasever=23 -y
 ```
 
+Kubernetes >= 1.3 is required, it will be installed ahead
 
 ### Change hostname
 
@@ -60,3 +61,13 @@ Edit /boot/extlinux/extlinux.conf and substitute root=UUID for root=/dev/sda2
 ### Install cloud Tools
 
 `dnf install docker cookpit`
+
+
+### Install Kubernetes
+
+
+TODO:  Define where the rpms are going to be retrieved from
+
+Once you have the kubernetes rpms in moximo's home, install all of them and their dependencies by issuing the following command:
+
+dnf install -y /home/moximo/*.rpm
