@@ -1,0 +1,30 @@
+body.login-pf {
+    background: url("/cockpit/static/login_logo_inv.png") no-repeat 50% 0;
+    background-size: auto;
+    background-color: #101010;
+}
+
+#badge {
+    width: 225px;
+    height: 80px;
+    background-image: url("logo.png");
+    background-size: contain;
+}
+
+#brand {
+    font-size: 18pt;
+    text-transform: uppercase;
+    content: "${NAME} <b>${VARIANT}</b>";
+}
+
+#index-brand {
+    content: "${NAME} <b>${VARIANT}</b>";
+}
+
+.navbar-pf .navbar-brand {
+    padding: 2px 0;
+}
+
+.moximo {
+
+}
