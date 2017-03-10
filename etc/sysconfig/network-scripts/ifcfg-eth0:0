@@ -1,3 +1,6 @@
+# on firstboot we set the IP address to the last one
+# in the segment
+# TODO: check for a better solution
 DEVICE=eth0:0
 BOOTPROTO=none
 ONBOOT=yes
