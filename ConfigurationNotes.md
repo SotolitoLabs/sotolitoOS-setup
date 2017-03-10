@@ -126,7 +126,7 @@ exit
 
 ### Copy moximo-master to /usr/bin
 
-`cp /home/moximo/moximo-master/_output/build/amd64/moximo-master /usr/bin/`
+`cp /home/moximo/moximo-master/_output/build/arm/moximo-master /usr/bin/`
 
 
 ### Copy systemd unit files
