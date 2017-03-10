@@ -89,9 +89,36 @@ yes | cp -rf /home/moximo/moximo-setup/etc/kubernetes/* /etc/kubernetes/
 yes | cp -rf /home/moximo/moximo-setup/usr/share/cockpit/branding/* /usr/share/cockpit/branding/
 ```
 
+### Clone moximo-master
+
+Change to moximo user
+
+```
+su - moximo
+git clone https://github.com/SotolitoLabs/moximo-master.git
+exit
+```
+
+### Download gorilla/mux go package
+
+```
+su - moximo 
+mkdir go
+export GOPATH=$HOME/go
+go get github.com/gorilla/mux
+cd moximo-master
+make
+exit 
+
+```
+
+### Copy moximo master service from repo to system
+
+`cp /home/moximo/moximo-master/contrib/systemd/moximo-master.service /usr/lib/systemd/system/`
+
 ### Copy moximo-master to /usr/bin
 
-`cp /root/moximo-master /usr/bin/`
+`cp /home/moximo/moximo-master/_output/build/amd64/moximo-master /usr/bin/`
 
 
 ### Copy systemd unit files
@@ -107,24 +134,9 @@ yes | cp -rf /home/moximo/moximo-setup/usr/share/cockpit/branding/* /usr/share/c
 ### copy moximo scripts
 
 ```
-mkdir /etc/moximo/scripts
+mkdir -p /etc/moximo/scripts
 cp /home/moximo/moximo-setup/etc/moximo/scripts/moximo-setup.sh /etc/moximo/scripts/
 ```
-
-### Clone moximo-master
-
-Change to moximo user
-
-```
-su - moximo
-git clone https://github.com/SotolitoLabs/moximo-master.git
-exit
-```
-
-
-### Copy moximo master service from repo to system
-
-`cp /home/moximo/moximo-master/contrib/systemd/moximo-master.service /usr/lib/systemd/system/`
 
 
 
