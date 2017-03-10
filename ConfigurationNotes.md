@@ -66,9 +66,16 @@ Edit /boot/extlinux/extlinux.conf and substitute root=UUID for root=/dev/sda2
 ### Install Kubernetes
 
 
+
 TODO:  Define where the rpms are going to be retrieved from
 
 Once you have the kubernetes rpms in moximo's home, install all of them and their dependencies by issuing the following command:
+i
+
+As of now download the RPMS from :
+
+http://sotolitolabs.com/RPMS/
+
 
 `dnf install -y /home/moximo/*.rpm`
 
