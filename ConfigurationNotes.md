@@ -60,7 +60,7 @@ Edit /boot/extlinux/extlinux.conf and substitute root=UUID for root=/dev/sda2
 
 ### Install cloud Tools
 
-`dnf install docker cookpit`
+`dnf install docker cockpit`
 
 
 ### Install Kubernetes
