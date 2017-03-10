@@ -26,24 +26,21 @@ function setup_firstboot {
 function setup_normal_boot {
   rm /etc/moximo/.firstboot
   ip addr del $FIRSTBOOT_IP/24 dev "${DEVICE}:0"
+  ifup "${DEVICE}:0"
 }
 
 function setup_slave {
   echo "I'm a SLAVE, setting up network configuration"
   get_next_ip
-  sed s/{{IP}}/$NEXT_IP/ $IF_TEMPLATE > $IF_FILE
-  setup_normal_boot
-  hostnamectl set-hostname --static "${NODE_NAME}"
+  echo "Setting node ip to: ${NODE_IP}"
+  sed s/{{IP}}/$NODE_IP/ $IF_TEMPLATE > $IF_FILE
+  hostnamectl set-hostname --static "node_${NODE_IP}"
   echo "Enabling services for slave"
   systemctl enable kubelet.service
-  systemctl enable cockpit
+  systemctl enable cockpit.socket
   echo "Starting services for slave"
   systemctl start kubelet.service
   systemctl start cockpit
-
-
-
-
 }
 
 function setup_master {
@@ -83,9 +80,7 @@ function start_if {
 
 
 function get_next_ip {
-  CURR_IP=$(curl --connect-timeout 2 http://${MASTER}:${PORT}/next_ip 2> /dev/null)
-  LAST=$(echo $CURR_IP |  cut -d"." -f4)
-  NODE_NAME=$LAST
+  NODE_IP=$(curl --connect-timeout 2 http://${MASTER}:${PORT}/next_ip 2> /dev/null)
 }
 
 if [[ -e /etc/moximo/.firstboot ]]; then
