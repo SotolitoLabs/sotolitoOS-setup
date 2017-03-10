@@ -84,9 +84,9 @@ http://sotolitolabs.com/RPMS/
 Copy configuration files from repo, overwrite if needed
 
 ```
-yes | cp -rf /home/moximo/moximo-setup/etc/etcd/* /etc/etcd/
-yes | cp -rf /home/moximo/moximo-setup/etc/kubernetes/* /etc/kubernetes/
-yes | cp -rf /home/moximo/moximo-setup/usr/share/cockpit/branding/* /usr/share/cockpit/branding/
+cp -rf /home/moximo/moximo-setup/etc/etcd/* /etc/etcd/
+cp -rf /home/moximo/moximo-setup/etc/kubernetes/* /etc/kubernetes/
+cp -rf /home/moximo/moximo-setup/usr/share/cockpit/branding/* /usr/share/cockpit/branding/
 ```
 
 ## Install Moximo Master service binary
