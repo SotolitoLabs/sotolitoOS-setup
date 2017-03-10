@@ -60,15 +60,22 @@ Edit /boot/extlinux/extlinux.conf and substitute root=UUID for root=/dev/sda2
 
 ### Install cloud Tools
 
-`dnf install docker cookpit`
+`dnf install docker cockpit`
 
 
 ### Install Kubernetes
 
 
+
 TODO:  Define where the rpms are going to be retrieved from
 
 Once you have the kubernetes rpms in moximo's home, install all of them and their dependencies by issuing the following command:
+i
+
+As of now download the RPMS from :
+
+http://sotolitolabs.com/RPMS/
+
 
 `dnf install -y /home/moximo/*.rpm`
 
@@ -77,14 +84,49 @@ Once you have the kubernetes rpms in moximo's home, install all of them and thei
 Copy configuration files from repo, overwrite if needed
 
 ```
-yes | cp -rf /home/moximo/moximo-setup/etc/etcd/* /etc/etcd/
-yes | cp -rf /home/moximo/moximo-setup/etc/kubernetes/* /etc/kubernetes/
-yes | cp -rf /home/moximo/moximo-setup/usr/share/cockpit/branding/* /usr/share/cockpit/branding/
+cp -rf /home/moximo/moximo-setup/etc/etcd/* /etc/etcd/
+cp -rf /home/moximo/moximo-setup/etc/kubernetes/* /etc/kubernetes/
+cp -rf /home/moximo/moximo-setup/usr/share/cockpit/branding/* /usr/share/cockpit/branding/
 ```
+
+## Install Moximo Master service binary
+```
+curl http://sotolitolabs.com/moximo/dist/arm/moximo-master --output /usr/bin/moximo-master
+```
+
+## Install Moximo Master service from source
+
+### Clone moximo-master
+
+Change to moximo user
+
+```
+su - moximo
+git clone https://github.com/SotolitoLabs/moximo-master.git
+exit
+```
+
+### Download gorilla/mux go package
+
+```
+su - moximo 
+mkdir go
+export GOPATH=$HOME/go
+go get github.com/gorilla/mux
+cd moximo-master
+make
+make install
+exit 
+
+```
+
+### Copy moximo master service from repo to system
+
+`cp /home/moximo/moximo-master/contrib/systemd/moximo-master.service /usr/lib/systemd/system/`
 
 ### Copy moximo-master to /usr/bin
 
-`cp /root/moximo-master /usr/bin/`
+`cp /home/moximo/moximo-master/_output/build/arm/moximo-master /usr/bin/`
 
 
 ### Copy systemd unit files
@@ -100,21 +142,34 @@ yes | cp -rf /home/moximo/moximo-setup/usr/share/cockpit/branding/* /usr/share/c
 ### copy moximo scripts
 
 ```
-mkdir /etc/moximo/scripts
+mkdir -p /etc/moximo/scripts
 cp /home/moximo/moximo-setup/etc/moximo/scripts/moximo-setup.sh /etc/moximo/scripts/
 ```
 
-### Clone moximo
 
-Change to moximo user
+
+### Copy network scripts from repo
+
+`cp /home/moximo/moximo-setup/etc/sysconfig/network-scripts/ifcfg-eth0* /etc/sysconfig/network-scripts/`
+
+### clone moximo cockpit fork
 
 ```
 su - moximo
-git clone https://github.com/SotolitoLabs/moximo-master.git
+git clone https://github.com/SotolitoLabs/cockpit.git
 exit
 ```
 
 
-### Copy moximo master service from repo to system
+### copy cockpit from repo
 
-`cp /home/moximo/moximo-master/contrib/systemd/moximo-master.service /usr/lib/systemd/system/`
+```
+cd /home/moximo/cockpit/
+git checkout moximo-0.2.0
+cp -R pkg/moximo /usr/share/cockpit/
+cp -R pkg/kubernetes /usr/share/cockpit/
+```
+
+### Reboot and test
+
+`shutdown -r now`
