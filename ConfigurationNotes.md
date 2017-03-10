@@ -89,6 +89,13 @@ yes | cp -rf /home/moximo/moximo-setup/etc/kubernetes/* /etc/kubernetes/
 yes | cp -rf /home/moximo/moximo-setup/usr/share/cockpit/branding/* /usr/share/cockpit/branding/
 ```
 
+## Install Moximo Master service binary
+```
+curl http://sotolitolabs.com/moximo/dist/moximo-master --output /usr/bin/moximo-master
+```
+
+## Install Moximo Master service from source
+
 ### Clone moximo-master
 
 Change to moximo user
@@ -108,6 +115,7 @@ export GOPATH=$HOME/go
 go get github.com/gorilla/mux
 cd moximo-master
 make
+make install
 exit 
 
 ```
