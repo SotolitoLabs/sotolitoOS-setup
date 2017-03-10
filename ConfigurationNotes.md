@@ -91,7 +91,7 @@ cp -rf /home/moximo/moximo-setup/usr/share/cockpit/branding/* /usr/share/cockpit
 
 ## Install Moximo Master service binary
 ```
-curl http://sotolitolabs.com/moximo/dist/moximo-master --output /usr/bin/moximo-master
+curl http://sotolitolabs.com/moximo/dist/arm/moximo-master --output /usr/bin/moximo-master
 ```
 
 ## Install Moximo Master service from source
