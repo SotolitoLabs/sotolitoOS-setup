@@ -8,10 +8,11 @@ KUBELET_ADDRESS="--address=0.0.0.0"
 # KUBELET_PORT="--port=10250"
 
 # You may leave this blank to use the actual hostname
-KUBELET_HOSTNAME="--hostname-override=127.0.0.1"
+KUBELET_HOSTNAME="--hostname-override=moximo-node"
 
 # location of the api-server
 KUBELET_API_SERVER="--api-servers=http://10.253.0.1:8080"
 
 # Add your own!
-KUBELET_ARGS=""
+KUBELET_ARGS="--register-node=true"
+
