@@ -34,7 +34,8 @@ function setup_slave {
   get_next_ip
   echo "Setting node ip to: ${NODE_IP}"
   sed s/{{IP}}/$NODE_IP/ $IF_TEMPLATE > $IF_FILE
-  hostnamectl set-hostname --static "node_${NODE_IP}"
+  hostnamectl set-hostname --static "${NODE_NAME}"
+  echo "${NODE_IP}    ${NODE_NAME}"  >> /etc/hosts
   echo "Enabling services for slave"
   systemctl enable kubelet.service
   systemctl enable cockpit.socket
@@ -80,7 +81,10 @@ function start_if {
 
 
 function get_next_ip {
-  NODE_IP=$(curl --connect-timeout 2 http://${MASTER}:${PORT}/next_ip 2> /dev/null)
+  NODE_INFO=$(curl --connect-timeout 2 http://${MASTER}:${PORT}/next_ip 2> /dev/null)
+  node=(${NODE_INFO//:/ })
+  NODE_IP=$node[0]
+  NODE_NAME=$node[1]
 }
 
 if [[ -e /etc/moximo/.firstboot ]]; then
