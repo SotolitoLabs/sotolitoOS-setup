@@ -2,6 +2,12 @@
 
 Configuration assumes using Fedora 23 minimal, so many of the features may be already available if any other superior edition is used instead
 
+#### Installation Example
+
+```
+sudo fedora-arm-image-installer --image=sotolitoLabs/cubietruck/Fedora-Minimal-armhfp-23-10-sda.raw.xz --target=Cubietruck --media=/dev/sda --selinux=OFF --norootpass -y --resizefs
+
+```
 ### Install required packages
 
 ```
