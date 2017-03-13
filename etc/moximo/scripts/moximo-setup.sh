@@ -14,6 +14,16 @@ FIRSTBOOT_IP="10.253.0.254"
 MASTER="10.253.0.1"
 PORT="8081"
 
+if [ -f /etc/moximo/.node ]; then
+  echo "Running as node"
+  exit
+fi
+
+if [ -f /etc/moximo/.master ]; then
+  echo "Running as master, master, master of pupets i'm pulling your strings!!"
+  exit
+fi
+
 # If there's the first time it boots it uses the last IP in
 # the segment
 
