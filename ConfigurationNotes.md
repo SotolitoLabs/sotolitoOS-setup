@@ -122,11 +122,9 @@ i
 
 As of now download the RPMS from :
 
-http://sotolitolabs.com/RPMS/
-
+http://sotolitolabs.com/moximo/RPMS/
 
 `dnf install -y /home/moximo/*.rpm`
-
 
 
 Copy configuration files from repo, overwrite if needed
