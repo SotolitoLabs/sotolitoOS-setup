@@ -175,6 +175,11 @@ git checkout moximo-0.2.0
 cp -R pkg/moximo /usr/share/cockpit/
 cp -R pkg/kubernetes /usr/share/cockpit/
 ```
+### Create firstboot environment
+
+```
+touch /etc/moximo/.firstboot
+```
 
 ### Reboot and test
 
