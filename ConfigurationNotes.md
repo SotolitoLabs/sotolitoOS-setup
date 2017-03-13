@@ -14,6 +14,8 @@ sudo fedora-arm-image-installer --image=sotolitoLabs/cubietruck/Fedora-Minimal-a
 dnf group install "Development Tools" -y
 dnf install parted -y
 dnf install librepo --releasever=23 -y
+dnf install xfsprogs -y
+dnf install tar -y
 ```
 
 Kubernetes >= 1.3 is required, it will be installed ahead
@@ -47,16 +49,56 @@ exit
 
 ### Extend hard drive's third partition (var) to maximum space available
 
-For this task you'd need to use parted or some other partition management tool.
-(Out of scope for now)
+For this task you may use parted or some other partition management tool.
+
+If CLI is preferred, then issue the following command
+
+`echo ", +" | sfdisk -N 3 /dev/sda`
 
 ### Copy root partition from SD Card to hard drive
 
-Reproducible steps:
-- Create mounting point
-- Mount hard drive's partition
-- tar the system's / partition (exclude /mnt)
-- untar in hard drive's corresponding partition
+In order to accomplish this, we need -first of all- format the hard drive's partitions as follows:
+
+- /dev/sda1 as swap
+- /dev/sda2 as ext4
+- /dev/sda3 as xfs
+
+```
+mkswap /dev/sda1
+mkfs.ext4 /dev/sda2
+mkfs.xfs /dev/sda3
+```
+
+Then we create the directories for the mounting points:
+
+```
+mkdir -p /mnt/moximo
+mount /dev/sda2 /mnt/moximo
+
+mkdir /mnt/moximo/var
+mount /dev/sda3 /mnt/moximo/var
+```
+
+Next we tar the root directory, excluding mnt
+
+`tar -c / --exclude=/mnt  >  /mnt/moximo/var/moximo.tar`
+
+And untar recently created file in /mnt/sda3
+
+```
+cd /mnt/moximo/
+tar -x ./var/moximo.tar 
+```
+
+Finally, unmount mounting points and delete directories in /mnt/
+
+```
+cd ~
+umount /mnt/moximo/var
+umount /mnt/moximo
+rm -rf /mnt/*
+```
+
 
 ### Change boot Configuration
 
