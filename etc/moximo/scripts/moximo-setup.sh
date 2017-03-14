@@ -93,8 +93,8 @@ function start_if {
 function get_next_ip {
   NODE_INFO=$(curl --connect-timeout 2 http://${MASTER}:${PORT}/next_ip 2> /dev/null)
   node=(${NODE_INFO//:/ })
-  NODE_IP=$node[0]
-  NODE_NAME=$node[1]
+  NODE_IP=${node[0]}
+  NODE_NAME=${node[1]}
 }
 
 if [[ -e /etc/moximo/.firstboot ]]; then
@@ -114,12 +114,14 @@ fi
 if [[ ${IS_MASTER} == "MASTER_OK" ]]; then
   setup_slave
   setup_normal_boot
+  echo "${NODE_IP}" > /etc/moximo/.node
   exit
 fi
 
 #If there's no master then i am the masteeer!!
 setup_master
 setup_normal_boot
+echo "10.253.0.1" > /etc/moximo/.master
 
 
 # falta inicializar el servicio de master
