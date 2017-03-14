@@ -16,6 +16,7 @@ dnf install parted -y
 dnf install librepo --releasever=23 -y
 dnf install xfsprogs -y
 dnf install tar -y
+dnf install wget -y
 ```
 
 Kubernetes >= 1.3 is required, it will be installed ahead
@@ -121,15 +122,20 @@ Reboot system so next boot will run root on hard drive
 ### Install Kubernetes
 
 
+Download kubernetes client from the following links (temporaly for now):
 
-TODO:  Define where the rpms are going to be retrieved from
+```
+wget http://sotolitolabs.com/moximo/RPMS/kubernetes-client-1.3.0-0.3.rc1.git52492b4.fc26.armv7hl.rpm
+wget http://sotolitolabs.com/moximo/RPMS/kubernetes-debuginfo-1.3.0-0.3.rc1.git52492b4.fc26.armv7hl.rpm
+wget http://sotolitolabs.com/moximo/RPMS/kubernetes-master-1.3.0-0.3.rc1.git52492b4.fc26.armv7hl.rpm
+wget http://sotolitolabs.com/moximo/RPMS/kubernetes-node-1.3.0-0.3.rc1.git52492b4.fc26.armv7hl.rpm
+wget http://sotolitolabs.com/moximo/RPMS/kubernetes-unit-test-1.3.0-0.3.rc1.git52492b4.fc26.armv7hl.rpm
+wget http://sotolitolabs.com/moximo/RPMS/kubernetes-1.3.0-0.3.rc1.git52492b4.fc26.armv7hl.rpm
+```
+
 
 Once you have the kubernetes rpms in moximo's home, install all of them and their dependencies by issuing the following command:
-i
 
-As of now download the RPMS from :
-
-http://sotolitolabs.com/moximo/RPMS/
 
 `dnf install -y /home/moximo/*.rpm`
 
@@ -143,6 +149,7 @@ cp -rf /home/moximo/moximo-setup/usr/share/cockpit/branding/* /usr/share/cockpit
 ```
 
 ## Install Moximo Master service binary
+
 ```
 curl http://sotolitolabs.com/moximo/dist/arm/moximo-master --output /usr/bin/moximo-master
 ```
