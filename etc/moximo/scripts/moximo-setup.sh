@@ -23,7 +23,7 @@ fi
 
 if [ -f /etc/moximo/.master ]; then
   echo "Running as master, master, master of pupets i'm pulling your strings!!"
-  docker run -d -p 5000:5000 --restart=always --name registry registry:2
+  docker run -d -p 5000:5000 --restart=always --name registry registry
   exit
 fi
 
