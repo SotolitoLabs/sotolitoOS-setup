@@ -106,6 +106,13 @@ This has to be done in order to command the system to use hard drive's newly cop
 
 Edit /boot/extlinux/extlinux.conf and substitute root=UUID for root=/dev/sda2
 
+Label may be customized as well.
+
+Reboot system so next boot will run root on hard drive
+
+`shutdown -r now`
+
+
 ### Install cloud Tools
 
 `dnf install docker cockpit`
