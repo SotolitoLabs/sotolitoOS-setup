@@ -10,6 +10,8 @@ NODES="/etc/moximo/nodes"
 IF_FILE="/etc/sysconfig/network-scripts/ifcfg-eth0:0"
 MASTER_TEMPLATE="/etc/sysconfig/network-scripts/ifcfg-eth0:0.MASTER"
 IF_TEMPLATE="/etc/sysconfig/network-scripts/ifcfg-eth0:0.TEMPLATE"
+KUBELET_TEMPLATE="/etc/kubernetes/kubelet.TEMPLATE"
+KUBELET_FILE="/etc/kubernetes/kubelet"
 FIRSTBOOT_IP="10.253.0.254"
 MASTER="10.253.0.1"
 PORT="8081"
@@ -45,12 +47,15 @@ function setup_slave {
   echo "Setting node ip to: ${NODE_IP}"
   sed s/{{IP}}/$NODE_IP/ $IF_TEMPLATE > $IF_FILE
   hostnamectl set-hostname --static "${NODE_NAME}"
+  sed s/{{ID}}/$NODE_IP/ $KUBELET_TEMPLATE > $KUBELET_FILE
   echo "${NODE_IP}    ${NODE_NAME}"  >> /etc/hosts
   echo "Enabling services for slave"
   systemctl enable kubelet.service
+  systemctl enable kube-proxy
   systemctl enable cockpit.socket
   echo "Starting services for slave"
   systemctl start kubelet.service
+  systemctl start kube-proxy
   systemctl start cockpit
 }
 
