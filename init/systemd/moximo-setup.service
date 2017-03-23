@@ -1,6 +1,7 @@
 [Unit]
 Description=Setup Moximo on First boot
-After=network.target
+Wants=network-online.target
+After=network.target network-online.target
 
 [Service]
 Type=oneshot
