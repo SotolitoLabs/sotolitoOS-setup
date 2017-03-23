@@ -10,6 +10,7 @@ cd /etc/sysconfig/network-scripts/
 cp ifcfg-eth0:0.FIRSTBOOT ifcfg-eth0\:0
 rm /etc/moximo/.node
 rm /etc/moximo/.master
+touch /etc/moximo/.firstboot
 ifup eth0:0
 
 echo "Done.."
