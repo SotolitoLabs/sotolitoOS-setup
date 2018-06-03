@@ -61,7 +61,7 @@ If CLI is preferred, then issue the following command
 In order to accomplish this, we need -first of all- format the hard drive's partitions as follows:
 
 - /dev/sda1 as swap
-- /dev/sda2 as ext4
+- /dev/sda2 as xfs
 - /dev/sda3 as xfs
 
 ```
@@ -93,9 +93,11 @@ tar -x ./var/moximo.tar
 Modify /etc/fstab
 
 ```
-/dev/sda1 swap swap    defaults,noatime 0 0
-/dev/sda2 /boot xfs    defaults,noatime 0 0
-/dev/sda3  / xfs    defaults,noatime 0 0
+/dev/sda1          swap swap      defaults,noatime 0 0
+/dev/mmcblk1p2     /boot ext4     defaults,noatime 0 0
+/dev/sda2          / xfs          defaults,noatime 0 0
+/dev/sda3          /var xfs       defaults,noatime 0 0
+
 ```
 
 Finally, unmount mounting points and delete directories in /mnt/
