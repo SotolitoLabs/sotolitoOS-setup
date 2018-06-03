@@ -82,7 +82,7 @@ mount /dev/sda3 /mnt/moximo/var
 
 Next we tar the root directory, excluding mnt
 
-`tar -c / --exclude=/mnt  >  /mnt/moximo/var/moximo.tar`
+`tar --exclude=/mnt -c / > /mnt/moximo/var/moximo.tar`
 
 And untar recently created file in /mnt/sda3
 
