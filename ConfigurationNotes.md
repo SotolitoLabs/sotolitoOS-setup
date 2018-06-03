@@ -90,6 +90,13 @@ And untar recently created file in /mnt/sda3
 cd /mnt/moximo/
 tar -x ./var/moximo.tar 
 ```
+Modify /etc/fstab
+
+```
+/dev/sda1 swap swap    defaults,noatime 0 0
+/dev/sda2 /boot xfs    defaults,noatime 0 0
+/dev/sda3  / xfs    defaults,noatime 0 0
+```
 
 Finally, unmount mounting points and delete directories in /mnt/
 
