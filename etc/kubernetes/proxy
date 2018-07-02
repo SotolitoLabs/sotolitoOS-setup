@@ -4,4 +4,4 @@
 # default config should be adequate
 
 # Add your own!
-KUBE_PROXY_ARGS="http://10.253.0.1:8080"
+KUBE_PROXY_ARGS="--config /etc/kubernetes/kube-proxy.conf"

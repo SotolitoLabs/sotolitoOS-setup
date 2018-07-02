@@ -157,6 +157,30 @@ cp -rf /home/moximo/moximo-setup/etc/kubernetes/* /etc/kubernetes/
 cp -rf /home/moximo/moximo-setup/usr/share/cockpit/branding/* /usr/share/cockpit/branding/
 ```
 
+## Configure kube-proxy 
+
+```
+ kube-proxy --write-config-to test
+```
+
+## Configure kubelet to master-kubeconfig.yaml
+
+```
+kind: Config
+clusters:
+- name: local
+  cluster:
+    server: http://10.253.0.1:8080
+users:
+- name: kubelet
+contexts:
+- context:
+    cluster: local
+    user: kubelet
+  name: kubelet-context
+current-context: kubelet-context
+```
+
 ## Install Moximo Master service binary
 
 ```

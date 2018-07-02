@@ -8,10 +8,9 @@ KUBELET_ADDRESS="--address=0.0.0.0"
 # KUBELET_PORT="--port=10250"
 
 # You may leave this blank to use the actual hostname
-KUBELET_HOSTNAME="--hostname-override=moximo-node"
+KUBELET_HOSTNAME="--hostname-override=moximo-master"
 
-# location of the api-server
-KUBELET_API_SERVER="--api-servers=http://10.253.0.1:8080"
+KUBELET_ARGS="--cgroup-driver=systemd --kubeconfig=/etc/kubernetes/master-kubeconfig.yaml --require-kubeconfig"
 
 # Add your own!
 KUBELET_ARGS="--register-node=true"
