@@ -2,7 +2,7 @@
 # kubernetes kubelet (minion) config
 
 # The address for the info server to serve on (set to 0.0.0.0 or "" for all interfaces)
-KUBELET_ADDRESS="--address=0.0.0.0"
+#KUBELET_ADDRESS="--address=0.0.0.0"
 
 # The port for the info server to serve on
 # KUBELET_PORT="--port=10250"
@@ -11,8 +11,8 @@ KUBELET_ADDRESS="--address=0.0.0.0"
 KUBELET_HOSTNAME="--hostname-override=moximo-node-{{ID}}"
 
 # location of the api-server
-KUBELET_API_SERVER="--api-servers=http://10.253.0.1:8080"
+#KUBELET_API_SERVER="--api-servers=http://10.253.0.1:8080"
 
 # Add your own!
-KUBELET_ARGS="--register-node=true"
 
+KUBELET_ARGS="--cgroup-driver=systemd --kubeconfig=/etc/kubernetes/master-kubeconfig.yaml --fail-swap-on=false --register-node=true"
