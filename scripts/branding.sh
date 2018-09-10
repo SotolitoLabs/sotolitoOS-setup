@@ -31,6 +31,7 @@ cp ../etc/os-release ${ROOT}/etc/os-release
 cp ../etc/system-release ${ROOT}/etc/system-release
 mkdir ${ROOT}/etc/sotolito
 cp -rp ../etc/sotolito ${ROOT}/etc/sotolito
+cp -rp ../etc/profile.d etc/.
 rm ${ROOT}/etc/systemd/system/multi-user.target.wants/initial-setup.service
 echo "Done!"
 
