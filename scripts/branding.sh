@@ -30,7 +30,7 @@ echo "sotolito" > ${ROOT}/etc/hostname
 cp ../etc/os-release ${ROOT}/etc/os-release
 cp ../etc/system-release ${ROOT}/etc/system-release
 mkdir ${ROOT}/etc/sotolito
-cp -rp ../etc/images ${ROOT}/etc/sotolito/.
+cp -rp ../etc/sotolito ${ROOT}/etc/sotolito
 
 
 
