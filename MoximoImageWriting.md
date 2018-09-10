@@ -2,7 +2,7 @@
 
 The following instructions detail the steps to burn a Sotolito OS image for using with a CubieTruck Plus card
 
-
+THIS DOC NEEDS A LOT OF LOVE
 
 
 #### Installation Example
