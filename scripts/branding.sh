@@ -7,11 +7,11 @@ DEFAULT_PASSWORD="sereke2018sotol(/"
 DEFAULT_PATH="/run/media/${USERNAME}"
 
 if [[ $1 == "" ]]; then
-    PASSWORD=$DEFAULT_PASSWORD
+    MOUNT_PATH=$DEFAULT_PATH
 fi
 
 if [[ $2 == "" ]]; then
-    MOUNT_PATH=$DEFAULT_PATH
+    PASSWORD=$DEFAULT_PASSWORD
 fi
 
 
