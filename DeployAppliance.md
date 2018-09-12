@@ -85,4 +85,4 @@ Unpack the stage4 filesystem into the hard drive
 
 ### NOTES
 
-- Remember to change the sotito and root users password.
+- Remember to change the sotolito and root users password.
