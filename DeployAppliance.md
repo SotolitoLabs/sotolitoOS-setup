@@ -18,7 +18,16 @@ dd if=SotolitoOS-1.28-SD.img of=/dev/mmcblk0 bs=16M
 
 ### Change the boot entry
 
-Change the boot entry order so it looks like this:
+Change the boot entry order
+
+**Copy the /boot/extlinux/extlinux.conf.hd to /boot/extlinux/extlinux.conf**
+
+```
+cp /boot/extlinux/extlinux.conf.hd /boot/extlinux/extlinux.conf
+```
+
+
+*It should look like this*
 
 label SotolitoOS-armv7hl-1.0 (vmlinuz-4.17.el7.centos.armv7hl)
         kernel /vmlinuz-4.17.el7.centos.armv7hl
@@ -33,6 +42,7 @@ label RESCUE-SotolitoOS-armv7hl-1.0 (vmlinuz-4.17.el7.centos.armv7hl)
 io=EDID:0 disp.screen0_output_mode=EDID:1280x720p60 quiet rhgb
         fdtdir /dtb-4.17.el7.centos.armv7hl/
         initrd /initramfs-4.17.0-rc1-sotolito+.img
+
 
 ### Create Hard Drive partitions
 
