@@ -6,7 +6,7 @@ The wifi driver need additional firmware setup
 
 **Get the firmware files**
 ```
-curl https://raw.githubusercontent.com/OpenELEC/wlan-firmware/master/firmware/brcm/brcmfmac4330-sdio.txt > /lib/firmware/brcm/brcmfmac43362-sdio.txt
+curl https://raw.githubusercontent.com/OpenELEC/wlan-firmware/master/firmware/brcm/brcmfmac4330-sdio.txt > /lib/firmware/brcm/brcmfmac4330-sdio.txt
 curl https://raw.githubusercontent.com/OpenELEC/wlan-firmware/master/firmware/brcm/brcmfmac43340-sdio.bin > /lib/firmware/brcm/brcmfmac43340-sdio.bin
 ```
 
