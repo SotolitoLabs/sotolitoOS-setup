@@ -54,7 +54,7 @@ Unpack the stage4 filesystem into the hard drive
 
 ```
 # cd /mnt
-# tar -Jxf /dist/SotolitoOS-1.28-stage4.tar.xz
+# tar -Jxf /sotolito/stage4/SotolitoOS-1.28-stage4-latest.tar.xz
 # reboot
 
 ```
