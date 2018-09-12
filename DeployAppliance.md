@@ -34,6 +34,45 @@ io=EDID:0 disp.screen0_output_mode=EDID:1280x720p60 quiet rhgb
         fdtdir /dtb-4.17.el7.centos.armv7hl/
         initrd /initramfs-4.17.0-rc1-sotolito+.img
 
+### Create Hard Drive partitions
+
+Use cfdisk or fdisk to create a similar geometry:
+
+Device        Start       End   Sectors   Size Type
+/dev/sda1      2048   8390655   8388608     4G Linux swap         ---> swap
+/dev/sda2   8390656  71305215  62914560    30G Linux filesystem   ---> /
+/dev/sda3  71305216 468862090 397556875 189.6G Linux filesystem   ---> /var
+
+*Set the var partition to fit the size of the drive.*
+
+#### Format the partitions
+
+```
+# mkswap /dev/sda1
+# mkfs.xfs /dev/sda2
+# mkfs.xfs /dev/sda3
+```
+
+#### Mount the partitions
+
+```
+# mount /dev/sda2 /mnt
+# mkdir /mnt/var
+# mount /dev/sda3 /mnt/var
+
+```
+
+### Unpack the stage4
+
+Unpack the stage4 filesystem into the hard drive 
+
+```
+# cd /mnt
+# tar -Jxf /dist/SotolitoOS-1.28-stage4.tar.xz
+# reboot
+
+```
+
 ### NOTES
 
 - Remember to change the sotito and root users password.
