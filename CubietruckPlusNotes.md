@@ -17,3 +17,7 @@ echo rtc-ac100 > /etc/modules-load.d/rtc-ac100.conf
 echo brcmfmac > /etc/modules-load.d/brcmfmac.conf
 echo sun4i-drm-hdmi > /etc/modules-load.d/sun4i-drm-hdmi.conf
 ```
+
+
+### References
+- http://linuxwireless.sipsolutions.net/en/users/Drivers/brcm80211/__v59.html#Firmware_installation-1
