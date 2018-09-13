@@ -38,7 +38,6 @@ Sotolito OS containers use php-fpm
 # ./run
 ```
 
-
 ### Setup Web server
 
 Currently the only web server supported is nginx.
@@ -59,6 +58,6 @@ Build and run the nginx image.
 ```
 # cd nginx
 # ./build
-#
+# ./runnginx
 
 ```
