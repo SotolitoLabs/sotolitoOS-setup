@@ -28,8 +28,12 @@ Sotolito OS containers use php-fpm
 
 #### Setup php-fpm
 
+
 ```
-# cd php-fpm
+# cd php-fpm-setup
+# ./build
+# ./runsetup
+# cd ../php-fpm
 # ./build
 # ./run
 ```
