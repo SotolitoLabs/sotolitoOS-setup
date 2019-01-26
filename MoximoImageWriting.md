@@ -20,10 +20,11 @@ dd if=SotolitoOS-1.28-SD.img of=/dev/sda bs=16M
 ```
 
 
-
+### Use Fedora upstream
 
 ```
-sudo fedora-arm-image-installer --image=sotolitoLabs/cubietruck/Fedora-Minimal-armhfp-23-10-sda.raw.xz --target=Cubietruck --media=/dev/sda --selinux=OFF --norootpass -y --resizefs
+$ wget https://download.fedoraproject.org/pub/fedora/linux/releases/29/Server/armhfp/images/Fedora-Server-armhfp-29-1.2-sda.raw.xz
+$ sudo fedora-arm-image-installer --image=sotolitoLabs/cubietruck/Fedora-Server-armhfp-29-1.2-sda.raw.xz --target=Cubietruck --media=/dev/sda --selinux=OFF --norootpass -y --resizefs
 ```
 
 ### Install required packages
@@ -41,7 +42,7 @@ Kubernetes >= 1.3 is required, it will be installed ahead
 
 ### Change hostname
 
-`hostnamectl set-hostname moximo`
+`hostnamectl set-hostname sotolito`
 
 After this step is completed you have to restart the system
 
@@ -49,14 +50,14 @@ After this step is completed you have to restart the system
 
 ### Create local user moximo
 
-`useradd -c "Moximo Cloud Appliance Admin User" moximo`
+`useradd -c "Sotolito OS default user" sotolito`
 
 ### Clone code repo
 
 This has to be performed as user moximo, so change user before cloning
 
 ```
-su - moximo
+su - sotolito
 git clone https://github.com/SotolitoLabs/moximo-setup.git  
 exit
 ```
