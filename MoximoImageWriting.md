@@ -24,7 +24,7 @@ dd if=SotolitoOS-1.28-SD.img of=/dev/sda bs=16M
 
 ```
 $ wget https://download.fedoraproject.org/pub/fedora/linux/releases/29/Server/armhfp/images/Fedora-Server-armhfp-29-1.2-sda.raw.xz
-$ sudo fedora-arm-image-installer --image=sotolitoLabs/cubietruck/Fedora-Server-armhfp-29-1.2-sda.raw.xz --target=Cubietruck --media=/dev/sda --selinux=OFF --norootpass -y --resizefs
+$ sudo fedora-arm-image-installer --image=sotolitoLabs/cubietruck/Fedora-Server-armhfp-29-1.2-sda.raw.xz --target=Cubietruck --media=/dev/mmcblk0 --selinux=OFF --norootpass -y --resizefs
 ```
 
 ### Install required packages
