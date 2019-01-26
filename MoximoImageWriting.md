@@ -48,13 +48,13 @@ After this step is completed you have to restart the system
 
 `shutdown -r now`
 
-### Create local user moximo
+### Create local user sotolito
 
 `useradd -c "Sotolito OS default user" sotolito`
 
 ### Clone code repo
 
-This has to be performed as user moximo, so change user before cloning
+This has to be performed as user sotolito, so change user before cloning
 
 ```
 su - sotolito
@@ -64,7 +64,7 @@ exit
 
 ### Copy filesystem structure from file to hard drive
 
-`sfdisk /dev/sda < /home/moximo/moximo-setup/sys/hd/sdd.sfdisk`
+`sfdisk /dev/sda < /home/sotolito/moximo-setup/sys/hd/sdd.sfdisk`
 
 
 ### Extend hard drive's third partition (var) to maximum space available
@@ -92,21 +92,21 @@ mkfs.xfs /dev/sda3
 Then we create the directories for the mounting points:
 
 ```
-mkdir -p /mnt/moximo
-mount /dev/sda2 /mnt/moximo
+mkdir -p /mnt/sotolito
+mount /dev/sda2 /mnt/sotolito
 
-mkdir /mnt/moximo/var
-mount /dev/sda3 /mnt/moximo/var
+mkdir /mnt/sotolito/var
+mount /dev/sda3 /mnt/sotolito/var
 ```
 
 Next we tar the root directory, excluding mnt
 
-`tar --exclude=/mnt -c / > /mnt/moximo/var/moximo.tar`
+`tar --exclude=/mnt -c / > /mnt/sotolito/var/moximo.tar`
 
 And untar recently created file in /mnt/sda3
 
 ```
-cd /mnt/moximo/
+cd /mnt/sotolito/
 tar -x ./var/moximo.tar 
 ```
 Modify /etc/fstab
@@ -123,8 +123,8 @@ Finally, unmount mounting points and delete directories in /mnt/
 
 ```
 cd ~
-umount /mnt/moximo/var
-umount /mnt/moximo
+umount /mnt/sotolito/var
+umount /mnt/sotolito
 rm -rf /mnt/*
 ```
 
