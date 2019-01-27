@@ -4,7 +4,8 @@
 
 
 
+
 # References
 
-* http://docs.ceph.com/docs/dumpling/start/
-* http://docs.ceph.com/docs/cuttlefish/start/quick-start/
+* http://docs.ceph.com/docs/mimic/start/
+
