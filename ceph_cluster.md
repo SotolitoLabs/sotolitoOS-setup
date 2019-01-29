@@ -65,13 +65,16 @@ $ export PATH=/home/sotolito-storage-user/ceph-deploy/virtualenv/bin/:$PATH
 ```
 # firewall-cmd --zone=public --add-service=ceph-mon --permanent
 # firewall-cmd --zone=public --add-service=ceph --permanent
+# firewall-cmd --reload
 ```
 
 *On nodes*
 
 ```
 # firewall-cmd --zone=public --add-service=ceph --permanent
+# firewall-cmd --reload
 ```
+
 
 
 
