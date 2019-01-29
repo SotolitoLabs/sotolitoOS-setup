@@ -52,6 +52,29 @@ $ ./bootstrap
 $ export PATH=/home/sotolito-storage-user/ceph-deploy/virtualenv/bin/:$PATH
 ```
 
+**Install suppor packages**
+
+```
+# dnf install -y  ntp ntpdate ntp-doc openssh-server
+```
+
+**Open Ports**
+
+*On master node*
+
+```
+# firewall-cmd --zone=public --add-service=ceph-mon --permanent
+# firewall-cmd --zone=public --add-service=ceph --permanent
+```
+
+*On nodes*
+
+```
+# firewall-cmd --zone=public --add-service=ceph --permanent
+```
+
+
+
 
 
 
