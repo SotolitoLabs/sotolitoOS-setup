@@ -75,6 +75,16 @@ $ export PATH=/home/sotolito-storage-user/ceph-deploy/virtualenv/bin/:$PATH
 # firewall-cmd --reload
 ```
 
+## Create the cluster
+
+This tasks should be executed as the sotolito-storage-user
+
+```
+$ ceph-deploy new sotolito-master
+$ echo "public network = 10.253.0.0/24"  >> ceph.conf
+$ ceph-deploy install sotolito-master sotolito-node1 sotolito-node2
+```
+
 
 
 
