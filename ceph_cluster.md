@@ -10,6 +10,8 @@ Sotolito OS uses Ceph as its storage cluster
 
 **Install the Ceph repo**
 
+The ceph manual recommends this step but there are no builds for armv7l so we'll use the ones from the Fedora repo.
+
 ```
 # cat << EOM > /etc/yum.repos.d/ceph.repo
 [ceph-noarch]
@@ -83,6 +85,8 @@ This tasks should be executed as the sotolito-storage-user
 $ ceph-deploy new sotolito-master
 $ echo "public network = 10.253.0.0/24"  >> ceph.conf
 $ ceph-deploy install sotolito-master sotolito-node1 sotolito-node2
+$ ceph-deploy mon create-initial
+
 ```
 
 
