@@ -11,7 +11,7 @@ Since the upstream ceph team does not build package
 Install arm cross compile dependencies
 
 ```
-# dnf install -t binutils-arm-linux-gnu
+# dnf install -y binutils-arm-linux-gnu arm-none-eabi-gcc-cs-c++
 ```
 
 Install build dependencies
