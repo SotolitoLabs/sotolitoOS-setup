@@ -35,10 +35,10 @@ $ sed -i 's/%{_python_buildid}//' ~/rpmbuild/SPECS/ceph.spec  # for this version
 If compiling on the device:
 
 ```
-$ rpmbuild -ba ~/rpmbuild/SPECS/ceph.spec
+$  RPM_BUILD_NCPUS=7 rpmbuild -ba ~/rpmbuild/SPECS/ceph.spec
 ```
 
 If cross compiling
 
 ```
-$ rpmbuild --target armv7hl --with cross -ba ~/rpmbuild/SPECS/ceph.spec
+$  RPM_BUILD_NCPUS=7 rpmbuild --target armv7hl --with cross -ba ~/rpmbuild/SPECS/ceph.spec
