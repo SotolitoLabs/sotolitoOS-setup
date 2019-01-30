@@ -8,10 +8,10 @@ Since the upstream ceph team does not build package
 # dnf install rpm-build rpmdevtools -y
 ```
 
-Install arm cross compile dependencies
+*Optional* Install arm cross compile dependencies  
 
 ```
-# dnf install -y binutils-arm-linux-gnu arm-none-eabi-gcc-cs-c++
+# dnf install -y binutils-arm-linux-gnu arm-none-eabi-gcc-cs-c++ gcc-c++-arm-linux-gnu gcc-c++ libtool
 ```
 
 Install build dependencies
@@ -29,6 +29,16 @@ $ rpmdev-setuptree
 $ wget wget -O ~/rpmbuild/SOURCES/ceph-13.2.4.orig.tar.gz https://download.ceph.com/tarballs/ceph_13.2.4.orig.tar.gz https://download.ceph.com/tarballs/ceph_13.2.4.orig.tar.gz
 $ tar --strip-components=1 -C ~/rpmbuild/SPECS/ --no-anchored -xvzf ~/rpmbuild/SOURCES/ceph-13.2.4.orig.tar.gz "ceph.spec"
 $ sed -i 's/\.tar\.bz2/.orig.tar.gz/g'  ~/rpmbuild/SPECS/ceph.spec
-$ sed 's/%{_python_buildid}//' ~/rpmbuild/SPECS/ceph.spec  # for this version
-$ rpmbuild --target armv7hl --with cross -ba ~/rpmbuild/SPECS/ceph.spec
+$ sed -i 's/%{_python_buildid}//' ~/rpmbuild/SPECS/ceph.spec  # for this version
 ```
+
+If compiling on the device:
+
+```
+$ rpmbuild -ba ~/rpmbuild/SPECS/ceph.spec
+```
+
+If cross compiling
+
+```
+$ rpmbuild --target armv7hl --with cross -ba ~/rpmbuild/SPECS/ceph.spec
