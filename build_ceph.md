@@ -6,7 +6,12 @@ Since the upstream ceph team does not build package
 
 ```
 # dnf install rpm-build rpmdevtools -y
-# dnf install -y 
+```
+
+Install arm cross compile dependencies
+
+```
+# dnf install -t binutils-arm-linux-gnu
 ```
 
 Install build dependencies
