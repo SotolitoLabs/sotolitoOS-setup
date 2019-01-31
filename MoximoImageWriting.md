@@ -20,6 +20,33 @@ dd if=SotolitoOS-1.28-SD.img of=/dev/sda bs=16M
 ```
 
 
+[root@airsk8 fedora]# cd /run/media/ichavero/
+[root@airsk8 ]# ls
+bin   dev  home  lost+found  mnt   opt   root  sbin  sys  usb  var
+boot  etc  lib   media       mnt2  proc  run   srv   tmp  usr
+[root@airsk8 __]# tar -zc . > /home/ichavero/sotolitoLabs/sotolitoOS/1.28/stage4/fedora/SotolitoOS-1.28-stage4.tar.gz
+ screen /dev/ttyUSB0 115200
+ http://linux-sunxi.org/Cubieboard/TTL
+
+[root@sotolito ~]# mount /dev/sda2 /mnt
+[  511.018334] XFS (sda2): Mounting V5 Filesystem
+[  511.150095] XFS (sda2): Ending clean mount
+[root@sotolito ~]# mkdir /mnt/var
+[root@sotolito ~]# mount /dev/sda2 /mnt
+mount: /mnt: /dev/sda2 already mounted on /mnt.
+[root@sotolito ~]# mount /dev/sda3 /mnt/var
+[  550.126066] XFS (sda3): Mounting V5 Filesystem
+[  550.235709] XFS (sda3): Ending clean mount
+Unread messages
+ 175  mkswap /dev/sda1
+  176  swapon -a
+  177  free
+  178  mkfs.xfs /dev/sda2
+  179  mkfs.xfs /dev/sda3
+
+
+
+
 
 
 ```
