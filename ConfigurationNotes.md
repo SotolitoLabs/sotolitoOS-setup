@@ -155,6 +155,10 @@ Copy configuration files from repo, overwrite if needed
 cp -rf /home/moximo/moximo-setup/etc/etcd/* /etc/etcd/
 cp -rf /home/moximo/moximo-setup/etc/kubernetes/* /etc/kubernetes/
 cp -rf /home/moximo/moximo-setup/usr/share/cockpit/branding/* /usr/share/cockpit/branding/
+cp -rf /home/moximo/moximo-setup/usr/share/pixmaps/sotolito-logo.png /usr/share/pixmaps/sotolito-logo.png
+cp -rf /home/moximo/moximo-setup/usr/lib/os.release.d/os-release-sotolito-server /usr/lib/os.release.d/os-release-sotolito-server
+cd /usr/lib
+ln -sf ./os.release.d/os-release-sotolito-server os-release
 ```
 
 ## Configure kube-proxy 
