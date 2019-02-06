@@ -24,10 +24,12 @@ tasks for the sytem to be prepared for production.
 
 Use cfdisk or fdisk to create a similar geometry:
 
+```
 Device        Start       End   Sectors   Size Type
 /dev/sda1      2048   8390655   8388608     4G Linux swap         ---> swap
 /dev/sda2   8390656  71305215  62914560    30G Linux filesystem   ---> /
 /dev/sda3  71305216 468862090 397556875 189.6G Linux filesystem   ---> /var
+```
 
 *Set the var partition to fit the size of the drive.*
 
