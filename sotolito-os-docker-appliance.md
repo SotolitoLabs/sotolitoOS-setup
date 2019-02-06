@@ -1,0 +1,1 @@
+# Sotolito OS Docker appliance
