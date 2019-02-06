@@ -20,6 +20,7 @@ dd if=SotolitoOS-1.28-SD.img of=/dev/sda bs=16M
 ```
 
 
+<<<<<<< HEAD
 [root@airsk8 fedora]# cd /run/media/ichavero/
 [root@airsk8 ]# ls
 bin   dev  home  lost+found  mnt   opt   root  sbin  sys  usb  var
@@ -48,9 +49,13 @@ Unread messages
 
 
 
+=======
+### Use Fedora upstream
+>>>>>>> 402fd30962601f6b457e3a40971b101b55c35870
 
 ```
-sudo fedora-arm-image-installer --image=sotolitoLabs/cubietruck/Fedora-Minimal-armhfp-23-10-sda.raw.xz --target=Cubietruck --media=/dev/sda --selinux=OFF --norootpass -y --resizefs
+$ wget https://download.fedoraproject.org/pub/fedora/linux/releases/29/Server/armhfp/images/Fedora-Server-armhfp-29-1.2-sda.raw.xz
+$ sudo fedora-arm-image-installer --image=sotolitoLabs/cubietruck/Fedora-Server-armhfp-29-1.2-sda.raw.xz --target=Cubietruck --media=/dev/mmcblk0 --selinux=OFF --norootpass -y --resizefs
 ```
 
 ### Install required packages
@@ -68,29 +73,29 @@ Kubernetes >= 1.3 is required, it will be installed ahead
 
 ### Change hostname
 
-`hostnamectl set-hostname moximo`
+`hostnamectl set-hostname sotolito`
 
 After this step is completed you have to restart the system
 
 `shutdown -r now`
 
-### Create local user moximo
+### Create local user sotolito
 
-`useradd -c "Moximo Cloud Appliance Admin User" moximo`
+`useradd -c "Sotolito OS default user" sotolito`
 
 ### Clone code repo
 
-This has to be performed as user moximo, so change user before cloning
+This has to be performed as user sotolito, so change user before cloning
 
 ```
-su - moximo
+su - sotolito
 git clone https://github.com/SotolitoLabs/moximo-setup.git  
 exit
 ```
 
 ### Copy filesystem structure from file to hard drive
 
-`sfdisk /dev/sda < /home/moximo/moximo-setup/sys/hd/sdd.sfdisk`
+`sfdisk /dev/sda < /home/sotolito/moximo-setup/sys/hd/sdd.sfdisk`
 
 
 ### Extend hard drive's third partition (var) to maximum space available
@@ -118,21 +123,21 @@ mkfs.xfs /dev/sda3
 Then we create the directories for the mounting points:
 
 ```
-mkdir -p /mnt/moximo
-mount /dev/sda2 /mnt/moximo
+mkdir -p /mnt/sotolito
+mount /dev/sda2 /mnt/sotolito
 
-mkdir /mnt/moximo/var
-mount /dev/sda3 /mnt/moximo/var
+mkdir /mnt/sotolito/var
+mount /dev/sda3 /mnt/sotolito/var
 ```
 
 Next we tar the root directory, excluding mnt
 
-`tar --exclude=/mnt -c / > /mnt/moximo/var/moximo.tar`
+`tar --exclude=/mnt -c / > /mnt/sotolito/var/moximo.tar`
 
 And untar recently created file in /mnt/sda3
 
 ```
-cd /mnt/moximo/
+cd /mnt/sotolito/
 tar -x ./var/moximo.tar 
 ```
 Modify /etc/fstab
@@ -149,8 +154,8 @@ Finally, unmount mounting points and delete directories in /mnt/
 
 ```
 cd ~
-umount /mnt/moximo/var
-umount /mnt/moximo
+umount /mnt/sotolito/var
+umount /mnt/sotolito
 rm -rf /mnt/*
 ```
 

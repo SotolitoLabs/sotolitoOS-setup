@@ -1,11 +1,11 @@
 ## Moximo Configuration Notes
 
-Configuration assumes using Fedora 23 minimal, so many of the features may be already available if any other superior edition is used instead
+Configuration assumes using Fedora 28 minimal, so many of the features may be already available if any other superior edition is used instead
 
 #### Installation Example
 
 ```
-sudo fedora-arm-image-installer --image=sotolitoLabs/cubietruck/Fedora-Minimal-armhfp-23-10-sda.raw.xz --target=Cubietruck --media=/dev/sda --selinux=OFF --norootpass -y --resizefs
+sudo fedora-arm-image-installer --image=sotolitoLabs/cubietruck/Fedora-Minimal-armhfp-28-10-sda.raw.xz --target=Cubietruck --media=/dev/sda --selinux=OFF --norootpass -y --resizefs
 
 ```
 ### Install required packages
@@ -13,7 +13,7 @@ sudo fedora-arm-image-installer --image=sotolitoLabs/cubietruck/Fedora-Minimal-a
 ```
 dnf group install "Development Tools" -y
 dnf install parted -y
-dnf install librepo --releasever=23 -y
+dnf install librepo --releasever=28 -y
 dnf install xfsprogs -y
 dnf install tar -y
 dnf install wget -y
