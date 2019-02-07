@@ -1,7 +1,7 @@
 NAME=Sotolito
 VERSION="1.28 (Aguamiel)"
 ID=sotolito
-VERSION_ID=1.28
+VERSION_ID=28
 PRETTY_NAME="Sotolito OS 1.28 (Aguamiel)"
 ANSI_COLOR="0;34"
 CPE_NAME="cpe:/o:fedoraproject:fedora:28"
