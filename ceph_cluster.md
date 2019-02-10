@@ -56,6 +56,15 @@ $ ./bootstrap
 $ export PATH=/home/sotolito-storage-user/ceph-deploy/virtualenv/bin/:$PATH
 ```
 
+*In case the latest ceph-deploy does not get installed install it manually*
+
+```
+# dnf install -y python3-ceph-argparse
+# rpm -Uvh --nodeps //download.ceph.com/rpm-mimic/el7/noarch/ceph-deploy-2.0.1-0.noarch.rpm
+# rpm -Uvh https://mirrors.nju.edu.cn/ceph/rpm-mimic/el7/noarch/ceph-release-1-1.el7.noarch.rpm #in case 
+```
+
+
 **Install suppor packages**
 
 ```
