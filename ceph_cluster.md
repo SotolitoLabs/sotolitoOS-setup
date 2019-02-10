@@ -87,6 +87,7 @@ This tasks should be executed as the sotolito-storage-user
 $ ceph-deploy new sotolito-master
 $ echo "public network = 10.253.0.0/24"  >> ceph.conf
 $ ceph-deploy install --no-adjust-repos sotolito-master sotolito-node1 sotolito-node2
+$ sudo ceph-create-keys -i cloud
 $ ceph-deploy mon create-initial
 $ ceph-deploy admin sotolito-master sotolito-node1 sotolito-node2
 $ ceph-deploy mgr create sotolito-node1
