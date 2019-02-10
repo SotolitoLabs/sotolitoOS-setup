@@ -102,7 +102,15 @@ $ ceph-deploy mgr create sotolito-node1
 $ ceph-deploy osd create --data /dev/sda4 sotolito-master
 $ ceph-deploy osd create --data /dev/sda4 sotolito-node1
 $ ceph-deploy osd create --data /dev/sda4 sotolito-node2
+$ sudo systemctl start ceph-mon@cloud
+$ sudo systemctl start ceph-radosgw@cloud
 
+```
+
+Check health
+
+```
+$ sudo ceph health
 ```
 
 
