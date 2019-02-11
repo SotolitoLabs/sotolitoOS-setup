@@ -88,6 +88,14 @@ $ export PATH=/home/sotolito-storage-user/ceph-deploy/virtualenv/bin/:$PATH
 # firewall-cmd --reload
 ```
 
+*On manger node*
+
+```
+# firewall-cmd --zone=FedoraServer --add-port=6800-7300/tcp --permanent;  firewall-cmd --reload
+# firewall-cmd --reload
+```
+
+
 ## Create the cluster
 
 This tasks should be executed as the sotolito-storage-user
