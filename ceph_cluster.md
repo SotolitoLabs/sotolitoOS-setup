@@ -126,8 +126,14 @@ Check health
 $ sudo ceph health
 ```
 
+## Troubleshooting
 
+If there are problems with not enough PG's per OSD do this:
 
+```
+$ sudo ceph osd pool set .rgw.root pgp_num 35
+$ sudo ceph osd pool set .rgw.root pgp_num 35
+```
 
 
 
