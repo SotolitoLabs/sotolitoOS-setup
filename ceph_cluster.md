@@ -91,7 +91,7 @@ $ export PATH=/home/sotolito-storage-user/ceph-deploy/virtualenv/bin/:$PATH
 *On manger node*
 
 ```
-# firewall-cmd --zone=FedoraServer --add-port=6800-7300/tcp --permanent;  firewall-cmd --reload
+# firewall-cmd --zone=FedoraServer --add-port=6800-7300/tcp --permanent
 # firewall-cmd --reload
 ```
 
@@ -112,7 +112,12 @@ $ ceph-deploy osd create --data /dev/sda4 sotolito-node1
 $ ceph-deploy osd create --data /dev/sda4 sotolito-node2
 $ sudo systemctl start ceph-mon@cloud
 $ sudo systemctl start ceph-radosgw@cloud
-
+$ ssh sotolito-node1 sudo systemctl restart ceph-volume@dev-sdb1.service
+$ ssh sotolito-node1 sudo systemctl enable ceph-volume@dev-sdb1.service 
+$ ssh sotolito-node1 sudo systemctl restart ceph-volume@dev-sdc1.service
+$ ssh sotolito-node1 sudo systemctl enable ceph-volume@dev-sdc1.service
+$ ssh sotolito-node2 sudo systemctl restart ceph-volume@dev-sdb1.service
+$ ssh sotolito-node2 sudo systemctl enable ceph-volume@dev-sdb1.service 
 ```
 
 Check health
