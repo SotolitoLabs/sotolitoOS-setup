@@ -1,0 +1,15 @@
+---
+- hosts: all
+  vars:
+    node_ip_address: 10.254.0.254
+  tasks:
+  - name: Copy network configuration for Sotolito OS node
+    copy:
+      src: ~/moximo-setup/etc/sysconfig/network-scripts/ifcfg.TEMPLATE
+      dest: "/etc/sysconfig/network-scripts/ifcfg-{{ ansible_default_ipv4.interface }}"
+      owner: root
+      group: root
+      mode: 0600
+  - name: "Set IP Address to {{ node_ip_address }}"
+    command: "sed -i -e 's/<IP>/{{ node_ip_address }}/' /etc/sysconfig/network-scripts/ifcfg-{{ ansible_default_ipv4.interface }}"
+
