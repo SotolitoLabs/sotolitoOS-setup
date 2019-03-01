@@ -1,7 +1,0 @@
----
-- hosts: "{{ host }}"
-  vars:
-    ansible_user: lola
-  tasks:
-  - name: "Print variable"
-    command: "sed -i -e 's/USER/{{ ansible_user }}/' ~/TEST.txt"
