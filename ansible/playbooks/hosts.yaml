@@ -1,0 +1,11 @@
+---
+- hosts: all
+  tasks:
+  - name: Copy hosts file for small clusters
+    copy:
+      src: ~/moximo-setup/etc/hosts
+      dest: /etc/hosts
+      owner: root
+      group: root
+      mode: 0644
+
