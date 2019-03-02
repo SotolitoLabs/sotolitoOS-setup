@@ -1,0 +1,9 @@
+127.0.0.1		localhost.localdomain localhost
+::1		localhost6.localdomain6 localhost6
+
+10.253.0.1      sotolito-master 
+10.253.0.2      sotolito-node1
+10.253.0.3      sotolito-node2
+10.253.0.4      sotolito-compute1
+10.253.0.5      sotolito-compute2
+10.253.0.6      sotolito-compute3
