@@ -10,6 +10,19 @@
       owner: root
       group: root
       mode: 0600
+  - name: "Set Network Interface {{ ansible_default_ipv4.interface }}"
+    replace:
+      dest: "/etc/sysconfig/network-scripts/ifcfg-{{ ansible_default_ipv4.interface }}"
+      regexp: "<IFACE>"
+      replace: "{{ ansible_default_ipv4.interface }}"
   - name: "Set IP Address to {{ node_ip_address }}"
-    command: "sed -i -e 's/<IP>/{{ node_ip_address }}/' /etc/sysconfig/network-scripts/ifcfg-{{ ansible_default_ipv4.interface }}"
+    replace:
+      dest: "/etc/sysconfig/network-scripts/ifcfg-{{ ansible_default_ipv4.interface }}"
+      regexp: "<IP>"
+      replace: "{{ node_ip_address }}"
+  - name: "Reload network"
+    service:
+      name: network
+      state: reloaded
+      args: "{{ ansible_default_ipv4.interface }}"
 
