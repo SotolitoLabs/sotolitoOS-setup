@@ -1,0 +1,17 @@
+[master]
+10.253.0.1 node_hostname=sotolito-master
+
+[node1]
+10.253.0.2 node_hostname=sotolito-node1
+
+[node2]
+10.253.0.3 node_hostname=sotolito-node2
+
+[compute1]
+10.253.0.4 node_hostname=sotolito-compute1
+
+[compute1]
+10.253.0.5 node_hostname=sotolito-compute2
+
+[compute1]
+10.253.0.6 node_hostname=sotolito-compute3
