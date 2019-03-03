@@ -1,0 +1,8 @@
+---
+- hosts: all
+  tasks:
+  - name: Disable SELinux for current session
+    command: setenforce 0
+  - name: Disable SELinux persistently
+    command: sed -i 's/enforcing/permissive/g' /etc/selinux/config
+
