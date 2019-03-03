@@ -1,0 +1,35 @@
+---
+# Bootstrap initial monitor
+- hosts: ceph-mon1
+  vars:
+  cluster_name: ceph
+  # Generate with uuidgen
+  fsid: fc719300-3148-49d1-9466-34c032305104
+  tasks:
+  - name: Create Montior key
+    command: "ceph-authtool --create-keyring /tmp/{{ cluster_name }}.mon.keyring --gen-key -n mon. --cap mon 'allow *'"
+  - name: Create Admin key
+    command: ceph-authtool --create-keyring /etc/ceph/{{ cluster_name }}.client.admin.keyring --gen-key -n client.admin --cap mon 'allow *' --cap osd 'allow *' --cap mds 'allow *' --cap mgr 'allow *'
+  - name: Create Bootstrap Monitor directory
+    command: mkdir -p /var/lib/ceph/bootstrap-mon
+  - name: Create Keyring
+    command: ceph-authtool --create-keyring /var/lib/ceph/bootstrap-mon/ceph.keyring --gen-key -n client.bootstrap-mon --cap mon 'profile bootstrap-mon'
+  - name: Import Admin Keyring
+    command: ceph-authtool /tmp/ceph.mon.keyring --import-keyring /etc/ceph/{{ cluster_name }}.client.admin.keyring
+  - name: Import Monitor Keyring
+    command: ceph-authtool /tmp/ceph.mon.keyring --import-keyring /var/lib/ceph/bootstrap-osd/ceph.keyring
+  - name: Create Initial Monitor Map
+    command: "monmaptool --create --add {{ node_hostname }} --fsid {{ fsid  }} /tmp/monmap"
+  - name: Create monitor directory
+    command: "mkdir -p /var/lib/ceph/mon/{{ cluster_name }}-{{ node_hostname }}"
+  - name: Create monitor filesystem
+    command: "ceph-mon --cluster {{ cluster_name }} --mkfs -i {{ node_hostname }} --monmap /tmp/monmap --keyring /tmp/ceph.mon.keyring"
+  - name: Change ceph directory permissions
+    command: chown -R ceph:ceph /var/lib/ceph/
+  - name: Set cluster name
+    command: "echo 'CLUSTER={{ cluster_name }}' >>  /etc/sysconfig/ceph"
+  - name:  Start monitor
+    service:
+      name: ceph-mon@{{ node_hostname }}
+      state: started
+

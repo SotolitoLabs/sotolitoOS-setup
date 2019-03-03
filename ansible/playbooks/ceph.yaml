@@ -1,0 +1,32 @@
+---
+# Bootstrap initial monitor
+- hosts: ceph-mon1
+  vars:
+    cluster_name: ceph
+  # Generate with uuidgen
+    fsid: fc719300-3148-49d1-9466-34c032305104
+    pub_net: 10.253.0.0/24
+  tasks:
+  - name: Install Ceph
+    action: >
+      "{{ ansible_pkg_mgr }} name=ceph state=present update_cache=yes"
+  - name: Copy intial ceph.conf
+    copy:
+      src: ~/moximo-setup/etc/ceph/ceph.conf
+      dest: /etc/ceph/ceph.conf
+      owner: root
+      group: root
+      mode: 0644
+
+  - name: Set fsid
+    command: "sed -i 's/<FSID>/{{ fsid }}/g' /etc/ceph/ceph.conf"
+
+  - name: Set Initial Monitor
+    command: "sed -i 's/<MON>/{{ node_hostname }}/g' /etc/ceph/ceph.conf"
+
+  - name: Set Monitor IP
+    command: "sed -i 's/<MON_IP>/{{ node_ip_address }}/g' /etc/ceph/ceph.conf"
+
+  - name: Set Public Network
+    command: "sed -i 's/<PUB_NET>/{{ pub_net }}/g' /etc/ceph/ceph.conf"
+
