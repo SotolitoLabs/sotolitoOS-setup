@@ -290,3 +290,8 @@ touch /etc/moximo/.firstboot
 ### Reboot and test
 
 `shutdown -r now`
+
+
+## References:
+
+* https://www.linuxtechi.com/install-kubernetes-1-7-centos7-rhel7/
