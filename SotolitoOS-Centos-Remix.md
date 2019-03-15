@@ -27,9 +27,9 @@ After=network.target
 
 [Service]
 Type=oneshot
-ExecStart=
-RemainAfterExit=trueKillMode=process
-ExecStop=/opt/foo/teardown-foo.sh
+ExecStart=/usr/local/bin/ligt_control.sh green on
+RemainAfterExit=true
+ExecStop=/usr/local/bin/ligt_control.sh green off
 StandardOutput=journal
 
 [Install]
