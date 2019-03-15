@@ -20,6 +20,7 @@
 **Set green light on when the appliance is ready**
 
 
+*create the file /etc/systemd/system/sotolitoos-arm-control-ready-light.service*
 ```
 [Unit] 
 Description=Sotolito OS ARM Control Ready Light (Green)
@@ -27,15 +28,36 @@ After=network.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/local/bin/ligt_control.sh green on
+ExecStart=/usr/local/bin/light_control.sh green on
 RemainAfterExit=true
-ExecStop=/usr/local/bin/ligt_control.sh green off
+ExecStop=/usr/local/bin/light_control.sh green off
 StandardOutput=journal
 
 [Install]
 WantedBy=multi-user.target
 ```
 
+```
+# systemctl daemon-reload
+```
+
+*Turn on ready light (the green led)*
+```
+# systemctl start sotolitoos-arm-control-ready-light
+```
+
+*Turn off ready light*
+```
+# systemctl stop sotolitoos-arm-control-ready-light
+```
+
+*The ready light should be set on boot*
+
+```
+# systemctl enable sotolitoos-arm-control-ready-light
+```
+
+*The ready light should indicate that the system booted successfully*
 
 ## Misc.
 
