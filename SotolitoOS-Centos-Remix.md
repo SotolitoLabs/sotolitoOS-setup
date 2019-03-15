@@ -16,3 +16,51 @@
 ```
 # dd if=/dev/sdc of=SotolitoOS-Cubietruck_Plus-CentOS-Userland-7-armv7hl-generic-Minimal-419-v26-1810-sda.raw bs=16M count=188
 ```
+
+**Set green light on when the appliance is ready**
+
+
+```
+[Unit] 
+Description=Sotolito OS ARM Control Ready Light (Green)
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=
+RemainAfterExit=trueKillMode=process
+ExecStop=/opt/foo/teardown-foo.sh
+StandardOutput=journal
+
+[Install]
+WantedBy=multi-user.target
+```
+
+
+## Misc.
+
+**Control Lights**
+
+```
+#!/bin/bash
+
+VALUE=0
+
+if [[ $2 == "on" ]]; then
+  VALUE=255
+fi
+
+if [[ $1 == "all" ]]; then
+  for color in "blue" "orange" "green" "white"; do
+    echo "Setting ${color} led to ${2}"
+    echo $VALUE > /sys/class/leds/cubietruck-plus\:$color\:usr/brightness
+  done
+else
+  echo $VALUE > /sys/class/leds/cubietruck-plus\:$1\:usr/brightness
+fi
+
+```
+
+# References
+
+* http://linux-sunxi.org/Cubieboard/Programming/StatusLEDs
