@@ -17,6 +17,106 @@
 # dd if=/dev/sdc of=SotolitoOS-Cubietruck_Plus-CentOS-Userland-7-armv7hl-generic-Minimal-419-v26-1810-sda.raw bs=16M count=188
 ```
 
+## Configure SSD partitions
+
+### Create local user moximo
+
+`useradd -c "Moximo Cloud Appliance Admin User" moximo`
+
+### Clone code repo
+
+This has to be performed as user moximo, so change user before cloning
+
+```
+su - moximo
+git clone https://github.com/SotolitoLabs/moximo-setup.git  
+exit
+```
+
+### Copy filesystem structure from file to hard drive
+
+`sfdisk /dev/sda < /home/moximo/moximo-setup/sys/hd/sdd.sfdisk`
+
+
+### Extend hard drive's third partition (var) to maximum space available
+
+For this task you may use parted or some other partition management tool.
+
+If CLI is preferred, then issue the following command
+
+`echo ", +" | sfdisk -N 3 /dev/sda`
+
+### Copy root partition from SD Card to hard drive
+
+In order to accomplish this, we need -first of all- format the hard drive's partitions as follows:
+
+- /dev/sda1 as swap
+- /dev/sda2 as xfs
+- /dev/sda3 as xfs
+
+```
+mkswap /dev/sda1
+mkfs.ext4 /dev/sda2
+mkfs.xfs /dev/sda3
+```
+
+Then we create the directories for the mounting points:
+
+```
+mkdir -p /mnt/moximo
+mount /dev/sda2 /mnt/moximo
+
+mkdir /mnt/moximo/var
+mount /dev/sda3 /mnt/moximo/var
+```
+
+Next we tar the root directory, excluding mnt
+
+`tar --exclude=/mnt -c / > /mnt/moximo/var/moximo.tar`
+
+And untar recently created file in /mnt/sda3
+
+```
+cd /mnt/moximo/
+tar -x ./var/moximo.tar 
+```
+Modify /etc/fstab
+
+```
+/dev/sda1          swap swap      defaults,noatime 0 0
+/dev/mmcblk1p2     /boot ext4     defaults,noatime 0 0
+/dev/sda2          / xfs          defaults,noatime 0 0
+/dev/sda3          /var xfs       defaults,noatime 0 0
+
+```
+
+Finally, unmount mounting points and delete directories in /mnt/
+
+```
+cd ~
+umount /mnt/moximo/var
+umount /mnt/moximo
+rm -rf /mnt/*
+```
+
+
+### Change boot Configuration
+
+This has to be done in order to command the system to use hard drive's newly copied root partition instead of the one in the SD Card
+
+Edit /boot/extlinux/extlinux.conf and substitute root=UUID for root=/dev/sda2
+
+Label may be customized as well.
+
+Reboot system so next boot will run root on hard drive
+
+`shutdown -r now`
+
+
+
+
+## Miscelaneous configuration
+
 **Set green light on when the appliance is ready**
 
 
@@ -82,6 +182,11 @@ else
 fi
 
 ```
+
+
+
+
+
 
 # References
 
