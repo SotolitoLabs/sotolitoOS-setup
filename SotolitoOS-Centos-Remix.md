@@ -17,6 +17,15 @@
 # dd if=/dev/sdc of=SotolitoOS-Cubietruck_Plus-CentOS-Userland-7-armv7hl-generic-Minimal-419-v26-1810-sda.raw bs=16M count=188
 ```
 
+**Or download the current SotolitoOS-Centos Cubietruck Plus Remix and write it to the sdcard**
+
+```
+$ wget http://sotolitolabs.com/dist/1.7/centos/images/SotolitoOS-Cubietruck_Plus-CentOS-Userland-7-armv7hl-generic-Minimal-419-v26-1810-sda.raw.xz
+$ xz -d SotolitoOS-Cubietruck_Plus-CentOS-Userland-7-armv7hl-generic-Minimal-419-v26-1810-sda.raw.xz
+$ sudo dd if=SotolitoOS-Cubietruck_Plus-CentOS-Userland-7-armv7hl-generic-Minimal-419-v26-1810-sda.raw of=/dev/sdc status=progress bs=16M
+
+```
+
 ## Configure SSD partitions
 
 ### Create local user sotolito
