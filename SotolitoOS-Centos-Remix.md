@@ -193,7 +193,49 @@ fi
 ```
 
 
+**Optional: Monitoring service**
+*This is used for development*
 
+in /etc/systemd/system/sotolitoos-monitoring-discovery.service
+```
+[Unit] 
+Description=Sotolito OS Monitoring Discovery
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/monitoring_discovery.sh start
+RemainAfterExit=true
+ExecStop=/usr/local/bin/monitoring_discovery.sh stop
+StandardOutput=journal
+
+[Install]
+WantedBy=multi-user.target
+
+```
+
+in /usr/local/bin/monitoring_discovery.sh
+
+```
+#!/bin/bash
+
+LOCAL_IP=$(ip addr show eth0 | grep -Po 'inet \K[\d.]+')
+ACTION="Started"
+
+if [[ $1 != "start" ]]; then
+  ACTION="Stopped"
+fi
+
+res=$(curl -XGET "http://sotolitolabs.com/monitoring/control.php?local_ip=${LOCAL_IP}&action=${A
+CTION}")
+
+echo "RES: ${res}"
+```
+
+```
+# systemctl daemon-reload
+# systemctl enable sotolitoos-monitoring-discovery
+```
 
 
 
