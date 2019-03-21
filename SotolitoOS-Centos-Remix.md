@@ -29,7 +29,7 @@ This has to be performed as user sotolito, so change user before cloning
 
 ```
 su - sotolito
-git clone https://github.com/SotolitoLabs/sotolito-setup.git  
+git clone https://github.com/SotolitoLabs/moximo-setup.git  
 exit
 ```
 
