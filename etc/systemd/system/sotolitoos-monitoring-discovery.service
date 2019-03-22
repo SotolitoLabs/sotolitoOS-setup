@@ -1,0 +1,13 @@
+[Unit] 
+Description=Sotolito OS Monitoring Discovery
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/monitoring_discovery.sh start
+RemainAfterExit=true
+ExecStop=/usr/local/bin/monitoring_discovery.sh stop
+StandardOutput=journal
+
+[Install]
+WantedBy=multi-user.target

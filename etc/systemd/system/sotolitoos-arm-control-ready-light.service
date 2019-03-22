@@ -1,0 +1,13 @@
+[Unit] 
+Description=Sotolito OS ARM Control Ready Light (Green)
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/light_control.sh green on
+RemainAfterExit=true
+ExecStop=/usr/local/bin/light_control.sh green off
+StandardOutput=journal
+
+[Install]
+WantedBy=multi-user.target
