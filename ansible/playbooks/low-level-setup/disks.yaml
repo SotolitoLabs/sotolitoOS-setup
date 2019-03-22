@@ -6,7 +6,7 @@
       device: /dev/sda
       number: 1
       state: present
-      part_start: 0
+      part_start: 0GiB
       part_end: 2GiB
   - name: Creating root partition
     parted:
