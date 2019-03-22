@@ -6,7 +6,7 @@
       device: /dev/sda
       number: 1
       state: present
-      part_start: 0GiB
+      #TODO check how to optimize this: part_start: 0s
       part_end: 2GiB
   - name: Creating root partition
     parted:
