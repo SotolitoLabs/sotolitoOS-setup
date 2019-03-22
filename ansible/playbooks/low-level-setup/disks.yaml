@@ -6,13 +6,14 @@
       device: /dev/sda
       number: 1
       state: present
+      part_start: 0
       part_end: 2GiB
   - name: Creating root partition
     parted:
       device: /dev/sda
       number: 2
       state: present
-      part_end: 2GiB
+      part_start: 2GiB
       part_end: 30GiB
   - name: Creating var partition
     parted:
@@ -22,7 +23,9 @@
       part_start: 30GiB
       part_end: 100%
   - name: Make swap partition
-    command: "mkswap /dev/sda1; swapon -a"
+    command: "mkswap /dev/sda1"
+  - name: Activate swap partition
+    command: "swapon -a"
   - name: Create a xfs filesystem for root (/dev/sda2)
     filesystem:
       fstype: xfs
