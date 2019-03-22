@@ -21,7 +21,16 @@
       state: present
       part_start: 30GiB
       part_end: 100%
-
+  - name: Make swap partition
+    command: "mkswap /dev/sda1; swapon -a"
+  - name: Create a xfs filesystem for root (/dev/sda2)
+    filesystem:
+      fstype: xfs
+      dev: /dev/sda2
+  - name: Create a xfs filesystem for var (/dev/sda3)
+    filesystem:
+      fstype: xfs
+      dev: /dev/sda3
 
 
 
