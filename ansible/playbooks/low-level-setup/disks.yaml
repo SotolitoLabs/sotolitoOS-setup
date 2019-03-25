@@ -1,6 +1,10 @@
 ---
 - hosts: all
   tasks:
+  - name: Install dependencies LVM
+    package:
+      name: lvm2
+      state: present
   - name: Creating swap partition
     parted:
       device: /dev/sda
@@ -19,9 +23,23 @@
     parted:
       device: /dev/sda
       number: 3
+      flags: [ lvm ]
       state: present
       part_start: 30GiB
       part_end: 100%
+  - name: Create sotolito volume group on top of /dev/sda3
+    lvg:
+      vg: sotolito
+      state: present
+      pvs: /dev/sda3
+      #pesize: 32
+  - name: Create logical volume for var
+    lvol:
+      vg: sotolito
+      lv: var
+      state: present
+      size: 100%FREE
+      pvs: /dev/sda3
   - name: Make swap partition
     command: "mkswap /dev/sda1"
   - name: Activate swap partition
@@ -30,10 +48,10 @@
     filesystem:
       fstype: xfs
       dev: /dev/sda2
-  - name: Create a xfs filesystem for var (/dev/sda3)
+  - name: Create a xfs filesystem for var (/dev/sotolito/var)
     filesystem:
       fstype: xfs
-      dev: /dev/sda3
+      dev: /dev/sotolito/var
 
 
 
