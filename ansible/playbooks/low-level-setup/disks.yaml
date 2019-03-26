@@ -1,6 +1,20 @@
 ---
 - hosts: all
   tasks:
+  - name: Install NTP for time synchronization
+    action: package name={{item}} state=installed
+    with_items:
+       - ntp
+       - ntpdate
+       - ntp-doc
+  - name: Set timezone to America/Mexico_City
+    timezone:
+      name: America/Mexico_City
+  - name: Enable time synchronization
+    service:
+      name: ntpd
+      state: started
+      enabled: yes
   - name: Install dependencies LVM
     package:
       name: lvm2
@@ -38,8 +52,9 @@
       vg: sotolito
       lv: var
       state: present
-      size: 100%FREE
+      size: 100%VG
       pvs: /dev/sda3
+      force: yes
   - name: Make swap partition
     command: "mkswap /dev/sda1"
   - name: Activate swap partition
@@ -52,6 +67,27 @@
     filesystem:
       fstype: xfs
       dev: /dev/sotolito/var
-
+  - name: "Create temporal root directory for sotolito stage3"
+    file:
+      path: /mnt/sotolito
+      owner: root
+      group: root
+      state: directory
+      mode: 0755
+  - name: "Create temporal var directory for sotolito stage3"
+    file:
+      path: /mnt/sotolito/var
+      owner: root
+      group: root
+      state: directory
+      mode: 0755
+  - name: "Mount root partition"
+    command: mount /dev/sda2 /mnt/sotolito
+  - name: "Mount var partition"
+    command: mount /dev/sotolito/var /mnt/sotolito/var
+  - name: "Create sotolitoOS stage3 from SD card"
+    command: tar --ignore-failed-read --exclude=/mnt/sotolito -cf/mnt/sotolito/var/sotolitoOS-1.7-CentOS.tar / 2>&1 > /dev/null
+  - name: "Unpack sotolito OS stage3 on Hard Drive"
+    command: tar --ignore-command-error -C /mnt/sotolito -xf /mnt/sotolito/var/sotolitoOS-1.7-CentOS.tar 2> /dev/null
 
 
