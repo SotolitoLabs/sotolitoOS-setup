@@ -93,5 +93,18 @@
     shell: tar --ignore-command-error -C /mnt/sotolito -xf /mnt/sotolito/var/sotolitoOS-1.7-CentOS.tar  2>&1 > /dev/null; exit 0
     tags:
       - unpack-stage3   
-
+  - name: "Copy fstab to Hard Drive"
+    copy:
+      src: /home/sotolito/moximo-setup/etc/fstab
+      dest: /mnt/sotolito/etc/fstab
+      owner: root
+      group: root
+      mode: 0755
+  - name: "Copy extlinux configuration"
+    copy:
+      src: /home/sotolito/moximo-setup/boot/extlinux/extlinux.conf
+      dest: /boot/extlinux/extlinux.conf
+      owner: root
+      group: root
+      mode: 0755
 
