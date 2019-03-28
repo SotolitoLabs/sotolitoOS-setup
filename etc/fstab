@@ -1,4 +1,4 @@
 /dev/sda1       swap swap     defaults,noatime 0 0
-/dev/sda2       /     ext4    defaults,noatime 0 0
+/dev/sda2       /     xfs     defaults,noatime 0 0
 /dev/sda3       /var  xfs     defaults	       1 2
-/dev/mmcblk0p1  /boot ext4    defaults,noatime 0 0
+/dev/mmcblk0p1  /boot ext3    defaults,noatime 0 0
