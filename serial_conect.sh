@@ -7,4 +7,9 @@ if [[ ${STY} != "" ]]; then
 fi
 echo "Connecting to Cubietruck plus serial"
 
+if [[ $(screen -ls | grep serial) != "" ]]; then
+    echo "Serial screen already exists, connecting"
+    sudo screen -rd serial
+fi
+
 sudo screen -S serial -t 'Sotolito Serial' /dev/ttyUSB0 115200
