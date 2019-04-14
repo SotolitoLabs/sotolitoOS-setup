@@ -108,6 +108,24 @@ umount /mnt/sotolito
 rm -rf /mnt/*
 ```
 
+### Create initramfs
+There are some modules that are needed for booting using /dev/sda2 as root filesystem:
+
+#### dracut
+
+Add this to */etc/dracut.conf.d/99-extradrivers.conf*
+```
+force_drivers+=" phy-sun4i-usb ac100 sunxi-rsb axp20x-rsb axp20x-regulator axp20
+x-pek axp20x_ac_power axp20x_battery axp20x_usb_power axp288_fuel_gauge rtc-ac10
+0 usb-storage uas ehci-platform xfs usb3503 ehci-platform
+```
+
+Create new initramfs
+
+```
+# dracut -v -M -f /boot/initramfs-4.19.7-300.el7.armv7hl-sotolito.img
+```
+
 
 ### Change boot Configuration
 
