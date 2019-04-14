@@ -99,6 +99,12 @@ Modify /etc/fstab
 
 ```
 
+If you're using SELinux you have to relabel the filesystem
+
+```
+# touch /mnt/.autorelabel
+```
+
 Finally, unmount mounting points and delete directories in /mnt/
 
 ```
