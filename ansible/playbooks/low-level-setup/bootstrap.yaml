@@ -113,6 +113,12 @@
       dest: /boot/extlinux/extlinux.conf
       owner: root
       group: root
+      mode: 0755     
+  - name: "Setting autorelabel for SELinux"
+    file:
+      path: /mnt/sotolito/.autorelabel
+      owner: root
+      group: root
       mode: 0755
   - name: Rebooting machine and be happy <3
     reboot:
