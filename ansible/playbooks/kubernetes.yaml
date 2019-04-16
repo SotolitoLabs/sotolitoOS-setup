@@ -1,0 +1,9 @@
+---
+- hosts: all
+  tasks:
+  - name: Install kubernetes
+    action: package name={{item}} state=installed
+    with_items:
+       - kubernetes
+       - docker
+       - kubernetes-node
