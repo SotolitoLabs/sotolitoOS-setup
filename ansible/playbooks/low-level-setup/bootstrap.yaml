@@ -97,21 +97,21 @@
       - unpack-stage3   
   - name: "Copy fstab to Hard Drive"
     copy:
-      src: /home/sotolito/moximo-setup/etc/fstab
+      src: ../etc/fstab
       dest: /mnt/sotolito/etc/fstab
       owner: root
       group: root
       mode: 0755
   - name: "Copy network configuration"
     copy:
-      src: /home/sotolito/moximo-setup/etc/sysconfig/network-scripts/ifcfg-eth0-centos
+      src: ../etc/sysconfig/network-scripts/ifcfg-eth0-centos
       dest: /mnt/sotolito/etc/sysconfig/network-scripts/ifcfg-eth0
       owner: root
       group: root
       mode: 0755
   - name: "Copy extlinux configuration"
     copy:
-      src: /home/sotolito/moximo-setup/boot/extlinux/extlinux.conf
+      src: ../boot/extlinux/extlinux.conf
       dest: /boot/extlinux/extlinux.conf
       owner: root
       group: root
