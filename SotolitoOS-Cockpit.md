@@ -27,3 +27,8 @@ Open Ports
 CentOS 32 bit does not have the cockpit-podman package, we'll use it from source.
 
 
+
+
+# References
+
+* https://cockpit-project.org/running
