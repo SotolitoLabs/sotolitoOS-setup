@@ -9,6 +9,9 @@ We use CentOS cockpit.
 
 ```
 # systemctl enable cockpit
+# systemctl enable cockpit.socket
+# systemctl start cockpit.socket
+# systemctl start cockpit
 ```
 
 Open Ports
