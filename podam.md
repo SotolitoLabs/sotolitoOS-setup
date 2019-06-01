@@ -19,7 +19,7 @@ Each container needs to run a setup image:
      sotolitolabs-alpine-arm-nginx-setup
 ```
 
-After running this container the `nginx` image is ready to be user:
+After running this container the `nginx` image is ready to be used:
 
 ```
 podman run --name="nginx" -d -p 8080:80    \
@@ -33,3 +33,5 @@ podman run --name="nginx" -d -p 8080:80    \
            -e "LC_CTYPE=en_US.UTF-8" \
            sotolitolabs-alpine-arm-nginx 
 ```
+
+Be happy <3
