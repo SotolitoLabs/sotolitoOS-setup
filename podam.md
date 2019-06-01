@@ -22,7 +22,7 @@ Each container needs to run a setup image:
 After running this container the `nginx` image is ready to be used:
 
 ```
-podman run --name="nginx" -d -p 8080:80    \
+# podman run --name="nginx" -d -p 8080:80    \
            -v /var/sotolito/vols/nginx/var:/var/ \
            -v /var/sotolito/vols/nginx/etc/nginx:/etc/nginx \
            -v /var/sotolito/vols/php-fpm/run/php-fpm/:/run/php-fpm/  \
