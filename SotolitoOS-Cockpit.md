@@ -14,8 +14,8 @@ We use CentOS cockpit.
 Open Ports
 
 ```
-# firewall-cmd --add-service=cockpit
 # firewall-cmd --add-service=cockpit --permanent
+# firewall-cmd --reload
 
 ```
 
