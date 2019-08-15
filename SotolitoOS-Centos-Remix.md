@@ -26,6 +26,23 @@ $ sudo dd if=SotolitoOS-Cubietruck_Plus-CentOS-Userland-7-armv7hl-generic-Minima
 
 ```
 
+# Ansible Deployment
+
+### Install git and ansible
+
+```
+~# yum install -y git ansible
+```
+
+### Clone the github repo
+
+```
+~# git clone https://github.com/SotolitoLabs/moximo-setup.git
+```
+
+
+# Manual Deployment
+
 ## Configure SSD partitions
 
 ### Create local user sotolito
