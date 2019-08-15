@@ -116,12 +116,14 @@
       owner: root
       group: root
       mode: 0755     
-  - name: "Setting autorelabel for SELinux"
-    file:
-      path: /mnt/sotolito/.autorelabel
+   - name: "Setting autorelabel for SELinux"
+    copy:
+      content: ""
+      dest: /mnt/sotolito/.autorelabel
+      force: no
+      group: sys
       owner: root
-      group: root
-      mode: 0755
+      mode: 0555
   - name: Rebooting machine and be happy <3
     reboot:
 
