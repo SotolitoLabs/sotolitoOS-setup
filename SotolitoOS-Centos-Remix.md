@@ -48,6 +48,8 @@ $ sudo dd if=SotolitoOS-Cubietruck_Plus-CentOS-Userland-7-armv7hl-generic-Minima
 ~# ansible-playbook --ask-pass -i 127.0.0.1, ansible/playbooks/low-level-setup/bootstrap-local.yaml
 ```
 
+
+
 # Manual Deployment
 
 ## Configure SSD partitions
