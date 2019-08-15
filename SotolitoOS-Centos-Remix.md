@@ -40,6 +40,13 @@ $ sudo dd if=SotolitoOS-Cubietruck_Plus-CentOS-Userland-7-armv7hl-generic-Minima
 ~# git clone https://github.com/SotolitoLabs/moximo-setup.git
 ```
 
+### Low level deployment
+
+**NOTE** Check how to perform this on múltiple nodes
+
+```
+~# ansible-playbook -i 127.0.0.1, playbooks/low-level-setup/bootstrap-local.yaml
+```
 
 # Manual Deployment
 
@@ -47,7 +54,7 @@ $ sudo dd if=SotolitoOS-Cubietruck_Plus-CentOS-Userland-7-armv7hl-generic-Minima
 
 ### Create local user sotolito
 
-`useradd -c "Moximo Cloud Appliance Admin User" sotolito`
+`~# useradd -c "Moximo Cloud Appliance Admin User" sotolito`
 
 ### Clone code repo
 
