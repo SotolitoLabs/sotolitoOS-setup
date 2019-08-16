@@ -124,6 +124,10 @@
       group: sys
       owner: root
       mode: 0555
+  - name: "Umount root partition"
+    command: umount /mnt/sotolito
+  - name: "Umount var partition"
+    command: umount /mnt/sotolito/var
   - name: Rebooting machine and be happy <3
     reboot:
 
