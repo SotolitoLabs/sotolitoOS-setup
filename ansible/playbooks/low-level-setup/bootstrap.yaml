@@ -133,12 +133,12 @@
       owner: root
       group: root
       mode: 0644
+  - name: "Umount var partition"
+    command: umount /mnt/sotolito/var
   - name: "Add SDD drivers to initramfs"
     command: dracut -v -M -f /boot/initramfs-4.19.7-300.el7.armv7hl.img
   - name: "Umount root partition"
     command: umount /mnt/sotolito
-  - name: "Umount var partition"
-    command: umount /mnt/sotolito/var
   - name: Rebooting machine and be happy <3
     reboot:
 
