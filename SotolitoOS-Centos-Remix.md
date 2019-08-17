@@ -45,7 +45,7 @@ $ sudo dd if=SotolitoOS-Cubietruck_Plus-CentOS-Userland-7-armv7hl-generic-Minima
 **NOTE** Check how to perform this on múltiple nodes
 
 ```
-~# ansible-playbook --ask-pass -i 127.0.0.1, ansible/playbooks/low-level-setup/bootstrap-local.yaml
+~# ansible-playbook --ask-pass -i 127.0.0.1, ansible/playbooks/low-level-setup/bootstrap.yaml
 ```
 
 
