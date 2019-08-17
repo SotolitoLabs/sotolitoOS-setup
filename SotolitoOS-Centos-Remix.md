@@ -43,8 +43,14 @@ sotolito # git clone https://github.com/SotolitoLabs/moximo-setup.git
 
 ### Low level deployment
 
-**NOTE** Check how to perform this on múltiple nodes
+**TODO** Extend to perform this on múltiple nodes
 
+**Don't check host key**
+```
+sotolito # sed -i s/#host_key_checking/host_key_checking/ /etc/ansible/ansible.cfg
+```
+
+**Run The playbook**
 ```
 sotolito # cd moximo-setup/ansible/
 ansible # ansible-playbook --ask-pass -i 127.0.0.1, ansible/playbooks/low-level-setup/bootstrap.yaml
