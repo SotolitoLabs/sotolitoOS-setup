@@ -116,8 +116,8 @@
       owner: root
       group: root
       mode: 0755     
-   - name: "Setting autorelabel for SELinux"
-     copy:
+  - name: "Setting autorelabel for SELinux"
+    copy:
       content: ""
       dest: /mnt/sotolito/.autorelabel
       force: no
