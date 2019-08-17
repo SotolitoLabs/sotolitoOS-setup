@@ -124,6 +124,17 @@
       group: sys
       owner: root
       mode: 0555
+  - name: "Clean yum files"
+    command: yum clean all
+  - name: "Copy dracut configuration"
+    copy:
+      src: ../etc/dracut.conf.d/99-extradrivers.conf
+      dest: /etc/dracut.conf.d/99-extradrivers.conf
+      owner: root
+      group: root
+      mode: 0644
+  - name: "Add SDD drivers to initramfs"
+    command: dracut -v -M -f /boot/initramfs-4.19.7-300.el7.armv7hl.img
   - name: "Umount root partition"
     command: umount /mnt/sotolito
   - name: "Umount var partition"
