@@ -3,11 +3,21 @@
   tasks:
   - name: Copy os release file
     copy:
-      src: ~/moximo-setup/etc/sysconfig/network-scripts/ifcfg.TEMPLATE
-      dest: "/etc/sysconfig/network-scripts/ifcfg-{{ ansible_default_ipv4.interface }}"
+      src: ../../etc/os-release-centos
+      dest: /etc/os-release
       owner: root
       group: root
-      mode: 0600
+      mode: 0644
+  - name: Copy cockpit branding directory
+    copy:
+      src: ../../usr/share/cockpit/branding/sotolito/
+      dest: /usr/share/cockpit/branding/sotolito
+      owner: root
+      group: root
+      mode: 0644
+
+
+
   - name: "Set Network Interface {{ ansible_default_ipv4.interface }}"
     replace:
       dest: "/etc/sysconfig/network-scripts/ifcfg-{{ ansible_default_ipv4.interface }}"
