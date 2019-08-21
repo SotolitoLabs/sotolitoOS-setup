@@ -1,0 +1,18 @@
+---
+- hosts: all
+  tasks:
+  - name: Install cockpit 
+    action: package name={{item}} state=installed
+    with_items:
+       - cockpit
+  - name: Enable service cockpit and start it
+    systemd:
+      name: cockpit
+      enabled: yes
+      state: started
+  - name: Open cockpit port
+    firewalld:
+      service: cockpit
+      permanent: yes
+      state: enabled
+
