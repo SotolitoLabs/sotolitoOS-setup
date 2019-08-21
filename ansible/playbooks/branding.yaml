@@ -15,4 +15,8 @@
       owner: root
       group: root
       mode: 0644
+  - name: Restart service cockpit
+    service:
+      name: cockpit
+      state: restarted
 
