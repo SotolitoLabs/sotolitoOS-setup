@@ -63,6 +63,13 @@ ansible # ansible-playbook --ask-pass -i 127.0.0.1, ansible/playbooks/low-level-
 sotolito # ansible-playbook --ask-pass -i 127.0.0.1, ansible/playbooks/cluster-setup.yaml
 ```
 
+### Branding
+
+*This step is no really needed but your appliances can look cook with your own brand ;)*
+
+```
+sotolito # ansible-playbook --ask-pass -i 127.0.0.1, ansible/playbooks/branding.yaml
+```
 
 # Manual Deployment
 
