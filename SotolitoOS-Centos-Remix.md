@@ -56,6 +56,12 @@ sotolito # cd moximo-setup/ansible/
 ansible # ansible-playbook --ask-pass -i 127.0.0.1, ansible/playbooks/low-level-setup/bootstrap.yaml
 ```
 
+### Cluster Setup
+
+**Run the playbook**
+```
+sotolito # ansible-playbook --ask-pass -i 127.0.0.1, ansible/playbooks/cluster-setup.yaml
+```
 
 
 # Manual Deployment
