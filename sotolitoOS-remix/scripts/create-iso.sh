@@ -26,10 +26,10 @@ echo "Creating the Enterprise SotolitoOS ISO instller"
 mkdir -p sotolito-iso/isolinux/{images,ks,LiveOS,Packages,postinstall}
 cd sotolito-iso
 echo "Downloading base image"
-wget $BASE_IMAGE_URL -O $BASE_IMAGE
+wget -c $BASE_IMAGE_URL -O $BASE_IMAGE
 mkdir iso
 echo "Mouting base image, please type your password:"
-sudo mount -o loop ~/CentOS-7-x86_64-Minimal-1810.iso iso
+sudo mount -o loop CentOS-7-x86_64-Minimal-1810.iso iso
 
 echo "Preparing ISO environment"
 cp iso/.discinfo isolinux/
@@ -43,21 +43,21 @@ sudo umount iso
 
 echo "Downloading extra packages"
 cd isolinux/Packages
-wget $KERNEL_ML_PACKAGE_URL
-wget $KERNEL_ML_TOOLS_PACKAGE_URL
+wget -c $KERNEL_ML_PACKAGE_URL
+wget -c $KERNEL_ML_TOOLS_PACKAGE_URL
 
 echo "Create image repo"
 cd ..
-createrepo -g ../comps.xml
+createrepo -g ../comps.xml .
 
 echo "Branding Image"
-sed -i 's/CentOS/SotolitoOS/' isolinux/isolinux.cfg
-sed -i 's/nomodeset quiet/nomodeset quiet ks=cdrom:\/ks\/ks.cfg/' isolinux/isolinux.cfg
+sed -i 's/CentOS/SotolitoOS/' isolinux.cfg
+sed -i 's/nomodeset quiet/nomodeset quiet ks=cdrom:\/ks\/ks.cfg/' isolinux.cfg
 
 echo "Generate ISO image"
 mkisofs -o SotolitoOS-7-custom_dvd.iso \
     -p $PREPARER \
-    -A $APPID
+    -A $APPID \
     -b isolinux.bin \
     -c boot.cat \
     -no-emul-boot \
