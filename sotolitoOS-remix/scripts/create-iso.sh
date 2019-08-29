@@ -3,6 +3,7 @@
 # Create the super duper SotolitoOS centos remix iso
 
 # TODO make this a parameters
+PREPARER="imcsk8"
 BASE_IMAGE="CentOS-7-x86_64-Minimal-1810.iso"
 KICKSTART_FILE="../ks/sotolitoOS.ks"
 KERNEL_ML_PACKAGE="kernel-ml-5.2.9-1.el7.elrepo.x86_64.rpm"
@@ -12,7 +13,11 @@ KERNEL_MIRROR="http://repos.lax-noc.com/elrepo/archive/kernel/el7/x86_64/RPMS/"
 BASE_IMAGE_URL="http://mirrors.usc.edu/pub/linux/distributions/centos/7.6.1810/isos/x86_64/${BASE_IMAGE}"
 KERNEL_ML_PACKAGE_URL="${KERNEL_MIRROR}/${KERNEL_ML_PACKAGE}"
 KERNEL_ML_TOOLS_PACKAGE_URL="${KERNEL_MIRROR}/${KERNEL_ML_TOOLS_PACKAGE}"
+# We use the same version as the centos base image
 VERSION="7"
+
+DATE=`date +%Y-%m-%d`
+APPID="SotolitoLabs - ${DATE} - ${VERSION}"
 
 echo "Installing required packages"
 sudo dnf install -y createrepo genisoimage
@@ -50,5 +55,15 @@ sed -i 's/CentOS/SotolitoOS/' isolinux/isolinux.cfg
 sed -i 's/nomodeset quiet/nomodeset quiet ks=cdrom:\/ks\/ks.cfg/' isolinux/isolinux.cfg
 
 echo "Generate ISO image"
-mkisofs -o SotolitoOS-7-custom_dvd.iso -b isolinux.bin -c boot.cat -no-emul-boot -V 'SotolitoOS 7 x86_64' -boot-load-size 4 -boot-info-table -R -J -v -T isolinux/
+mkisofs -o SotolitoOS-7-custom_dvd.iso \
+    -p $PREPARER \
+    -A $APPID
+	-b isolinux.bin \
+	-c boot.cat \
+    -no-emul-boot \
+    -V 'SotolitoOS 7 x86_64' \
+    -boot-load-size 4 \
+    -boot-info-table \
+    -R -J -v -T \
+    isolinux
 
