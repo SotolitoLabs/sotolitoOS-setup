@@ -41,8 +41,7 @@ cp iso/.discinfo isolinux/
 cp iso/isolinux/* isolinux/
 rsync -av iso/images/ isolinux/images/
 cp iso/LiveOS/* isolinux/LiveOS/
-#TODO automate the selection of this file
-gunzip -c iso/repodata/d4de4d1e2d2597c177bb095da8f1ad794d69f76e8ac7ab1ba6340fdd0969e936-c7-minimal-x86_64-comps.xml.gz > comps.xml
+gunzip -c iso/repodata/*-comps.xml.gz > comps.xml
 rsync -av iso/Packages/ isolinux/Packages/
 sudo umount iso
 
