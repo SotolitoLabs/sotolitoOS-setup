@@ -58,8 +58,8 @@ echo "Generate ISO image"
 mkisofs -o SotolitoOS-7-custom_dvd.iso \
     -p $PREPARER \
     -A $APPID
-	-b isolinux.bin \
-	-c boot.cat \
+    -b isolinux.bin \
+    -c boot.cat \
     -no-emul-boot \
     -V 'SotolitoOS 7 x86_64' \
     -boot-load-size 4 \
