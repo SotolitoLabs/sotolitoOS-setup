@@ -15,7 +15,7 @@ echo "Creating the Enterprise SotolitoOS ISO instller"
 mkdir -p sotolito-iso/isolinux/{images,ks,LiveOS,Packages,postinstall}
 cd sotolito-iso
 echo "Downloading base image"
-wget $BASE_IMAGE
+wget $BASE_IMAGE_URL -O $BASE_IMAGE
 mkdir iso
 echo "Mouting base image, please type your password:"
 sudo mount -o loop ~/CentOS-7-x86_64-Minimal-1810.iso iso
