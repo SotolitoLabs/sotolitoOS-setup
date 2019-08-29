@@ -59,9 +59,8 @@ sksb $ sed -i 's/nomodeset quiet/nomodeset quiet ks=cdrom:\/ks\/ks.cfg/' isolinu
 **Generate the ISO image**
 
 ```
-~$ sudo dnf install -y genisoimage
-~$ cd ../..
-~$ mkisofs -o SotolitoOS-7-custom_dvd.iso -b isolinux.bin -c boot.cat -no-emul-boot -V 'SotolitoOS 7 x86_64' -boot-load-size 4 -boot-info-table -R -J -v -T isolinux/
+sksb $ sudo dnf install -y genisoimage
+sksb $ mkisofs -o SotolitoOS-7-custom_dvd.iso -b isolinux.bin -c boot.cat -no-emul-boot -V 'SotolitoOS 7 x86_64' -boot-load-size 4 -boot-info-table -R -J -v -T isolinux/
 ```
 
 
@@ -69,3 +68,4 @@ sksb $ sed -i 's/nomodeset quiet/nomodeset quiet ks=cdrom:\/ks\/ks.cfg/' isolinu
 
 # References
 https://devopsmates.com/make-custom-centos-7-rhel-7-cd-kicktart-file/
+https://docs.centos.org/en-US/centos/install-guide/Kickstart2/
