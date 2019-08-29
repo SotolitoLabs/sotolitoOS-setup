@@ -5,7 +5,13 @@
 # TODO make this a parameters
 BASE_IMAGE="CentOS-7-x86_64-Minimal-1810.iso"
 KICKSTART_FILE="../ks/sotolitoOS.ks"
+KERNEL_ML_PACKAGE="kernel-ml-5.2.9-1.el7.elrepo.x86_64.rpm"
+KERNEL_ML_TOOLS_PACKAGE="kernel-ml-tools-5.2.9-1.el7.elrepo.x86_64.rpm"
+KERNEL_MIRROR="http://repos.lax-noc.com/elrepo/archive/kernel/el7/x86_64/RPMS/"
+
 BASE_IMAGE_URL="http://mirrors.usc.edu/pub/linux/distributions/centos/7.6.1810/isos/x86_64/${BASE_IMAGE}"
+KERNEL_ML_PACKAGE_URL="${KERNEL_MIRROR}/${KERNEL_ML_PACKAGE}"
+KERNEL_ML_TOOLS_PACKAGE_URL="${KERNEL_MIRROR}/${KERNEL_ML_TOOLS_PACKAGE}"
 VERSION="7"
 
 echo "Installing required packages"
@@ -32,8 +38,8 @@ sudo umount iso
 
 echo "Downloading extra packages"
 cd isolinux/Packages
-wget http://repos.lax-noc.com/elrepo/archive/kernel/el7/x86_64/RPMS/kernel-ml-5.2.9-1.el7.elrepo.x86_64.rpm
-wget http://repos.lax-noc.com/elrepo/archive/kernel/el7/x86_64/RPMS/kernel-ml-tools-5.2.9-1.el7.elrepo.x86_64.rpm
+wget $KERNEL_ML_PACKAGE_URL
+wget $KERNEL_ML_TOOLS_PACKAGE_URL
 
 echo "Create image repo"
 cd ..
