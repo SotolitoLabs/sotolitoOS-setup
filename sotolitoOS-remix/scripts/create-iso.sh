@@ -65,5 +65,5 @@ mkisofs -o SotolitoOS-7-custom_dvd.iso \
     -boot-load-size 4 \
     -boot-info-table \
     -R -J -v -T \
-    isolinux
+    .
 
