@@ -59,7 +59,7 @@ sed -i 's/CentOS/SotolitoOS/' isolinux.cfg
 sed -i 's/nomodeset quiet/nomodeset quiet ks=cdrom:\/ks\/sotolitoOS.ks/' isolinux.cfg
 
 echo "Adding Sotolito kickstar file to ISO"
-cp ../ks/sotolitoOS.ks ks/
+cp ../../ks/sotolitoOS.ks ks/
 
 echo "Generate ISO image"
 mkisofs -o "../${ISO_NAME}" \
