@@ -43,7 +43,7 @@ logvol /var --fstype="xfs"  --size=1     --label="sotolito-var"  --name=sotolito
 %packages
 @^minimal
 @core
-kernel-lt
+kernel-ml
 #ansible
 #cockpit
 #git
