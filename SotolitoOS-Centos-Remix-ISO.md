@@ -68,4 +68,5 @@ sksb $ mkisofs -o SotolitoOS-7-custom_dvd.iso -b isolinux.bin -c boot.cat -no-em
 
 # References
 https://devopsmates.com/make-custom-centos-7-rhel-7-cd-kicktart-file/
+
 https://docs.centos.org/en-US/centos/install-guide/Kickstart2/
