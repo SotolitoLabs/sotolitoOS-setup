@@ -91,3 +91,6 @@ mkisofs -o "../${ISO_NAME}" \
     -l -r -R -v -T \
     .
 
+isohybrid "../${ISO_NAME}"
+
+echo "Be happy, drink a beer and a shot of sotol"
