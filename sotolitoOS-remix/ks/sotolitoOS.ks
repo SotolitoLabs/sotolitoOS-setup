@@ -73,7 +73,8 @@ network --bootproto=dhcp --device=enp3s0 --ipv6=auto --activate
 network --hostname=sotolito
 
 # Root password
-rootpw --iscrypted $6$UP1RIgyqnitFKfQM$UtyjaK8sVCDyGYFTHL4tTe9b69M.MPloYPpSuhX2JHyMkOG8eXajQBSAukPP1Z//S08WDzBKv8Jhmjq7Bhe1D.
+#irootpw --iscrypted $6$UP1RIgyqnitFKfQM$UtyjaK8sVCDyGYFTHL4tTe9b69M.MPloYPpSuhX2JHyMkOG8eXajQBSAukPP1Z//S08WDzBKv8Jhmjq7Bhe1D.
+rootpw putoelquelolea
 # System services
 services --disabled="chronyd"
 # System timezone
@@ -98,6 +99,7 @@ kernel-ml
 %post
 sed -i 's/Cent/Sotolito/' /etc/os-release
 sed -i 's/Cent/Sotolito/' /boot/grub2/grub.cfg
+reboot
 %end
 
 
