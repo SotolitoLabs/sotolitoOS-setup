@@ -49,6 +49,31 @@ echo "Installing on ${ROOTDRIVE}"
 
 # Drive setup
 #ignoredisk --only-use=$ROOTDRIVE
+#ignoredisk --only-use=sda
+#clearpart --all --initlabel --disklabel=gpt
+#zerombr
+#clearpart --all --initlabel --drives=sda
+# System bootloader configuration
+#bootloader --location=mbr --boot-drive=$ROOTDRIVE
+
+#manual partitioning for now
+#parted -s -a optimal /dev/sda mklabel gpt
+#bootloader --location=mbr --boot-drive=sda
+#autopart --type=lvm
+# Partition clearing information
+#part biosboot --fstype=biosboot --size=1
+#part /boot    --fstype="xfs" --size=1024
+#part pv.sotolito --fstype="lvm" --size=1 --grow
+#volgroup sotolito pv.sotolito
+#logvol /    --fstype="xfs"  --size=61440 --label="sotolito-root" --name=sotolito-root --vgname=sotolito
+#logvol swap --fstype="swap" --size=2048  --label="sotolito-swap" --name=sotolito-swap --vgname=sotolito
+#logvol /var --fstype="xfs"  --size=1     --label="sotolito-var"  --name=sotolito-var  --vgname=sotolito --grow
+
+
+%end
+
+# Drive setup
+#ignoredisk --only-use=$ROOTDRIVE
 ignoredisk --only-use=sda
 #clearpart --all --initlabel --disklabel=gpt
 zerombr
@@ -57,7 +82,7 @@ clearpart --all --initlabel --drives=sda
 #bootloader --location=mbr --boot-drive=$ROOTDRIVE
 
 #manual partitioning for now
-parted -s -a optimal /dev/sda mklabel gpt
+#parted -s -a optimal /dev/sda mklabel gpt
 bootloader --location=mbr --boot-drive=sda
 #autopart --type=lvm
 # Partition clearing information
@@ -68,10 +93,6 @@ volgroup sotolito pv.sotolito
 logvol /    --fstype="xfs"  --size=61440 --label="sotolito-root" --name=sotolito-root --vgname=sotolito
 logvol swap --fstype="swap" --size=2048  --label="sotolito-swap" --name=sotolito-swap --vgname=sotolito
 logvol /var --fstype="xfs"  --size=1     --label="sotolito-var"  --name=sotolito-var  --vgname=sotolito --grow
-
-
-%end
-
 
 
 # Network information
