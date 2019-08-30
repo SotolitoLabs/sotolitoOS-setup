@@ -4,7 +4,6 @@ auth --enableshadow --passalgo=sha512
 # Use CDROM installation media
 cdrom
 # use text install
-install
 text
 # Run the Setup Agent on first boot
 firstboot --enable
@@ -15,9 +14,11 @@ lang en_US.UTF-8
 
 # Check for the first fixed hard disk
 
+# include the partitioning logic from the pre section.
+%include /tmp/part-include
 
 # From: https://www.redhat.com/archives/kickstart-list/2012-October/msg00014.html
-%pre
+%pre --log=/tmp/sotolito-pre.log
 # pre section
 #----- partitioning logic below--------------
 # pick the first drive that is not removable and is over MINSIZE
@@ -25,8 +26,7 @@ DIR="/sys/block"
 ROOTDRIVE="sdb"
 
 # minimum size of hard drive needed specified in GIGABYTES
-MINSIZE=60
-
+MINSIZE=10
 
 for DEV in sda sdb sdc sdd hda hdb; do
   if [ -d $DIR/$DEV ]; then
@@ -37,63 +37,32 @@ for DEV in sda sdb sdc sdd hda hdb; do
       GB=$(($SIZE/2**21))
       if [ $GB -gt $MINSIZE ]; then
         echo "$(($SIZE/2**21))"
-        if [ -z $ROOTDRIVE ]; then
-          ROOTDRIVE=$DEV
-        fi
+		ROOTDRIVE=$DEV
       fi
     fi
   fi
 done
 
+ROOT_PART_SIZE=$(($MINSIZE*1024))
 echo "Installing on ${ROOTDRIVE}"
-
+cat << EOF > /tmp/part-include
 # Drive setup
-#ignoredisk --only-use=$ROOTDRIVE
-#ignoredisk --only-use=sda
-#clearpart --all --initlabel --disklabel=gpt
-#zerombr
-#clearpart --all --initlabel --drives=sda
-# System bootloader configuration
-#bootloader --location=mbr --boot-drive=$ROOTDRIVE
-
-#manual partitioning for now
-#parted -s -a optimal /dev/sda mklabel gpt
-#bootloader --location=mbr --boot-drive=sda
-#autopart --type=lvm
-# Partition clearing information
-#part biosboot --fstype=biosboot --size=1
-#part /boot    --fstype="xfs" --size=1024
-#part pv.sotolito --fstype="lvm" --size=1 --grow
-#volgroup sotolito pv.sotolito
-#logvol /    --fstype="xfs"  --size=61440 --label="sotolito-root" --name=sotolito-root --vgname=sotolito
-#logvol swap --fstype="swap" --size=2048  --label="sotolito-swap" --name=sotolito-swap --vgname=sotolito
-#logvol /var --fstype="xfs"  --size=1     --label="sotolito-var"  --name=sotolito-var  --vgname=sotolito --grow
-
-
-%end
-
-# Drive setup
-#ignoredisk --only-use=$ROOTDRIVE
-ignoredisk --only-use=sda
-#clearpart --all --initlabel --disklabel=gpt
+ignoredisk --only-use=$ROOTDRIVE
 zerombr
-clearpart --all --initlabel --drives=sda
+clearpart --all --initlabel --drives=$ROOTDRIVE
 # System bootloader configuration
-#bootloader --location=mbr --boot-drive=$ROOTDRIVE
-
-#manual partitioning for now
-#parted -s -a optimal /dev/sda mklabel gpt
-bootloader --location=mbr --boot-drive=sda
-#autopart --type=lvm
+bootloader --location=mbr --boot-drive=$ROOTDRIVE
 # Partition clearing information
 part biosboot --fstype=biosboot --size=1
 part /boot    --fstype="xfs" --size=1024
 part pv.sotolito --fstype="lvm" --size=1 --grow
 volgroup sotolito pv.sotolito
-logvol /    --fstype="xfs"  --size=61440 --label="sotolito-root" --name=sotolito-root --vgname=sotolito
+logvol /    --fstype="xfs"  --size=$ROOT_PART_SIZE --label="sotolito-root" --name=sotolito-root --vgname=sotolito
 logvol swap --fstype="swap" --size=2048  --label="sotolito-swap" --name=sotolito-swap --vgname=sotolito
 logvol /var --fstype="xfs"  --size=1     --label="sotolito-var"  --name=sotolito-var  --vgname=sotolito --grow
+EOF
 
+%end
 
 # Network information
 # Main interface
