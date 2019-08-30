@@ -60,7 +60,8 @@ sksb $ sed -i 's/nomodeset quiet/nomodeset quiet ks=cdrom:\/ks\/ks.cfg/' isolinu
 
 ```
 sksb $ sudo dnf install -y genisoimage
-sksb $ mkisofs -o SotolitoOS-7-custom_dvd.iso -b isolinux.bin -c boot.cat -no-emul-boot -V 'SotolitoOS 7 x86_64' -boot-load-size 4 -boot-info-table -R -J -v -T isolinux/
+sksb $ mkisofs -o SotolitoOS-7-custom.iso -b isolinux.bin -c boot.cat -no-emul-boot -V 'SotolitoOS 7 x86_64' -boot-load-size 4 -boot-info-table -R -J -v -T isolinux/
+sksb $ isohybrid SotolitoOS-7-custom.iso
 ```
 
 
