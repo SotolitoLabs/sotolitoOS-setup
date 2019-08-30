@@ -61,8 +61,8 @@ echo "Branding Image"
 echo "Branding Boot menu"
 sed -i 's/CentOS/SotolitoOS/' isolinux.cfg
 sed -i 's/x86_64 quiet/x86_64 quiet ks=cdrom:\/ks\/sotolitoOS.ks/' isolinux.cfg
-sed '/menu default/d' isolinux.cfg
-sed 's/sotolitoOS.ks/sotolitoOS.ks\n  menu default/' isolinux.cfg
+sed -i '/menu default/d' isolinux.cfg
+sed -i 's/sotolitoOS.ks/sotolitoOS.ks\n  menu default/' isolinux.cfg
 
 echo "Branding Initrd"
 cd ..
@@ -70,6 +70,7 @@ mkdir tmp_initrd
 cd tmp_initrd
 xz -dc ../isolinux/initrd.img | sudo cpio -id
 sudo cp ../../files/images/sotolitoLabs_original_white_distro.png usr/share/pixmaps/system-logo-white.png
+sudo sed -i 's/CentOS/SotolitoOS/' .buildstamp
 sudo sed -i 's/CentOS/SotolitoOS/' etc/initrd-release
 sudo find . | cpio --create --format='newc' > ../isolinux/initrd.img
 cd ../isolinux
