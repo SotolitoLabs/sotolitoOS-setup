@@ -25,21 +25,55 @@ The SotolitoOS Enterprise edition is a CentOS derivative.
 sksb $ sudo mount -o loop ~/CentOS-7-x86_64-Minimal-1810.iso ~/sotolito_kickstart_build/iso
 ```
 
-**Prepare the custom ISO image**
+## Prepare the custom ISO image
+
+**Prepare the filesystem**
 ```
 sksb $ cp /mnt/iso/.discinfo isolinux/
 sksb $ cp ../iso/isolinux/* isolinux/
 sksb $ rsync -av ../iso/images/ isolinux/images/
 sksb $ cp ../iso/LiveOS/* isolinux/LiveOS/
+```
+
+**Add the SotolitoOS core group**
+
+```
+cat << EOF > sotolito-core.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE comps PUBLIC "-//Red Hat, Inc.//DTD Comps info//EN" "comps.dtd">
+<comps>
+        
+  <group>
+   <id>sotolito-core</id>
+   <default>false</default>
+   <uservisible>true</uservisible>
+   <display_order>1024</display_order>
+   <name>Sotolito Core</name>
+   <description></description>
+    <packagelist>
+      <packagereq type="mandatory">ansible</packagereq>
+      <packagereq type="mandatory">cockpit</packagereq>
+      <packagereq type="mandatory">git</packagereq>
+      <packagereq type="mandatory">podman</packagereq>
+      <packagereq type="mandatory">skopeo</packagereq>
+    </packagelist>
+  </group>
+</comps>
+EOF
+```
+
+**Prepare iso repository**
+```
 sksb $ gunzip -c ../iso/repodata/d4de4d1e2d2597c177bb095da8f1ad794d69f76e8ac7ab1ba6340fdd0969e936-c7-minimal-x86_64-comps.xml.gz > comps.xml
 sksb $ rsync -av ../iso/Packages/ isolinux/Packages/
 sksb $ sudo umount ../iso
 sksb $ sudo dnf install -y createrepo
+
 sksb $ cd isolinux/Packages
 Packages $ wget http://repos.lax-noc.com/elrepo/archive/kernel/el7/x86_64/RPMS/kernel-ml-5.2.9-1.el7.elrepo.x86_64.rpm
 Packages $ wget http://repos.lax-noc.com/elrepo/archive/kernel/el7/x86_64/RPMS/kernel-ml-tools-5.2.9-1.el7.elrepo.x86_64.rpm
 Packages $ cd ..
-isolinux $ createrepo -g ../comps.xml
+isolinux $ createrepo -g ../comps.xml -g ../sotolito-core.xml
 ```
 
 **Edit and customize the kickstart file**
