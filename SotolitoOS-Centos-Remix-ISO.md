@@ -62,6 +62,19 @@ cat << EOF > sotolito-core.xml
 EOF
 ```
 
+**Download CentOS packages**
+Instead of having a centos instance and copying the packages to the ISO repository 
+or looking for the package and it's depencies URL's we use dnf to download the 
+package and dependencies.
+
+```
+dnf install --noautoremove --downloadonly --disablerepo="*" --setopt=reposdir=files/yum.repos.d\
+    --releasever=7 --enablerepo=base --enablerepo=extras --downloaddir=tmp_repos\
+    --installroot=tmp_repos cockpit git ansible skopeo podman
+```
+**NOTE:** We need to copy the CentOS repo files from a live system or download them from the internet,
+but this still beats having to manage the package files manually.
+
 **Prepare iso repository**
 ```
 sksb $ gunzip -c ../iso/repodata/d4de4d1e2d2597c177bb095da8f1ad794d69f76e8ac7ab1ba6340fdd0969e936-c7-minimal-x86_64-comps.xml.gz > comps.xml
