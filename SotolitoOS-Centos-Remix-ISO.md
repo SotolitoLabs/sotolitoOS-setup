@@ -68,9 +68,9 @@ or looking for the package and it's depencies URL's we use dnf to download the
 package and dependencies.
 
 ```
-dnf install --noautoremove --downloadonly --disablerepo="*" --setopt=reposdir=files/yum.repos.d\
-    --releasever=7 --enablerepo=base --enablerepo=extras --downloaddir=tmp_repos\
-    --installroot=tmp_repos cockpit git ansible skopeo podman
+podman run --rm -ti --name=tmp-centos-dnf -v /absolute_path_to/isolinux/Packages/:/var/preserve \
+  registry.centos.org/centos/centos  yum install --downloadonly --downloaddir=/var/preserve \
+  cockpit git ansible skopeo podman
 ```
 **NOTE:** We need to copy the CentOS repo files from a live system or download them from the internet,
 but this still beats having to manage the package files manually.
