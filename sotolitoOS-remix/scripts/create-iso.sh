@@ -14,10 +14,15 @@ KERNEL_ML_PACKAGE="kernel-ml-5.2.9-1.el7.elrepo.x86_64.rpm"
 KERNEL_ML_TOOLS_PACKAGE="kernel-ml-tools-5.2.9-1.el7.elrepo.x86_64.rpm"
 KERNEL_MIRROR="http://repos.lax-noc.com/elrepo/archive/kernel/el7/x86_64/RPMS/"
 ISO_NAME="SotolitoOS-7-x86_64-Minimal-1810.iso"
+EL_REPO="https://www.elrepo.org"
+EL_REPO_RPM="elrepo-release-7.0-4.el7.elrepo.noarch.rpm"
+EL_REPO_RPM_GPG="RPM-GPG-KEY-elrepo.org"
+FULL_PATH=$(realpath .)
+PACKAGES_PATH="${FULL_PATH}/sotolito-iso/isolinux/Packages/"
 
 BASE_IMAGE_URL="http://mirrors.usc.edu/pub/linux/distributions/centos/7.6.1810/isos/x86_64/${BASE_IMAGE}"
-KERNEL_ML_PACKAGE_URL="${KERNEL_MIRROR}/${KERNEL_ML_PACKAGE}"
-KERNEL_ML_TOOLS_PACKAGE_URL="${KERNEL_MIRROR}/${KERNEL_ML_TOOLS_PACKAGE}"
+#KERNEL_ML_PACKAGE_URL="${KERNEL_MIRROR}/${KERNEL_ML_PACKAGE}"
+#KERNEL_ML_TOOLS_PACKAGE_URL="${KERNEL_MIRROR}/${KERNEL_ML_TOOLS_PACKAGE}"
 # We use the same version as the centos base image
 VERSION="7"
 
@@ -25,7 +30,7 @@ DATE=`date +%Y-%m-%d`
 APPID="SotolitoLabs - ${DATE} - ${VERSION}"
 
 echo "Installing required packages"
-sudo dnf install -y createrepo genisoimage
+sudo dnf install -y createrepo genisoimage podman
 
 echo "Creating the Enterprise SotolitoOS ISO instller"
 mkdir -p sotolito-iso/isolinux/{images,ks,LiveOS,Packages,postinstall}
@@ -47,14 +52,14 @@ sudo umount iso
 
 echo "Downloading extra packages"
 cd isolinux/Packages
-wget -c $KERNEL_ML_PACKAGE_URL
-wget -c $KERNEL_ML_TOOLS_PACKAGE_URL
+cp "${FULL_PATH}/download_iso_packages.sh" $PACKAGES_PATH
+podman run --rm -ti --name=tmp-centos-pkgs -v $PACKAGES_PATH:/var/preserve registry.centos.org/centos/centos /var/preserve/download_iso_packages.sh
 
 echo "Create image repo"
 cd ..
 createrepo -g ../comps.xml .
 
-echo "Adding Sotolito kickstar file to ISO"
+echo "Adding Sotolito kickstart file to ISO"
 cp ../../ks/sotolitoOS.ks ks/
 
 echo "Branding Image"
