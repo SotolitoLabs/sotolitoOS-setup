@@ -174,6 +174,13 @@ class CustomBaseInstallClass(BaseInstallClass):
 EOF
 ```
 
+**Generate the product.img file**
+
+```
+sksb $ cd product
+product $ find . | cpio -c -o | gzip -9cv > ../isolinux/images/product.img
+
+```
 
 
 **Generate the ISO image**
