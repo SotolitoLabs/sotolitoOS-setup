@@ -103,6 +103,79 @@ sksb $ sed -i 's/CentOS/SotolitoOS/' isolinux/isolinux.cfg
 sksb $ sed -i 's/nomodeset quiet/nomodeset quiet ks=cdrom:\/ks\/ks.cfg/' isolinux/isolinux.cfg
 ```
 
+**Brand the installer**
+Anaconda has a very easy way to brand your installation process. It lets you
+duplicate the instller filesystem in an image file called product.img.
+This image is copied to a directory called `images` in the root of the installer.
+
+```
+sksb $ mkdir -p product/usr/share/anaconda/pixmaps/rnotes/en/
+sksb $ mkdir -p product/run/install/product/pyanaconda/installclasses
+sksb $ cp ../../files/images/branding/sotolitoLabs_original_white_distro.png product/usr/share/anaconda/pixmaps/sidebar-logo.png 
+sksb $ cat cat << EOF > .buildstamp
+[Main]
+Product=SotolitoLabs Enterprise Linux
+Version=7.4
+BugURL=https://bugzilla.redhat.com/
+IsFinal=True
+UUID=201909020004.x86_64
+[Compose]
+Lorax=19.6.92-1
+EOF
+```
+
+Also lets you override stuff using *custom installation* classes.
+
+```
+sksb $ cat cat << EOF > product/run/install/product/pyanaconda/installclasses/custom.py
+from pyanaconda.installclass import BaseInstallClass
+from pyanaconda.product import productName
+from pyanaconda import network
+from pyanaconda import nm
+
+class CustomBaseInstallClass(BaseInstallClass):
+    name = "SotolitoOS"
+    sortPriority = 30000
+    if not productName.startswith("SotolitoOS"):
+        hidden = True
+    defaultFS = "xfs"
+    bootloaderTimeoutDefault = 5
+    bootloaderExtraArgs = []
+
+    ignoredPackages = ["ntfsprogs"]
+
+    installUpdates = False
+
+    _l10n_domain = "comps"
+
+    efi_dir = "sotolitoOS"
+
+    help_placeholder = "SotolitoOS.html"
+    help_placeholder_with_links = "SotolitoOSWithLinks.html"
+
+    def configure(self, anaconda):
+        BaseInstallClass.configure(self, anaconda)
+        BaseInstallClass.setDefaultPartitioning(self, anaconda.storage)
+
+    def setNetworkOnbootDefault(self, ksdata):
+        if ksdata.method.method not in ("url", "nfs"):
+            return
+        if network.has_some_wired_autoconnect_device():
+            return
+        dev = network.default_route_device()
+        if not dev:
+            return
+        if nm.nm_device_type_is_wifi(dev):
+            return
+        network.update_onboot_value(dev, "yes", ksdata)
+
+    def __init__(self):
+        BaseInstallClass.__init__(self)
+EOF
+```
+
+
+
 **Generate the ISO image**
 
 ```
@@ -121,3 +194,4 @@ https://docs.centos.org/en-US/centos/install-guide/Kickstart2/
 
 TODO: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/anaconda_customization_guide/index
 
+https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/anaconda_customization_guide/index#sect-product-img
