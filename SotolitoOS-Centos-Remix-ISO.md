@@ -191,7 +191,10 @@ sksb $ mkisofs -o SotolitoOS-7-custom.iso -b isolinux.bin -c boot.cat -no-emul-b
 sksb $ isohybrid SotolitoOS-7-custom.iso
 ```
 
+# TODO
 
+* Create a sotolitoos-release package based on: centos-release-7-6.1810.2.el7.centos.x86_64.rpm 
+  to preserve branding.
 
 
 # References
