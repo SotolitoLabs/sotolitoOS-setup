@@ -191,6 +191,26 @@ sksb $ mkisofs -o SotolitoOS-7-custom.iso -b isolinux.bin -c boot.cat -no-emul-b
 sksb $ isohybrid SotolitoOS-7-custom.iso
 ```
 
+## Brand the squashfs
+
+In order for the installer to show the proper brand while booting we need to modify the squashfs.img from the CentOS base ISO.
+
+```
+ sksb $ cd
+ ~$ mkdir sotol-squash; cd sotol-squash
+ sotol-squash $
+ sotol-squash $ cp ../sotolito-iso/isolinux/LiveOS/squashfs.img .
+ sotol-squash $ unsquashfs squashfs.img
+ sotol-squash $ cd squashfs-root/LiveOS/
+ sotol-squash $ mkdir tmp
+ sotol-squash $ sudo mount -o loop rootfs.img tmp
+ sotol-squash $ sudo sed -i 's/CentOS/SotolitoOS/' tmp/etc/os-release
+ sotol-squash $ sudo umount tmp
+ sotol-squash $ mksquashfs squashfs-root squashfs-sotolito.img -comp xz
+ sotol-squash $ cp squashfs-sotolito.img ../../sotolito-iso/isolinux/LiveOS/squashfs.img
+```
+
+
 # TODO
 
 * Create a sotolitoos-release package based on: centos-release-7-6.1810.2.el7.centos.x86_64.rpm 
