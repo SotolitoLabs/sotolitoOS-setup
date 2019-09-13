@@ -49,16 +49,11 @@ Requires:       extlinux-bootloader
 %endif
 Provides:       sotolitoos-release = %{version}-%{release}
 Provides:       sotolitoos-release(upstream) = %{upstream_rel}
-Provides:       centos-release = %{version}-%{release}
-Provides:       centos-release(upstream) = %{upstream_rel}
-Provides:       redhat-release = %{upstream_rel_long}
-Provides:       system-release = %{upstream_rel_long}
-Provides:       system-release(releasever) = %{base_release_version}
 Source0:        sotolitoos-release-%{base_release_version}-%{centos_rel}.tar.gz
-Source1:        85-display-manager.preset
-Source2:        90-default.preset
-Source99:       update-boot
-Source100:      rootfs-expand
+#Source1:        85-display-manager.preset
+#Source2:        90-default.preset
+#Source99:       update-boot
+#Source100:      rootfs-expand
 
 %description
 %{product_family} release files
@@ -78,12 +73,9 @@ mkdir -p %{buildroot}/etc
 # create /etc/system-release and /etc/redhat-release
 echo "%{product_family} release %{full_release_version}.%{centos_rel} (%{release_name}) " > %{buildroot}/etc/sotolitoos-release
 echo "Derived from Red Hat Enterprise Linux %{upstream_rel} (Source) and CentOS" > %{buildroot}/etc/sotolitoos-release-upstream
-ln -s sotolitoos-release %{buildroot}/etc/system-release
-ln -s sotolitoos-release %{buildroot}/etc/redhat-release
-ln -s sotolitoos-release %{buildroot}/etc/centos-release
 
 # create /etc/os-release
-cat << EOF >>%{buildroot}/etc/os-release
+cat << EOF >>%{buildroot}/etc/sotolito-os-release
 NAME="%{product_family}"
 VERSION="%{full_release_version} (%{release_name})"
 ID="sotolito"
@@ -91,9 +83,9 @@ ID_LIKE="rhel fedora"
 VERSION_ID="%{full_release_version}"
 PRETTY_NAME="%{product_family} %{full_release_version} (%{release_name})"
 ANSI_COLOR="0;31"
-CPE_NAME="cpe:/o:centos:centos:7%{?tuned_profile}"
+CPE_NAME="cpe:/o:sotolitolabs:sotolitoos:7%{?tuned_profile}"
 HOME_URL="https://www.sotolitolabs.com/"
-BUG_REPORT_URL="https://bugs.centos.org/"
+BUG_REPORT_URL="https://bugs.sotolitolabs.com/"
 
 CENTOS_MANTISBT_PROJECT="CentOS-7"
 CENTOS_MANTISBT_PROJECT_VERSION="7"
@@ -101,41 +93,68 @@ REDHAT_SUPPORT_PRODUCT="centos"
 REDHAT_SUPPORT_PRODUCT_VERSION="7"
 
 EOF
-# write cpe to /etc/system/release-cpe
-echo "cpe:/o:centos:centos:7" > %{buildroot}/etc/system-release-cpe
-
-# create /etc/issue and /etc/issue.net
-echo '\S' > %{buildroot}/etc/issue
-echo 'Kernel \r on an \m' >> %{buildroot}/etc/issue
-cp %{buildroot}/etc/issue %{buildroot}/etc/issue.net
-echo >> %{buildroot}/etc/issue
 
 pushd %{targetdir}
 # copy GPG keys
-mkdir -p -m 755 %{buildroot}/etc/pki/rpm-gpg
-for file in RPM-GPG-KEY* ; do
-    install -m 644 $file %{buildroot}/etc/pki/rpm-gpg
-done
+#mkdir -p -m 755 %{buildroot}/etc/pki/rpm-gpg
+#for file in RPM-GPG-KEY* ; do
+#    install -m 644 $file %{buildroot}/etc/pki/rpm-gpg
+#done
 
 # copy yum repos
 mkdir -p -m 755 %{buildroot}/etc/yum.repos.d
-for file in CentOS-*.repo; do 
-    install -m 644 $file %{buildroot}/etc/yum.repos.d
-done
-
-# Sotolito repo
 install -m 644 SotolitoOS.repo %{buildroot}/etc/yum.repos.d
 
-mkdir -p -m 755 %{buildroot}/etc/yum/vars
-install -m 0644 yum-vars-infra %{buildroot}/etc/yum/vars/infra
-%ifarch %{arm}
-install -m 0644 yum-vars-releasever %{buildroot}/etc/yum/vars/releasever
-%endif
 popd
 
+
+# use unbranded datadir
+#mkdir -p -m 755 %{buildroot}/%{_datadir}/centos-release
+#ln -s centos-release %{buildroot}/%{_datadir}/redhat-release
+#install -m 644 EULA %{buildroot}/%{_datadir}/centos-release
+
+# use unbranded docdir
+#mkdir -p -m 755 %{buildroot}/%{_docdir}/centos-release
+#ln -s centos-release %{buildroot}/%{_docdir}/redhat-release
+#install -m 644 GPL %{buildroot}/%{_docdir}/centos-release
+#install -m 644 Contributors %{buildroot}/%{_docdir}/centos-release
+
+# copy systemd presets
+#mkdir -p %{buildroot}%{_prefix}/lib/systemd/system-preset/
+#install -m 0644 %{SOURCE1} %{buildroot}%{_prefix}/lib/systemd/system-preset/
+#install -m 0644 %{SOURCE2} %{buildroot}%{_prefix}/lib/systemd/system-preset/
+
+%ifarch %{arm}
+# Install armhfp specific tools
+#mkdir -p %{buildroot}/%{_bindir}/
+#install -m 0755 %{SOURCE99} %{buildroot}%{_bindir}/
+#install -m 0755 %{SOURCE100} %{buildroot}%{_bindir}/
+%endif
+
+%posttrans
+%ifarch %{arm}
+#if [ -e /usr/local/bin/rootfs-expand ];then
+#rm -f /usr/local/bin/rootfs-expand
+#fi
+%endif
+
+
+# Update branding
+%post
+rm /etc/os-release /etc/redhat-release /etc/system-release /etc/centos-release
+ln -sf /etc/sotolitoos-release /etc/redhat-release
+ln -sf /etc/sotolitoos-release /etc/system-release
+ln -sf /etc/sotolitoos-release /etc/centos-release
+ln -sf /etc/sotolito-os-release /etc/os-release
+# write cpe to /etc/system/release-cpe
+echo "cpe:/o:sotolitolabs:sotolitoos:7" > /etc/system-release-cpe
+# create /etc/issue and /etc/issue.net
+echo '\S' > /etc/issue
+echo 'Kernel \r on an \m' >> /etc/issue
+cp /etc/issue /etc/issue.net
+echo >> /etc/issue
 # set up the dist tag macros
-install -d -m 755 %{buildroot}/etc/rpm
-cat >> %{buildroot}/etc/rpm/macros.dist << EOF
+cat >> /etc/rpm/macros.dist << EOF
 # dist macros.
 
 %%centos_ver %{base_release_version}
@@ -145,37 +164,9 @@ cat >> %{buildroot}/etc/rpm/macros.dist << EOF
 %%el%{base_release_version} 1
 EOF
 
-# use unbranded datadir
-mkdir -p -m 755 %{buildroot}/%{_datadir}/centos-release
-ln -s centos-release %{buildroot}/%{_datadir}/redhat-release
-install -m 644 EULA %{buildroot}/%{_datadir}/centos-release
 
-# use unbranded docdir
-mkdir -p -m 755 %{buildroot}/%{_docdir}/centos-release
-ln -s centos-release %{buildroot}/%{_docdir}/redhat-release
-install -m 644 GPL %{buildroot}/%{_docdir}/centos-release
-install -m 644 Contributors %{buildroot}/%{_docdir}/centos-release
 
-# copy systemd presets
-mkdir -p %{buildroot}%{_prefix}/lib/systemd/system-preset/
-install -m 0644 %{SOURCE1} %{buildroot}%{_prefix}/lib/systemd/system-preset/
-install -m 0644 %{SOURCE2} %{buildroot}%{_prefix}/lib/systemd/system-preset/
-
-%ifarch %{arm}
-# Install armhfp specific tools
-mkdir -p %{buildroot}/%{_bindir}/
-install -m 0755 %{SOURCE99} %{buildroot}%{_bindir}/
-install -m 0755 %{SOURCE100} %{buildroot}%{_bindir}/
-%endif
-
-%posttrans
-%ifarch %{arm}
-if [ -e /usr/local/bin/rootfs-expand ];then
-rm -f /usr/local/bin/rootfs-expand
-fi
-%endif
-
-/usr/bin/uname -m | grep -q 'x86_64'  && echo 'centos' >/etc/yum/vars/contentdir || echo 'altarch' > /etc/yum/vars/contentdir
+/usr/bin/uname -m | grep -q 'x86_64'  && echo 'sotolito' >/etc/yum/vars/contentdir || echo 'altarch' > /etc/yum/vars/contentdir
 
 
 %clean
@@ -183,33 +174,22 @@ rm -rf %{buildroot}
 
 %files
 %defattr(0644,root,root,0755)
-/etc/sotolitoos-release
-/etc/redhat-release
-/etc/system-release
-/etc/centos-release
-/etc/sotolitoos-release-upstream
-%config(noreplace) /etc/os-release
-%config /etc/system-release-cpe
-%config(noreplace) /etc/issue
-%config(noreplace) /etc/issue.net
-/etc/pki/rpm-gpg/
+%config /etc/sotolitoos-release
+%config /etc/sotolitoos-release-upstream
+%config /etc/sotolito-os-release
+
+#TODO /etc/pki/rpm-gpg/
 %config(noreplace) /etc/yum.repos.d/*
-%config(noreplace) /etc/yum/vars/*
-/etc/rpm/macros.dist
-#%{_docdir}/sotolitoos-release
-%{_docdir}/redhat-release
-%{_docdir}/centos-release/*
-%{_datadir}/redhat-release
-%{_datadir}/centos-release/*
-%{_prefix}/lib/systemd/system-preset/*
+#/etc/rpm/macros.dist
 %ifarch %{arm}
-%attr(0755,root,root) %{_bindir}/update-boot
-%attr(0755,root,root) %{_bindir}/rootfs-expand
+#%attr(0755,root,root) %{_bindir}/update-boot
+#%attr(0755,root,root) %{_bindir}/rootfs-expand
 %endif
 
 %changelog
 * Fri Sep 13 2019 Iván Chavero <ichavero@chavero.com.mx>
 - First SotolitoOS release
+- Update Centos brand files
 
 * Fri Nov 23 2018 Pablo Greco <pablo@fliagreco.com.ar>
 - Update to 7.6
