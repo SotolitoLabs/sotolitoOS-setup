@@ -1,0 +1,8 @@
+[Main]
+Product=SotolitoLabs Enterprise Linux
+Version=7.4
+BugURL=https://bugzilla.redhat.com/
+IsFinal=True
+UUID=201909020004.x86_64
+[Compose]
+Lorax=19.6.92-1
