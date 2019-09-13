@@ -6,7 +6,7 @@
 %ifarch x86_64
 %define release_name Gin
 %else
-%define release_name AltArch
+%define release_name Gin-AltArch
 %endif
 %ifarch aarch64
 %define dist_suffix .a
@@ -104,6 +104,12 @@ pushd %{targetdir}
 # copy yum repos
 mkdir -p -m 755 %{buildroot}/etc/yum.repos.d
 install -m 644 SotolitoOS.repo %{buildroot}/etc/yum.repos.d
+
+%ifarch x86_64
+install -m 644 elrepo.repo %{buildroot}/etc/yum.repos.d
+install -m 644 RPM-GPG-KEY-elrepo.org %{buildroot}/etc/pki/rpm-gpg
+%else
+
 
 popd
 
