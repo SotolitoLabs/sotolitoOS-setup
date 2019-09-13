@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "Starting with CentOS 7.5.1804, this script is obsoleted by grubby"
+exit 0
