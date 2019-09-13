@@ -1,5 +1,5 @@
 body.login-pf {
-    background: url("/cockpit/static/login_logo_inv.png") no-repeat 50% 0;
+    background: url("/cockpit/static/sotolitoLabs_original_white_distro.png") no-repeat 50% 30%;
     background-size: auto;
     background-color: #101010;
 }
@@ -7,18 +7,23 @@ body.login-pf {
 #badge {
     width: 225px;
     height: 80px;
-    background-image: url("logo.png");
+    background-image: url("login_logo_inv.png");
     background-size: contain;
+    background-repeat: no-repeat;
 }
 
 #brand {
     font-size: 18pt;
     text-transform: uppercase;
-    content: "${NAME} <b>${VARIANT}</b>";
 }
 
-#index-brand {
-    content: "${NAME} <b>${VARIANT}</b>";
+#brand:before {
+    content: "${NAME} <b>${VERSION}</b>";
+}
+
+
+#index-brand:before {
+    content: "${NAME} <b>${VERSION}</b>";
 }
 
 .navbar-pf .navbar-brand {
