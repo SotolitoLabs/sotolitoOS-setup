@@ -96,7 +96,7 @@ git
 %end
 
 services --enabled=sshd,cockpit,pmlogger,pmcd
-firewall --enabled --service=ssh --service=cockpit --service=dhcpd
+firewall --enabled --service=ssh --service=cockpit --service=dhcpd --service=http --service=https --service=ceph --service=ceph-mon
 
 %addon com_redhat_kdump --disable --reserve-mb='auto'
 
