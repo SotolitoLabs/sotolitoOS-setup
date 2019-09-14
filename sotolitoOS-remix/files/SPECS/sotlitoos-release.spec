@@ -96,10 +96,7 @@ EOF
 
 pushd %{targetdir}
 # copy GPG keys
-#mkdir -p -m 755 %{buildroot}/etc/pki/rpm-gpg
-#for file in RPM-GPG-KEY* ; do
-#    install -m 644 $file %{buildroot}/etc/pki/rpm-gpg
-#done
+mkdir -p -m 755 %{buildroot}/etc/pki/rpm-gpg
 
 # copy yum repos
 mkdir -p -m 755 %{buildroot}/etc/yum.repos.d
@@ -108,7 +105,7 @@ install -m 644 SotolitoOS.repo %{buildroot}/etc/yum.repos.d
 %ifarch x86_64
 install -m 644 elrepo.repo %{buildroot}/etc/yum.repos.d
 install -m 644 RPM-GPG-KEY-elrepo.org %{buildroot}/etc/pki/rpm-gpg
-%else
+%endif
 
 
 popd
@@ -186,6 +183,7 @@ rm -rf %{buildroot}
 
 #TODO /etc/pki/rpm-gpg/
 %config(noreplace) /etc/yum.repos.d/*
+%config(noreplace) /etc/pki/rpm-gpg/RPM-GPG-KEY-elrepo.org
 #/etc/rpm/macros.dist
 %ifarch %{arm}
 #%attr(0755,root,root) %{_bindir}/update-boot
@@ -196,6 +194,7 @@ rm -rf %{buildroot}
 * Fri Sep 13 2019 Iván Chavero <ichavero@chavero.com.mx>
 - First SotolitoOS release
 - Update Centos brand files
+- Add elrepo yum repository for x86_64
 
 * Fri Nov 23 2018 Pablo Greco <pablo@fliagreco.com.ar>
 - Update to 7.6
