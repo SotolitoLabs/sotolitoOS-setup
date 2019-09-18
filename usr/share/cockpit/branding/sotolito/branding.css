@@ -2,12 +2,13 @@ body.login-pf {
     background: url("/cockpit/static/sotolitoLabs_original_white_distro.png") no-repeat 50% 30%;
     background-size: auto;
     background-color: #101010;
+    margin-top: 25%;
+    margin-bottom: -21%;
 }
 
 #badge {
     width: 225px;
     height: 80px;
-    background-image: url("login_logo_inv.png");
     background-size: contain;
     background-repeat: no-repeat;
 }
@@ -27,6 +28,11 @@ body.login-pf {
 }
 
 .navbar-pf .navbar-brand {
-    padding: 2px 0;
+    padding: 5px 30px;
+    background-image: url("login_logo_inv.png") ;
+	background-repeat: no-repeat;
+    background-size: 30px 30px;
+    margin-left: 8px !important;
+    margin-top: 4px !important;
 }
 
