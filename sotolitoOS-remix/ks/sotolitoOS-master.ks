@@ -19,6 +19,7 @@ lang en_US.UTF-8
 
 # From: https://www.redhat.com/archives/kickstart-list/2012-October/msg00014.html
 %pre --log=/tmp/sotolito-pre.log
+echo "Setting up as MASTER"
 # pre section
 #----- partitioning logic below--------------
 # pick the first drive that is not removable and is over MINSIZE
@@ -99,8 +100,9 @@ dhcp
 
 %end
 
-services --enabled=sshd,cockpit,dhcpd,pmlogger,pmcd
-firewall --enabled --service=ssh --service=cockpit --service=dhcpd --service=http --service=https --service=ceph --service=ceph-mon
+services --enable=sshd,dhcpd,pmlogger,pmcd,cockpit.service
+#firewall --enabled --dhcp --http --https --port=9090:tcp,6789:tcp,6800-7300:tcp
+firewall --enabled --service=dhcp --service=cockpit --service=ceph --service=ceph-mon --service=http --service=https
 
 %addon com_redhat_kdump --disable --reserve-mb='auto'
 
@@ -113,6 +115,7 @@ firewall --enabled --service=ssh --service=cockpit --service=dhcpd --service=htt
 %post --nochroot
 cp -rp /run/install/repo/postinstall/branding/sotolito /mnt/sysimage/usr/share/cockpit/branding/
 cp /run/install/repo/postinstall/dhcpd.conf /mnt/sysimage/etc/dhcp/
+cp /run/install/repo/postinstall/sotolito_env.sh /mnt/sysimage/etc/profile.d/sotolito_env.sh
 %end
 
 
@@ -124,6 +127,7 @@ ln -s /etc/centos-release /etc/sotolitoos-release
 #rpm --import /root/RPM-GPG-KEY-elrepo.org
 #rpm -Uvh /root/elrepo-release-7.0-4.el7.elrepo.noarch.rpm
 yum --enablerepo=elrepo-kernel
+systemctl enable cockpit.service
 #yum install -y yum-plugin-tmprepo
 #yum install -y spacewalk-repo --tmprepo=https://copr-be.cloud.fedoraproject.org/results/%40spacewalkproject/spacewalk-2.9/epel-7-x86_64/repodata/repomd.xml --nogpg
 %end
