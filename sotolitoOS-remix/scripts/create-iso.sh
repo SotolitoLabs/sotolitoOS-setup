@@ -30,7 +30,7 @@ DATE=`date +%Y-%m-%d`
 APPID="SotolitoLabs - ${DATE} - ${VERSION}"
 
 if [[ "$1" == "node" ]]; then
-	KICKSTART_FILE="sotolitoOS-master.ks"
+	KICKSTART_FILE="sotolitoOS-node.ks"
 	ISO_NAME="SotolitoOS-7-x86_64-Minimal-1810-node.iso"
 fi
 
@@ -63,21 +63,22 @@ wget -c "${EL_REPO}/${EL_REPO_RPM_GPG}"
 wget -c $KERNEL_ML_PACKAGE_URL
 wget -c $KERNEL_ML_TOOLS_PACKAGE_URL
 
-cp "${FULL_PATH}/download_iso_packages.sh" $PACKAGES_PATH
-podman run --rm -ti --name=tmp-centos-pkgs -v $PACKAGES_PATH:/var/preserve registry.centos.org/centos/centos /var/preserve/download_iso_packages.sh
+#cp "${FULL_PATH}/download_iso_packages.sh" $PACKAGES_PATH
+#podman run --rm -ti --name=tmp-centos-pkgs -v $PACKAGES_PATH:/var/preserve registry.centos.org/centos/centos /var/preserve/download_iso_packages.sh
 
 echo "Create image repo"
 cd ..
 createrepo -g ../comps.xml .
 
 echo "Adding Sotolito kickstart file to ISO"
-cp ../../ks/$KICKSTART_FILE ks/
+cp ../../ks/$KICKSTART_FILE ks/sotolitoOS.ks
 
 echo "Copy branding for cockpit"
 mkdir postinstall/branding
 #TODO Fix this directory nightmare
 cp -rp ../../../../usr/share/cockpit/branding/sotolito postinstall/branding/
 cp ../../files/dhcpd.conf postinstall/
+cp ../../../../etc/profile.d/sotolito_env.sh postinstall/
 
 echo "Branding Image"
 echo "Branding Boot menu"
