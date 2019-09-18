@@ -19,7 +19,7 @@ lang en_US.UTF-8
 
 # From: https://www.redhat.com/archives/kickstart-list/2012-October/msg00014.html
 %pre --log=/tmp/sotolito-pre.log
-# pre section
+echo "Setting up as NODE"
 #----- partitioning logic below--------------
 # pick the first drive that is not removable and is over MINSIZE
 DIR="/sys/block"
@@ -96,7 +96,7 @@ git
 %end
 
 services --enabled=sshd,cockpit,pmlogger,pmcd
-firewall --enabled --service=ssh --service=cockpit --service=dhcpd --service=http --service=https --service=ceph --service=ceph-mon
+firewall --enabled --service=cockpit --service=ceph --service=ceph-mon --service=http --service=https
 
 %addon com_redhat_kdump --disable --reserve-mb='auto'
 
@@ -109,6 +109,7 @@ firewall --enabled --service=ssh --service=cockpit --service=dhcpd --service=htt
 %post --nochroot
 cp -rp /run/install/repo/postinstall/branding/sotolito /mnt/sysimage/usr/share/cockpit/branding/
 cp /run/install/repo/postinstall/dhcpd.conf /mnt/sysimage/etc/dhcp/
+cp /run/install/repo/postinstall/sotolito_env.sh /mnt/sysimage/etc/profile.d/sotolito_env.sh
 %end
 
 
@@ -120,6 +121,15 @@ sed -i 's/Core/Gin/' /boot/grub2/grub.cfg
 #rpm --import /root/RPM-GPG-KEY-elrepo.org
 #rpm -Uvh /root/elrepo-release-7.0-4.el7.elrepo.noarch.rpm
 yum --enablerepo=elrepo-kernel
+
+#TODO make this work with the kickstart firewall command
+/bin/firewall-offline-cmd --add-service=http
+/bin/firewall-offline-cmd --add-service=https
+/bin/firewall-offline-cmd --add-service=cockpit
+/bin/firewall-offline-cmd --add-service=dhcp
+/bin/firewall-offline-cmd --add-service=ceph
+/bin/firewall-offline-cmd --add-service=ceph-mon
+
 #yum install -y yum-plugin-tmprepo
 #yum install -y spacewalk-repo --tmprepo=https://copr-be.cloud.fedoraproject.org/results/%40spacewalkproject/spacewalk-2.9/epel-7-x86_64/repodata/repomd.xml --nogpg
 %end
