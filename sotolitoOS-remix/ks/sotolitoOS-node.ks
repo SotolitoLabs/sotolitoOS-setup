@@ -69,7 +69,7 @@ EOF
 network --bootproto=dhcp --ipv6=auto --activate
 # TODO: Virtual interfaces for management (NODE)
 network --bootproto=dhcp --vlanid=1 --activate --onboot=on
-network --hostname=sotolito
+network --hostname=sotolito-node
 
 # Root password
 rootpw --iscrypted $6$UP1RIgyqnitFKfQM$UtyjaK8sVCDyGYFTHL4tTe9b69M.MPloYPpSuhX2JHyMkOG8eXajQBSAukPP1Z//S08WDzBKv8Jhmjq7Bhe1D.
@@ -95,8 +95,8 @@ git
 
 %end
 
-services --enabled=sshd,cockpit,pmlogger,pmcd
-firewall --enabled --service=cockpit --service=ceph --service=ceph-mon --service=http --service=https
+services --enabled=sshd,pmlogger,pmcd
+firewall --enabled --service=ceph --service=ceph-mon --service=http --service=https
 
 %addon com_redhat_kdump --disable --reserve-mb='auto'
 
@@ -121,15 +121,6 @@ sed -i 's/Core/Gin/' /boot/grub2/grub.cfg
 #rpm --import /root/RPM-GPG-KEY-elrepo.org
 #rpm -Uvh /root/elrepo-release-7.0-4.el7.elrepo.noarch.rpm
 yum --enablerepo=elrepo-kernel
-
-#TODO make this work with the kickstart firewall command
-/bin/firewall-offline-cmd --add-service=http
-/bin/firewall-offline-cmd --add-service=https
-/bin/firewall-offline-cmd --add-service=cockpit
-/bin/firewall-offline-cmd --add-service=dhcp
-/bin/firewall-offline-cmd --add-service=ceph
-/bin/firewall-offline-cmd --add-service=ceph-mon
-
 #yum install -y yum-plugin-tmprepo
 #yum install -y spacewalk-repo --tmprepo=https://copr-be.cloud.fedoraproject.org/results/%40spacewalkproject/spacewalk-2.9/epel-7-x86_64/repodata/repomd.xml --nogpg
 %end
