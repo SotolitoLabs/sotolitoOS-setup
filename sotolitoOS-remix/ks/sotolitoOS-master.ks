@@ -71,7 +71,7 @@ network --bootproto=dhcp --ipv6=auto --activate
 # TODO: Virtual interfaces for management
 network --bootproto=static --vlanid=1 --ip=10.253.0.1 --netmask=255.255.255.0 --activate --onboot=on
 network --bootproto=static --vlanid=2 --ip=192.168.1.253 --netmask=255.255.255.0 --activate --onboot=on
-network --hostname=sotolito
+network --hostname=sotolito-master
 
 # Root password
 rootpw --iscrypted $6$UP1RIgyqnitFKfQM$UtyjaK8sVCDyGYFTHL4tTe9b69M.MPloYPpSuhX2JHyMkOG8eXajQBSAukPP1Z//S08WDzBKv8Jhmjq7Bhe1D.
@@ -100,8 +100,7 @@ dhcp
 
 %end
 
-services --enable=sshd,dhcpd,pmlogger,pmcd,cockpit.service
-#firewall --enabled --dhcp --http --https --port=9090:tcp,6789:tcp,6800-7300:tcp
+services --enable=sshd,dhcpd,pmlogger,pmcd,cockpit.socket,cockpit.service
 firewall --enabled --service=dhcp --service=cockpit --service=ceph --service=ceph-mon --service=http --service=https
 
 %addon com_redhat_kdump --disable --reserve-mb='auto'
@@ -123,10 +122,14 @@ cp /run/install/repo/postinstall/sotolito_env.sh /mnt/sysimage/etc/profile.d/sot
 %post
 sed -i 's/Cent/Sotolito/' /boot/grub2/grub.cfg
 sed -i 's/Core/Gin/' /boot/grub2/grub.cfg
+# Fix DHCPD problem
+sed  -i '/^VLAN_FLAGS="NO_REORDER_HDR"$/d' /etc/sysconfig/network-scripts/ifcfg-eth0.1
 ln -s /etc/centos-release /etc/sotolitoos-release
 #rpm --import /root/RPM-GPG-KEY-elrepo.org
 #rpm -Uvh /root/elrepo-release-7.0-4.el7.elrepo.noarch.rpm
 yum --enablerepo=elrepo-kernel
+# the service directiva can't enable cockpit.socket so we have to do it manually
+systemctl enable cockpit.socket
 systemctl enable cockpit.service
 #yum install -y yum-plugin-tmprepo
 #yum install -y spacewalk-repo --tmprepo=https://copr-be.cloud.fedoraproject.org/results/%40spacewalkproject/spacewalk-2.9/epel-7-x86_64/repodata/repomd.xml --nogpg
