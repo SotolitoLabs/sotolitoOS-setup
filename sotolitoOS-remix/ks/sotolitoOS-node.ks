@@ -120,6 +120,7 @@ sed -i 's/Cent/Sotolito/' /boot/grub2/grub.cfg
 sed -i 's/Core/Gin/' /boot/grub2/grub.cfg
 #rpm --import /root/RPM-GPG-KEY-elrepo.org
 #rpm -Uvh /root/elrepo-release-7.0-4.el7.elrepo.noarch.rpm
+sed  -i '/^VLAN_FLAGS="NO_REORDER_HDR"$/d' /etc/sysconfig/network-scripts/ifcfg-eth0.1
 yum --enablerepo=elrepo-kernel
 #yum install -y yum-plugin-tmprepo
 #yum install -y spacewalk-repo --tmprepo=https://copr-be.cloud.fedoraproject.org/results/%40spacewalkproject/spacewalk-2.9/epel-7-x86_64/repodata/repomd.xml --nogpg
