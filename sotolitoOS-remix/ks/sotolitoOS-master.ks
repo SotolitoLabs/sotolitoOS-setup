@@ -131,6 +131,8 @@ yum --enablerepo=elrepo-kernel
 # the service directiva can't enable cockpit.socket so we have to do it manually
 systemctl enable cockpit.socket
 systemctl enable cockpit.service
+#Generate ssh keypair
+ssh-keygen -f /root/.ssh/id_rsa -q -N ""
 #yum install -y yum-plugin-tmprepo
 #yum install -y spacewalk-repo --tmprepo=https://copr-be.cloud.fedoraproject.org/results/%40spacewalkproject/spacewalk-2.9/epel-7-x86_64/repodata/repomd.xml --nogpg
 %end
