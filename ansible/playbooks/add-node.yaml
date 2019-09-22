@@ -1,6 +1,11 @@
 ---
 - hosts: all
   tasks:
+  - name: Create ssh directory
+    file:
+      path: /root/.ssh
+      state: directory
+      mode: '0700'
   - name: Add master node key to node
     blockinfile:
       block: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"
