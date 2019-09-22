@@ -1,0 +1,8 @@
+---
+- hosts: all
+  tasks:
+  - name: Add master node key to node
+    blockinfile:
+      block: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"
+      dest: /etc/ssh/ssh_config
+
