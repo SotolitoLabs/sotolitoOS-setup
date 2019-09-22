@@ -10,4 +10,5 @@
     blockinfile:
       block: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"
       dest: /root/.ssh/authorized_keys
+      create: yes
 
