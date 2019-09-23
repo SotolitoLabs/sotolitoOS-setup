@@ -1,5 +1,7 @@
 ---
 - hosts: all
+  vars:
+    node_ip_address: 10.254.0.254
   tasks:
   - name: Create ssh directory
     file:
@@ -11,4 +13,12 @@
       block: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"
       dest: /root/.ssh/authorized_keys
       create: yes
+  #- name: Add node name to hosts file
+  - name: Add node to cockpit
+    template:
+      src: ../templates/cockpit-machine.j2
+      dest: /etc/cockpit/machines.d/{{node_ip_address}}-sotolito.json
+      owner: root
+      group: wheel
+      mode: '0644'
 
