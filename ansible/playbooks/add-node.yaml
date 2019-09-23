@@ -1,7 +1,10 @@
 ---
+# This playbook should be run from the master node
 - hosts: all
   vars:
     node_ip_address: 10.254.0.254
+
+- hosts: nodes
   tasks:
   - name: Create ssh directory
     file:
@@ -13,8 +16,10 @@
       block: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"
       dest: /root/.ssh/authorized_keys
       create: yes
-  #- name: Add node name to hosts file
-  - name: Add node to cockpit
+
+- hosts: masters
+#- name: Add node name to hosts file
+  - name: Add node to master cockpit
     template:
       src: cockpit-machine.j2
       dest: /etc/cockpit/machines.d/{{node_ip_address}}-sotolito.json
