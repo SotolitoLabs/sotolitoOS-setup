@@ -1,11 +1,9 @@
 ---
 # This playbook should be run from the master node
-- hosts: all
+- hosts: node_ip_address
   vars:
     node_ip_address: 10.254.0.254
-
-- hosts: node_ip_address
-  tasks:
+ tasks:
   - name: Create ssh directory
     file:
       path: /root/.ssh
