@@ -4,7 +4,7 @@
   vars:
     node_ip_address: 10.254.0.254
 
-- hosts: nodes
+- hosts: node_ip_address
   tasks:
   - name: Create ssh directory
     file:
@@ -18,7 +18,7 @@
       create: yes
 
 - hosts: masters
-#- name: Add node name to hosts file
+  tasks:
   - name: Add node to master cockpit
     template:
       src: cockpit-machine.j2
