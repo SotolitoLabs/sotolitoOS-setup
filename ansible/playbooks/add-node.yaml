@@ -3,7 +3,7 @@
 - hosts: node_ip_address
   vars:
     node_ip_address: 10.254.0.254
- tasks:
+  tasks:
   - name: Create ssh directory
     file:
       path: /root/.ssh
