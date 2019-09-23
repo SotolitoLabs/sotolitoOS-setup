@@ -16,7 +16,7 @@
   #- name: Add node name to hosts file
   - name: Add node to cockpit
     template:
-      src: ../templates/cockpit-machine.j2
+      src: cockpit-machine.j2
       dest: /etc/cockpit/machines.d/{{node_ip_address}}-sotolito.json
       owner: root
       group: wheel
