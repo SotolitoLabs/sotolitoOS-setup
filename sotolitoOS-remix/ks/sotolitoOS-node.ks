@@ -110,6 +110,9 @@ firewall --enabled --service=ceph --service=ceph-mon --service=http --service=ht
 cp -rp /run/install/repo/postinstall/branding/sotolito /mnt/sysimage/usr/share/cockpit/branding/
 cp /run/install/repo/postinstall/dhcpd.conf /mnt/sysimage/etc/dhcp/
 cp /run/install/repo/postinstall/sotolito_env.sh /mnt/sysimage/etc/profile.d/sotolito_env.sh
+mkdir /mnt/sysimage/root/.ssh
+chmod 0700 /mnt/sysimage/root/.ssh
+cp /run/install/repo/postinstall/sotolito_id_rsa.pub /mnt/sysimage/root/.ssh/authorized_keys
 %end
 
 
