@@ -3,6 +3,7 @@
 - hosts: "{{node_ip_address}}"
   vars:
     node_ip_address: 10.254.0.254
+    node_name: sotolito-node{{node_ip_address.split(".")[3]}}
   tasks:
   - name: Create ssh directory
     file:
@@ -14,8 +15,12 @@
       block: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"
       dest: /root/.ssh/authorized_keys
       create: yes
+  - name: "Set hostname {{ node_hostname }}"
+    command: "hostnamectl set-hostname {{ node_name }}"
 
 - hosts: masters
+  vars:
+    node_name: sotolito-node{{node_ip_address.split(".")[3]}}
   tasks:
   - name: Add node to master cockpit
     template:
