@@ -115,6 +115,11 @@ firewall --enabled --service=dhcp --service=cockpit --service=ceph --service=cep
 cp -rp /run/install/repo/postinstall/branding/sotolito /mnt/sysimage/usr/share/cockpit/branding/
 cp /run/install/repo/postinstall/dhcpd.conf /mnt/sysimage/etc/dhcp/
 cp /run/install/repo/postinstall/sotolito_env.sh /mnt/sysimage/etc/profile.d/sotolito_env.sh
+mkdir /mnt/sysimage/root/.ssh
+chmod 0700 /mnt/sysimage/root/.ssh
+cp /run/install/repo/postinstall/sotolito_id_rsa* /mnt/sysimage/root/.ssh/
+cp -rp /run/install/repo/postinstall/ansible /mnt/sysimage/etc/ansible/sotolito
+cp -rp /run/install/repo/postinstall/selinux /mnt/sysimage/home/sotolito/
 %end
 
 
@@ -133,6 +138,22 @@ systemctl enable cockpit.socket
 systemctl enable cockpit.service
 #Generate ssh keypair
 ssh-keygen -f /root/.ssh/id_rsa -q -N ""
+cp /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys
+cat /root/.ssh/sotolito_id_rsa.pub >> /root/.ssh/authorized_keys
+# Configure ansible
+echo "host_key_checking = False" >> /etc/ansible/ansible.cfg
+echo "retry_files_enabled = False" >> /etc/ansible/ansible.cfg
+# Prepare our dhcp bootstrap
+usermod -d /etc/dhcp/scripts dhcpd
+mkdir /etc/dhcp/scripts/.ssh
+cp /root/.ssh/sotolito_id_rsa* /etc/dhcp/scripts/.ssh/
+cp /home/sotolito/ansible/setup_sotolito_node.sh /etc/dhcp/scripts/
+cp /root/.ssh/id_rsa.pub /etc/ansible/sotolito/playbooks/master_id_rsa.pub
+chown -R dhcpd:dhcpd /etc/dhcp/scripts/
+chmod 0755 /etc/dhcp/scripts/setup_sotolito_node.sh
+chown -R dhcpd:dhcpd /etc/dhcp/scripts/.ssh
+restorecon -R -v /etc
+semodule -i /home/sotolito/dhcp_sotolito_node_bootstrap.pp
 #yum install -y yum-plugin-tmprepo
 #yum install -y spacewalk-repo --tmprepo=https://copr-be.cloud.fedoraproject.org/results/%40spacewalkproject/spacewalk-2.9/epel-7-x86_64/repodata/repomd.xml --nogpg
 %end
