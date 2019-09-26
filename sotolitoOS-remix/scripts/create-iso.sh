@@ -29,6 +29,9 @@ VERSION="7"
 DATE=`date +%Y-%m-%d`
 APPID="SotolitoLabs - ${DATE} - ${VERSION}"
 
+DEFAULT_SSH_KEYS_PATH="~/space/sotolitoLabs/security/ssh/"
+
+
 if [[ "$1" == "node" ]]; then
 	KICKSTART_FILE="sotolitoOS-node.ks"
 	ISO_NAME="SotolitoOS-7-x86_64-Minimal-1810-node.iso"
@@ -79,6 +82,11 @@ mkdir postinstall/branding
 cp -rp ../../../../usr/share/cockpit/branding/sotolito postinstall/branding/
 cp ../../files/dhcpd.conf postinstall/
 cp ../../../../etc/profile.d/sotolito_env.sh postinstall/
+# We need our playbooks
+cp -rp ../../../../ansible postinstall/
+# SELinux shit
+cp -rp ../../../../selinux postinstall/
+cp $DEFAULT_SSH_KEYS_PATH/* postinstall/
 
 echo "Branding Image"
 echo "Branding Boot menu"
