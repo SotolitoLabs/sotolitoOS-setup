@@ -1,0 +1,43 @@
+
+module dhcp_sotolito_node_bootstrap 1.0;
+
+require {
+	type user_tmp_t;
+	type dhcpd_t;
+	type bin_t;
+	type ssh_exec_t;
+	type ptmx_t;
+	type ldconfig_exec_t;
+	type tmpfs_t;
+	type devpts_t;
+	class process ptrace;
+	class unix_stream_socket connectto;
+	class chr_file { getattr ioctl open read write };
+	class file { create execute execute_no_trans getattr link open read rename unlink write };
+	class sock_file { create link unlink write };
+	class dir { add_name create remove_name rmdir write };
+}
+
+#============= dhcpd_t ==============
+
+#!!!! WARNING: 'bin_t' is a base type.
+allow dhcpd_t bin_t:dir { add_name create remove_name rmdir write };
+
+#!!!! WARNING: 'bin_t' is a base type.
+allow dhcpd_t bin_t:file { create rename unlink write };
+
+#!!!! WARNING: 'bin_t' is a base type.
+allow dhcpd_t bin_t:sock_file { create link unlink write };
+
+#!!!! This avc can be allowed using the boolean 'daemons_use_tty'
+allow dhcpd_t devpts_t:chr_file open;
+allow dhcpd_t ldconfig_exec_t:file { execute execute_no_trans getattr open read };
+allow dhcpd_t ptmx_t:chr_file { getattr ioctl open read write };
+allow dhcpd_t self:process ptrace;
+
+#!!!! This avc can be allowed using the boolean 'daemons_enable_cluster_mode'
+allow dhcpd_t self:unix_stream_socket connectto;
+allow dhcpd_t ssh_exec_t:file { execute execute_no_trans open read };
+allow dhcpd_t tmpfs_t:dir { add_name remove_name write };
+allow dhcpd_t tmpfs_t:file { create getattr link open read unlink write };
+allow dhcpd_t user_tmp_t:file execute;
