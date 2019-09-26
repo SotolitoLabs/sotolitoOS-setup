@@ -5,14 +5,11 @@
     node_ip_address: 10.254.0.254
     node_name: sotolito-node{{node_ip_address.split(".")[3]}}
   tasks:
-  - name: Create ssh directory
-    file:
-      path: /root/.ssh
-      state: directory
-      mode: '0700'
+  - name: Clean ssh authorized keys file
+    command: rm /root/.ssh/*
   - name: Add master node key to node
     blockinfile:
-      block: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"
+      block: "{{ lookup('file', 'master_id_rsa.pub') }}"
       dest: /root/.ssh/authorized_keys
       create: yes
   - name: "Set hostname {{ node_hostname }}"
