@@ -147,13 +147,15 @@ echo "retry_files_enabled = False" >> /etc/ansible/ansible.cfg
 usermod -d /etc/dhcp/scripts dhcpd
 mkdir /etc/dhcp/scripts/.ssh
 cp /root/.ssh/sotolito_id_rsa* /etc/dhcp/scripts/.ssh/
-cp /home/sotolito/ansible/setup_sotolito_node.sh /etc/dhcp/scripts/
+cp /etc/ansible/sotolito/setup_sotolito_node.sh /etc/dhcp/scripts/
 cp /root/.ssh/id_rsa.pub /etc/ansible/sotolito/playbooks/master_id_rsa.pub
+chgrp  dhcpd /etc/dhcp/
 chown -R dhcpd:dhcpd /etc/dhcp/scripts/
 chmod 0755 /etc/dhcp/scripts/setup_sotolito_node.sh
 chown -R dhcpd:dhcpd /etc/dhcp/scripts/.ssh
+chmod 0600 /etc/dhcp/scripts/.ssh/sotolito_id_rsa
 restorecon -R -v /etc
-semodule -i /home/sotolito/dhcp_sotolito_node_bootstrap.pp
+semodule -i /home/sotolito/selinux/dhcp_sotolito_node_bootstrap.pp
 #yum install -y yum-plugin-tmprepo
 #yum install -y spacewalk-repo --tmprepo=https://copr-be.cloud.fedoraproject.org/results/%40spacewalkproject/spacewalk-2.9/epel-7-x86_64/repodata/repomd.xml --nogpg
 %end
