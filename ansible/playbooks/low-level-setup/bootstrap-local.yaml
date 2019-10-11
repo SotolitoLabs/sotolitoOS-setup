@@ -110,16 +110,29 @@
       group: root
       mode: 0755     
   - name: "Setting autorelabel for SELinux"
-    file:
-      path: /mnt/sotolito/.autorelabel
+    copy:
+      content: ""
+      dest: /mnt/sotolito/.autorelabel
+      force: no
+      state: touch
+      group: sys
+      owner: root
+      mode: 0555
+  - name: "Clean yum files"
+    command: yum clean all
+  - name: "Copy dracut configuration"
+    copy:
+      src: ../../../etc/dracut.conf.d/99-extradrivers.conf
+      dest: /etc/dracut.conf.d/99-extradrivers.conf
       owner: root
       group: root
-      state: touch
-      mode: 0755
-  - name: "Unmount var partition"
+      mode: 0644
+  - name: "Umount var partition"
     command: umount /mnt/sotolito/var
+  - name: "Add SDD drivers to initramfs"
+    command: dracut -v -M -f /boot/initramfs-4.19.7-300.el7.armv7hl.img
   - name: "Umount root partition"
-    command: umount /mnt/sotolito/
+    command: umount /mnt/sotolito
   - name: Rebooting machine! be happy <3
     reboot:
 
