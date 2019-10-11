@@ -1,0 +1,25 @@
+---
+- hosts: all
+  vars:
+    node_ip_address: 10.254.0.1
+  tasks:
+  - name: Install needed network manager libs
+    package:
+      name:
+        - NetworkManager-glib
+        - nm-connection-editor
+        - libsemanage-python
+        - policycoreutils-python
+      state: present
+  - name: Add cluster VLAN interface
+    nmcli:
+      conn_name: eth0-vlan1
+      ifname: eth0
+      vlandev: eth0
+      type: ethernet
+      ip4: "{{ node_ip_address }}/24"
+      type: vlan
+      vlanid: 1
+      state: present
+
+
