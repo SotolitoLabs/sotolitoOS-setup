@@ -114,7 +114,6 @@
       content: ""
       dest: /mnt/sotolito/.autorelabel
       force: no
-      state: touch
       group: sys
       owner: root
       mode: 0555
