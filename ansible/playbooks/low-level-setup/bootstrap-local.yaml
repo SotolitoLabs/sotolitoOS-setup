@@ -116,6 +116,10 @@
       group: root
       state: touch
       mode: 0755
+  - name: "Unmount var partition"
+    command: umount /mnt/sotolito/var
+  - name: "Umount root partition"
+    command: umount /mnt/sotolito/
   - name: Rebooting machine! be happy <3
     reboot:
 
