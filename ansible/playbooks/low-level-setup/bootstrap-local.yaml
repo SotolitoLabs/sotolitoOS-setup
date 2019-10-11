@@ -114,6 +114,7 @@
       path: /mnt/sotolito/.autorelabel
       owner: root
       group: root
+      state: touch
       mode: 0755
   - name: Rebooting machine! be happy <3
     reboot:
