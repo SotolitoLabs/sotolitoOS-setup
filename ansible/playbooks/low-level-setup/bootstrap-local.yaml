@@ -102,13 +102,6 @@
       owner: root
       group: root
       mode: 0755
-  - name: "Copy network configuration"
-    copy:
-      src: /home/sotolito/moximo-setup/etc/sysconfig/network-scripts/ifcfg-eth0-centos
-      dest: /mnt/sotolito/etc/sysconfig/network-scripts/ifcfg-eth0
-      owner: root
-      group: root
-      mode: 0755
   - name: "Copy extlinux configuration"
     copy:
       src: /home/sotolito/moximo-setup/boot/extlinux/extlinux.conf
@@ -122,6 +115,6 @@
       owner: root
       group: root
       mode: 0755
-  - name: Rebooting machine and be happy <3
+  - name: Rebooting machine! be happy <3
     reboot:
 
