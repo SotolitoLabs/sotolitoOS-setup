@@ -6,7 +6,7 @@
   - name: Install Master Packages
     package:
       name:
-        - kernel-ml
+        #- kernel-ml
         - ansible
         - pcp
         - cockpit
