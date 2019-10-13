@@ -53,6 +53,16 @@
     selinux:
       policy: targeted
       state: permissive
+  - name: Add cluster VLAN interface
+    nmcli:
+      conn_name: eth0-vlan1
+      ifname: eth0
+      vlandev: eth0
+      type: ethernet
+      ip4: "{{ node_ip_address }}/24"
+      type: vlan
+      vlanid: 1
+      state: present
   - name: Make sure a service is running
     systemd:
       state: started
@@ -65,16 +75,6 @@
         - pmcd
         - cockpit.socket
         - cockpit.service
-  - name: Add cluster VLAN interface
-    nmcli:
-      conn_name: eth0-vlan1
-      ifname: eth0
-      vlandev: eth0
-      type: ethernet
-      ip4: "{{ node_ip_address }}/24"
-      type: vlan
-      vlanid: 1
-      state: present
   - name: Setup Branding for Cockpit
     copy:
       src: ../../../usr/share/cockpit/branding/sotolito/
