@@ -63,6 +63,13 @@
       type: vlan
       vlanid: 1
       state: present
+  - name: Fix network manager bug for VLANS and DHCP
+    replace:
+      path: /etc/sysconfig/network-scripts/ifcfg-eth0-vlan1
+      regexp: '^VLAN_FLAGS="NO_REORDER_HDR"$'
+      replace: ''
+  - name: Reload VLAN interface configuration
+    command: ifdown eth0-vlan1; ifup eth0-vlan1
   - name: Make sure a service is running
     systemd:
       state: started
@@ -79,8 +86,4 @@
     copy:
       src: ../../../usr/share/cockpit/branding/sotolito/
       dest: /usr/share/cockpit/branding/sotolito
-  - name: Fix network manager bug for VLANS and DHCP
-    replace:
-      path: /etc/sysconfig/network-scripts/ifcfg-eth0-vlan1
-      regexp: '^VLAN_FLAGS="NO_REORDER_HDR"$'
-      replace: ''
+
