@@ -129,7 +129,7 @@
   - name: "Umount var partition"
     command: umount /mnt/sotolito/var
   - name: "Add SDD drivers to initramfs"
-    command: dracut -v -M -f /boot/initramfs-4.19.7-300.el7.armv7hl.img
+    command: dracut -v -M -f /boot/initramfs-4.19.7-300.el7.armv7hl-sotolito.img
   - name: "Umount root partition"
     command: umount /mnt/sotolito
   - name: Rebooting machine! be happy <3
