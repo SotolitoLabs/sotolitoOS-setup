@@ -43,6 +43,11 @@
       path: /etc/sysconfig/network-scripts/ifcfg-eth0-vlan1
       regexp: '^VLAN_FLAGS="NO_REORDER_HDR"$'
       replace: ''
+  - name: Fix network manager bug for VLAN device
+    replace:
+      path: /etc/sysconfig/network-scripts/ifcfg-eth0-vlan1
+      regexp: '^DEVICE=eth0-vlan1$'
+      replace: ''
   - name: Stop VLAN interface
     command: ifdown eth0-vlan1
   - name: Start VLAN interface to reload configuration
