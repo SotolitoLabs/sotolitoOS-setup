@@ -1,0 +1,63 @@
+---
+- hosts: all
+  tasks:
+  - name: Install Master Packages
+    package:
+      name:
+        #- kernel-ml
+        - ansible
+        - pcp
+        - cockpit
+        - cockpit-pcp
+        - docker
+        - git
+        - NetworkManager-glib
+        - nm-connection-editor
+        - libsemanage-python
+        - policycoreutils-python
+      state: present
+  - name: Create Sotolito Ansible directory
+    file:
+      path: /etc/ansible/sotolito/playbooks
+      state: directory
+      recurse: yes
+      mode: '0755'
+  - name: Create master ssh key
+    openssh_keypair:
+      path: /root/.ssh/id_rsa
+      size: 2048
+  - name: Put SELinux in permissive mode, logging actions that would be blocked.
+    selinux:
+      policy: targeted
+      state: permissive
+  - name: Add cluster VLAN interface
+    nmcli:
+      conn_name: eth0-vlan1
+      vlandev: eth0
+      type: ethernet
+      type: vlan
+      vlanid: 1
+      state: present
+  - name: Fix network manager bug for VLANs and DHCP
+    replace:
+      path: /etc/sysconfig/network-scripts/ifcfg-eth0-vlan1
+      regexp: '^VLAN_FLAGS="NO_REORDER_HDR"$'
+      replace: ''
+  - name: Stop VLAN interface
+    command: ifdown eth0-vlan1
+  - name: Start VLAN interface to reload configuration
+    command: ifup eth0-vlan1
+  - name: Start Services
+    systemd:
+      state: started
+      enabled: yes
+      name: "{{ item }}"
+    with_items:
+        - sshd 
+        - pmlogger
+        - pmcd
+  - name: Setup Branding for Cockpit
+    copy:
+      src: ../../../usr/share/cockpit/branding/sotolito/
+      dest: /usr/share/cockpit/branding/sotolito
+
