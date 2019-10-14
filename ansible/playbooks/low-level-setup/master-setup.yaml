@@ -1,7 +1,7 @@
 ---
 - hosts: all
   vars:
-    node_ip_address: 10.254.0.1
+    node_ip_address: 10.253.0.1
   tasks:
   - name: Install Master Packages
     package:
@@ -62,7 +62,7 @@
       type: vlan
       vlanid: 1
       state: present
-  - name: Fix network manager bug for VLANS and DHCP
+  - name: Fix network manager bug for VLANs and DHCP
     replace:
       path: /etc/sysconfig/network-scripts/ifcfg-eth0-vlan1
       regexp: '^VLAN_FLAGS="NO_REORDER_HDR"$'
@@ -71,7 +71,7 @@
     command: ifdown eth0-vlan1
   - name: Start VLAN interface to reload configuration
     command: ifup eth0-vlan1
-  - name: Make sure a service is running
+  - name: Start Services
     systemd:
       state: started
       enabled: yes
