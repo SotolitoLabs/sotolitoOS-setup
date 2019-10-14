@@ -67,8 +67,10 @@
       path: /etc/sysconfig/network-scripts/ifcfg-eth0-vlan1
       regexp: '^VLAN_FLAGS="NO_REORDER_HDR"$'
       replace: ''
-  - name: Reload VLAN interface configuration
-    command: ifdown eth0-vlan1; ifup eth0-vlan1
+  - name: Stop VLAN interface
+    command: ifdown eth0-vlan1
+  - name: Start VLAN interface to reload configuration
+    command: ifup eth0-vlan1
   - name: Make sure a service is running
     systemd:
       state: started
