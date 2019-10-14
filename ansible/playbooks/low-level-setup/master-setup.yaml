@@ -56,7 +56,6 @@
   - name: Add cluster VLAN interface
     nmcli:
       conn_name: eth0-vlan1
-      ifname: eth0
       vlandev: eth0
       type: ethernet
       ip4: "{{ node_ip_address }}/24"
