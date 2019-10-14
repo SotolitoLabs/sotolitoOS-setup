@@ -1,7 +1,7 @@
 ---
 - hosts: all
   tasks:
-  - name: Install Master Packages
+  - name: Install Node Packages
     package:
       name:
         #- kernel-ml
