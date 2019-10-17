@@ -1,0 +1,14 @@
+{
+    "version": 0,
+
+    "sotolito": {
+        "index": {
+            "label": "Sotolito",
+            "order": 10,
+            "wants": "multiple-machines",
+            "icon": "fa-tachometer"
+        }
+    },
+
+    "content-security-policy": "default-src 'self' 'unsafe-inline' 'unsafe-eval'"
+}

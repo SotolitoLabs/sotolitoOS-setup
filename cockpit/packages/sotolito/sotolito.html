@@ -1,0 +1,77 @@
+<head>
+    <title>Sotolito Cluster</title>
+    <meta charset="utf-8">
+    <link href="../base1/cockpit.css" type="text/css" rel="stylesheet">
+    <link href="sotolito.css" type="text/css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap.css" type="text/css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap-grid.css" type="text/css" rel="stylesheet">
+    <script src="../base1/jquery.js"></script>
+    <script src="../base1/cockpit.js"></script>
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <div class="container-fluid container p-5 ml-5"> 
+      <div class="row">
+        <div class="col-10">
+          <h1>Sotolito Cluster</h1>
+        </div>
+        <div class="col-2">
+          <button class="btn btn-danger" id="shutdown">Apagar Nodos</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-10">
+          <ul>
+            <li><button type="button" id="files" class="btn btn-link">Administración de Archivos</button></li>
+            <li><button type="button" id="mariadb" class="btn btn-link">Administración de MariaDB</button></li>
+            <li><button type="button" id="webmail" class="btn btn-link">Correo Web</button></li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-10">
+          <span id="result"></span>
+        </div>
+      </div>
+    </div>
+
+    <script>
+        var address = $("#address");
+        var output = $("#output");
+        var result = $("#result");
+
+        $("#shutdown").on("click", shutdown_nodes);
+        $("#files").on("click", {url: "nextcloud"}, get_service);
+        $("#mariadb").on("click", {url: "phpMyAdmin"}, get_service);
+        function get_service(event){
+            window.open("http://" + location.hostname + "/" + event.data.url, '_blank');
+
+        }
+
+        function shutdown_nodes() {
+            var proc = cockpit.spawn(["/usr/bin/ansible-playbook", "-i", "/home/sotolito/moximo-setup/ansible/hosts/cluster_common", "/home/sotolito/moximo-setup/ansible/playbooks/shutdown.yaml"]);
+            proc.done(shutdown_success);
+            proc.stream(shutdown_output);
+            proc.fail(shutdown_fail);
+
+            result.empty();
+            output.empty();
+        }
+
+        function shutdown_success() {
+            result.css("color", "green");
+            result.text("success");
+        }
+
+        function shutdown_fail() {
+            result.css("color", "red");
+            result.text("fail");
+        }
+
+        function shutdown_output(data) {
+            output.append(document.createTextNode(data));
+        }
+    </script>
+</body>
+</html>
+
