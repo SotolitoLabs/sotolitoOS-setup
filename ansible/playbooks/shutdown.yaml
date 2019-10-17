@@ -1,6 +1,10 @@
 ---
-- hosts: all
+- hosts: nodes
   tasks:
   - name: "Shutdown Node"
+    command: shutdown -h now
+- hosts: masters
+  tasks:
+  - name: "Shutdown Master"
     command: shutdown -h now
 
