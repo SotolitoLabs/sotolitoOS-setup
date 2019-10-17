@@ -3,7 +3,7 @@
   tasks:
   - name: "Shutdown Node"
     command: shutdown -h now
-    ignore_errors: yes
+  ignore_errors: yes
 - hosts: masters
   tasks:
   - name: "Shutdown Master"
