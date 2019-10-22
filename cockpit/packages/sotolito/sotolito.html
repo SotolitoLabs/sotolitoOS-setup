@@ -44,7 +44,7 @@
         $("#files").on("click", {url: "nextcloud"}, get_service);
         $("#mariadb").on("click", {url: "phpMyAdmin"}, get_service);
         function get_service(event){
-            window.open("http://" + location.hostname + "/" + event.data.url, '_blank');
+            window.open("https://" + location.hostname + "/" + event.data.url + "/", '_blank');
 
         }
 
