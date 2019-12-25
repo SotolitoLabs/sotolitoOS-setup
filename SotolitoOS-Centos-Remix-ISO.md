@@ -206,6 +206,7 @@ In order for the installer to show the proper brand while booting we need to mod
  sotol-squash $ sudo mount -o loop rootfs.img tmp
  sotol-squash $ sudo sed -i 's/CentOS/SotolitoOS/' tmp/etc/os-release
  sotol-squash $ sudo umount tmp
+ sotol-squash $ cd ..
  sotol-squash $ mksquashfs squashfs-root squashfs-sotolito.img -comp xz
  sotol-squash $ cp squashfs-sotolito.img ../../sotolito-iso/isolinux/LiveOS/squashfs.img
 ```
