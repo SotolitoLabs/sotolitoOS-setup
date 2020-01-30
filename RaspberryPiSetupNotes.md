@@ -24,7 +24,8 @@ $ sudo mount -o loop CentOS-8.1.1911-aarch64-boot.iso CentOS-iso
 
 **Genrate the rootfs from the CentOS repos**
 ```
-$ cat <<EOF>> centos.repo
+$ mkdir repos
+$ cat <<EOF>> repos/centos.repo
 [centos8-base]
 name=CentOS-8-Base
 baseurl=http://mirror.centos.org/centos/8/BaseOS/aarch64/os/
@@ -32,7 +33,7 @@ gpgcheck=0
 EOF
 
 $ mkdir rootfs
-$ sudo dnf -c centos.repo --disablerepo=* --enablerepo=centos8-base --installroot=rootfs groups install 'Minimal Install'
+$ sudo dnf --releasever 8 -c repos/centos.repo --disablerepo=* --enablerepo=centos8-base --installroot="`pwd`/rootfs" groups install 'Minimal Install'
 ```
 
 **
@@ -54,5 +55,7 @@ TODO
 
 ## References
 https://nullr0ute.com/2018/04/the-raspberry-pi-3-b-in-fedora/
+
 https://www.reddit.com/r/Fedora/comments/91tv1f/how_to_create_a_centos_rootfs/
+
 https://www.raspberrypi.org/documentation/hardware/raspberrypi/bootmodes/bootflow_2711.md
