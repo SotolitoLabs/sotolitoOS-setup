@@ -26,6 +26,10 @@ $ sudo mount -o loop CentOS-8.1.1911-aarch64-boot.iso CentOS-iso
 ```
 $ mkdir repos
 $ cat <<EOF>> repos/centos.repo
+[main]
+arch=aarch64
+basearch=aarch64
+
 [centos8-base]
 name=CentOS-8-Base
 baseurl=http://mirror.centos.org/centos/8/BaseOS/aarch64/os/
@@ -33,7 +37,7 @@ gpgcheck=0
 EOF
 
 $ mkdir rootfs
-$ sudo dnf --releasever 8 -c repos/centos.repo --disablerepo=* --enablerepo=centos8-base --installroot="`pwd`/rootfs" groups install 'Minimal Install'
+$ sudo dnf --releasever 8 -c repos/centos.repo  --disablerepo=* --enablerepo=centos8-base --installroot="$(pwd)/rootfs" groups install 'Minimal Install' 2>&1| tee dnf-rootfs.log
 ```
 
 **
