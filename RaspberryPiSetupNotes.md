@@ -30,11 +30,52 @@ _EOF_
 Login as root with the password already provided.
 
 ```
-$ DISPLAY=:0 virt-install --name Centos-8-aarch-Test2 --ram 1024 --disk path=CentOS-8-GenericCloud-8.1.1911-20200113.3.aarch64.qcow2 --vcpus 1 --os-type linux --os-variant generic --arch aarch64 --import
+$ DISPLAY=:0 virt-install --name Centos-8-aarch-Rootfs --ram 1024 --disk path=CentOS-8-GenericCloud-8.1.1911-20200113.3.aarch64.qcow2 --vcpus 1 --os-type linux --os-variant generic --arch aarch64 --import
 # mkdir rootfs
 # dnf --releasever=8 --enablerepo=BaseOS --installroot="$(pwd)/rootfs" groups install 'Minimal Install' 2>&1| tee dnf-rootfs.log
+# tar -zc rootfs > centos-8-rootfs.tar.gz
 ```
 
+**Copy the rootfs to the host**
+Copy the centos-8-rootfs.tar.gz from the host
+
+```
+$ virt-copy-out -d Centos-8-aarch-Rootfs /root/centos-8-rootfs.tar.gz .
+```
+
+**Create partitions on the SD Card**
+Use fdisk, sfdisk or cfdisk to create this partition schema:
+
+```
+Device         Boot   Start     End Sectors  Size Id Type
+/dev/mmcblk0p1         2048 1026047 1024000  500M  c W95 FAT32 (LBA)
+/dev/mmcblk0p2      1026048 5220351 4194304    2G 83 Linux
+```
+
+Format the partitions: `boot` as vfat and `/` xfs
+
+```
+$ sudo mkfs.vfat /dev/mmcblk0p1
+$ sudo mkfs.xfs /dev/mmcblk0p2
+```
+
+**Copy the Arch distribution boot directory to the boot partition**
+```
+$ sudo mount /dev/mmcblk0p1 /mnt
+$ cd ArchLinuxARM-rpi-4-latest/boot/
+$ tar -zc * > ../../arch-rpi4-boot.tar.gz
+$ cd ../..
+$ sudo tar -zxvf arch-rpi4-boot.tar.gz -C /mnt
+$ sudo umount /mnt
+```
+
+**Untar the rootfs in the SD card root partition**
+
+```
+$ sudo mount /dev/mmcblk0p2 /mnt
+$ cd ..
+$ sudo tar -zxvf centos-8-rootfs.tar.gz -C /mnt
+```
 
 
 
