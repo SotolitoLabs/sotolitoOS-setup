@@ -22,25 +22,26 @@ $ mkdir CentOS-iso
 $ sudo mount -o loop CentOS-8.1.1911-aarch64-boot.iso CentOS-iso
 ```
 
+**x86_64 ONLY**
+If you are creating the rootfs from a x86_64 machine you have to download the CentOS cloud image and create it from there:
+```
+$ mkdir qcow
+$ wget https://cloud.centos.org/centos/8/aarch64/images/CentOS-8-GenericCloud-8.1.1911-20200113.3.aarch64.qcow2
+$ guestfish <<_EOF_
+add CentOS-8-GenericCloud-8.1.1911-20200113.3.aarch64.qcow2
+run
+mount /dev/sda2 /
+touch /etc/cloud/cloud-init.disabled
+_EOF_
+```
+
 **Genrate the rootfs from the CentOS repos**
 ```
-$ mkdir repos
-$ cat <<EOF>> repos/centos.repo
-[main]
-arch=aarch64
-basearch=aarch64
-
-[centos8-base]
-name=CentOS-8-Base
-baseurl=http://mirror.centos.org/centos/8/BaseOS/aarch64/os/
-gpgcheck=0
-EOF
-
 $ mkdir rootfs
 $ sudo dnf --releasever 8 -c repos/centos.repo  --disablerepo=* --enablerepo=centos8-base --installroot="$(pwd)/rootfs" groups install 'Minimal Install' 2>&1| tee dnf-rootfs.log
 ```
 
-**
+
 
 
 # Raspberry Pi 3B+
