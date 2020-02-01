@@ -16,6 +16,8 @@ The Cloud image starts the cloud-init process so it needs to be disabled.
 ```
 $ mkdir qcow
 $ wget https://cloud.centos.org/centos/8/aarch64/images/CentOS-8-GenericCloud-8.1.1911-20200113.3.aarch64.qcow2
+$ qemu-img resize CentOS-8-GenericCloud-8.1.1911-20200113.3.aarch64.qcow2 +3G
+$ virt-customize -a CentOS-8-GenericCloud-8.1.1911-20200113.3.aarch64.qcow2 --root-password password:rootpw
 $ guestfish <<_EOF_
 add CentOS-8-GenericCloud-8.1.1911-20200113.3.aarch64.qcow2
 run
@@ -25,9 +27,12 @@ _EOF_
 ```
 
 **Genrate the rootfs from the CentOS repos**
+Login as root with the password already provided.
+
 ```
-$ mkdir rootfs
-$ sudo dnf --releasever 8 -c repos/centos.repo  --disablerepo=* --enablerepo=centos8-base --installroot="$(pwd)/rootfs" groups install 'Minimal Install' 2>&1| tee dnf-rootfs.log
+$ DISPLAY=:0 virt-install --name Centos-8-aarch-Test2 --ram 1024 --disk path=CentOS-8-GenericCloud-8.1.1911-20200113.3.aarch64.qcow2 --vcpus 1 --os-type linux --os-variant generic --arch aarch64 --import
+# mkdir rootfs
+# dnf --releasever=8 --enablerepo=BaseOS --installroot="$(pwd)/rootfs" groups install 'Minimal Install' 2>&1| tee dnf-rootfs.log
 ```
 
 
