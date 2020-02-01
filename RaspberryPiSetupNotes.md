@@ -10,20 +10,9 @@ $ mkdir ArchLinuxArm
 $ tar -zxvf ../ArchLinuxARM-rpi-4-latest.tar.gz -C ArchLinuxArm
 ```
 
-**Download CentOS for aarch64**
-We are going to use the generic CentOS aarch64 to create our SotolitoOS aarch64 spin
-```
-$ wget http://mirror.vcu.edu/pub/gnu_linux/centos/8.1.1911/isos/aarch64/CentOS-8.1.1911-aarch64-boot.iso
-```
+**Prepare the image for creating the rootfs**
+The Cloud image starts the cloud-init process so it needs to be disabled.
 
-**Mount the Centos ISO**
-```
-$ mkdir CentOS-iso
-$ sudo mount -o loop CentOS-8.1.1911-aarch64-boot.iso CentOS-iso
-```
-
-**x86_64 ONLY**
-If you are creating the rootfs from a x86_64 machine you have to download the CentOS cloud image and create it from there:
 ```
 $ mkdir qcow
 $ wget https://cloud.centos.org/centos/8/aarch64/images/CentOS-8-GenericCloud-8.1.1911-20200113.3.aarch64.qcow2
