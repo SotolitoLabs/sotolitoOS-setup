@@ -123,6 +123,7 @@ $ sudo mount /dev/mmcblk0p1 /mnt/boot/
 $ sudo KERNEL=kernel7l ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- INSTALL_MOD_PATH=/mnt make modules_install
 $ sudo cp arch/arm64/boot/Image /mnt/boot/kernel7.img
 $ sudo cp arch/arm/boot/dts/* /mnt/boot/
+$ sudo cp -v Module.symvers System.map /mnt/boot/
 $ sudo cp arch/arm/boot/dts/overlays/* /mnt/boot/overlays/
 # cat <<EOF>> /mnt/boot/config.txt
 gpu_mem=64
