@@ -117,6 +117,7 @@ $ git clone --depth=1 https://github.com/raspberrypi/linux
 ```
 $ cd linux
 $ KERNEL=kernel7l ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make bcm2711_defconfig
+$ KERNEL=kernel7l ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make -j7 Image modules dtbs
 ```
 
 
