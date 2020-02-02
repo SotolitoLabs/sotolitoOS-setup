@@ -77,6 +77,15 @@ $ cd ..
 $ sudo tar -zxvf centos-8-rootfs.tar.gz -C /mnt --strip 1
 ```
 
+**Create the fstab file**
+```
+sudo cat << EOF >> /mnt/etc/fstab
+/dev/mmcblk0p2  /       xfs     defaults        1       1
+/dev/mmcblk0p1  /boot   vfat    defaults        0       0
+EOF
+```
+
+
 **Copy the modules and firmware directories to the rootfs**
 From the Arch distribution copy the /lib/modules and /lib/firmware to the SD card
 
