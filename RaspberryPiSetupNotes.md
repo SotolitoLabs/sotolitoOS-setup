@@ -99,6 +99,38 @@ $ sudo tar -xf archlinux-modules-firmware.tar -C /mnt
 **Test installation**
 Unmount the SD card and test it in the Raspberry Pi 4
 
+## Kernel building
+
+If cross compiling, nstall the development tools needed for the kernel
+
+```
+$ sudo dnf install -y gcc-aarch64-linux-gnu binutils-aarch64-linux-gnu
+```
+
+**Clone the kernel tree and the cross compiling tools**
+```
+$ git clone --depth=1 https://github.com/raspberrypi/linux
+$ git clone https://github.com/raspberrypi/tools ~/tools
+```
+
+*If desired update your path either in the curren session or in the .barshrc file*
+```
+$ echo PATH=\$PATH:~/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin >> ~/.bashrc
+source ~/.bashrc
+$ export PATH=$PATH:~/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bi
+```
+
+**Build the kernel**
+
+```
+$ cd linux
+$ KERNEL=kernel7l ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make bcm2711_defconfig
+```
+
+
+
+
+
 
 # Raspberry Pi 3B+
 
@@ -120,3 +152,5 @@ https://nullr0ute.com/2018/04/the-raspberry-pi-3-b-in-fedora/
 https://www.reddit.com/r/Fedora/comments/91tv1f/how_to_create_a_centos_rootfs/
 
 https://www.raspberrypi.org/documentation/hardware/raspberrypi/bootmodes/bootflow_2711.md
+
+https://www.raspberrypi.org/documentation/linux/kernel/building.md
