@@ -118,6 +118,16 @@ $ git clone --depth=1 https://github.com/raspberrypi/linux
 $ cd linux
 $ KERNEL=kernel7l ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make bcm2711_defconfig
 $ KERNEL=kernel7l ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make -j7 Image modules dtbs
+$ sudo mount /dev/mmcblk0p2 /mnt
+$ sudo mount /dev/mmcblk0p1 /mnt/boot/
+$ sudo KERNEL=kernel7l ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- INSTALL_MOD_PATH=/mnt make modules_install
+$ sudo cp arch/arm64/boot/Image /mnt/boot/kernel7.img
+$ sudo cp arch/arm/boot/dts/* /mnt/boot/
+$ sudo cp arch/arm/boot/dts/overlays/* /mnt/boot/overlays/
+# cat <<EOF>> /mnt/boot/config.txt
+gpu_mem=64
+kernel=kernel7.img
+EOF
 ```
 
 
