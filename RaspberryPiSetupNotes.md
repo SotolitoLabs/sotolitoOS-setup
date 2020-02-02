@@ -7,7 +7,7 @@ We could just use the ArchLinux distro but we want to use CentOS. Right? ;)
 ```
 $ wget http://os.archlinuxarm.org/os/ArchLinuxARM-rpi-4-latest.tar.gz
 $ mkdir ArchLinuxArm
-$ tar -zxvf ../ArchLinuxARM-rpi-4-latest.tar.gz -C ArchLinuxArm
+$ tar -zxvf ArchLinuxARM-rpi-4-latest.tar.gz -C ArchLinuxArm
 ```
 
 **Prepare the image for creating the rootfs**
@@ -65,7 +65,7 @@ $ sudo mount /dev/mmcblk0p1 /mnt
 $ cd ArchLinuxARM-rpi-4-latest/boot/
 $ tar -zc * > ../../arch-rpi4-boot.tar.gz
 $ cd ../..
-$ sudo tar -zxvf arch-rpi4-boot.tar.gz -C /mnt
+$ sudo tar -zxvf arch-rpi4-boot.tar.gz -C /mnt 
 $ sudo umount /mnt
 ```
 
@@ -74,9 +74,21 @@ $ sudo umount /mnt
 ```
 $ sudo mount /dev/mmcblk0p2 /mnt
 $ cd ..
-$ sudo tar -zxvf centos-8-rootfs.tar.gz -C /mnt
+$ sudo tar -zxvf centos-8-rootfs.tar.gz -C /mnt --strip 1
 ```
 
+**Copy the modules and firmware directories to the rootfs**
+From the Arch distribution copy the /lib/modules and /lib/firmware to the SD card
+
+```
+$ cd ArchLinuxARM-rpi-4-latest
+$ tar -c lib/modules lib/firmware > ../archlinux-modules-firmware.tar
+$ cd ..
+$ sudo tar -xf archlinux-modules-firmware.tar -C /mnt
+```
+
+**Test installation**
+Unmount the SD card and test it in the Raspberry Pi 4
 
 
 # Raspberry Pi 3B+
