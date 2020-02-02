@@ -55,7 +55,7 @@ Device         Boot   Start     End Sectors  Size Id Type
 Format the partitions: `boot` as vfat and `/` xfs
 
 ```
-$ sudo mkfs.vfat /dev/mmcblk0p1
+$ sudo mkfs.fat -F32 /dev/mmcblk0p1
 $ sudo mkfs.xfs /dev/mmcblk0p2
 ```
 
