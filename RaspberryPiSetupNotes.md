@@ -86,6 +86,7 @@ $ git clone --depth=1 https://github.com/raspberrypi/linux
 ```
 $ cd linux
 $ KERNEL=kernel7l ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make bcm2711_defconfig
+$ sed -i s/CONFIG_XFS_FS=m/CONFIG_XFS_FS=y/ .config
 $ KERNEL=kernel7l ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make -j7 Image modules dtbs
 $ sudo mount /dev/mmcblk0p2 /mnt
 $ sudo mount /dev/mmcblk0p1 /mnt/boot/
@@ -102,43 +103,6 @@ EOF
 ```
 
 *The arm_64bit option has to be set no zero for the board to boot in 64 bit mode*
-
-**Generate a minimal initramfs**
-If you are in x86_64 you have to create the initramfs image by hand
-```
-fs/xfs}
-$ export ROOTFS=initramfs
-$ export GLIBC_VERSION=$(ls /mnt/lib64/libc-*.so | cut -d '-' -f 2 | sed s/\.so//)
-$ export DYNAMIC_LIB_PATH_64=/mnt/lib64
-$ export DYNAMIC_LIB_PATH_32=/mnt/lib
-$ export KERNEL_VERSION="4.19.97-v8+"
-$ export KERNEL_MODULES="lib/modules/${KERNEL_VERSION}/kernel"
-
-$ mkdir -p initramfs/{lib,lib64,$KERNEL_MODULES}
-
-$ cp -rP ${DYNAMIC_LIB_PATH_64}/libc-${GLIBC_VERSION}.so ${ROOTFS}/lib64/
-$ cp -rP ${DYNAMIC_LIB_PATH_64}/libc.so.6 ${ROOTFS}/lib64/
-
-$ cp -rP ${DYNAMIC_LIB_PATH_64}/libm-${GLIBC_VERSION}.so ${ROOTFS}/lib64/
-$ cp -rP ${DYNAMIC_LIB_PATH_64}/libm.so.6 ${ROOTFS}/lib64/
-
-$ cp -rP ${DYNAMIC_LIB_PATH_64}/librt-${GLIBC_VERSION}.so ${ROOTFS}/lib64/
-$ cp -rP ${DYNAMIC_LIB_PATH_64}/librt.so.1 ${ROOTFS}/lib64/
-
-$ cp -rP ${DYNAMIC_LIB_PATH_64}/libpthread-${GLIBC_VERSION}.so ${ROOTFS}/lib64/
-$ cp -rP ${DYNAMIC_LIB_PATH_64}/libpthread.so.0 ${ROOTFS}/lib64/
-
-$ cp -rP ${DYNAMIC_LIB_PATH_64}/ld-${GLIBC_VERSION}.so ${ROOTFS}/lib64/
-$ cp -rP ${DYNAMIC_LIB_PATH_32}/ld-linux-aarch64.so.1 ${ROOTFS}/lib/
-
-$ mkdir -p ${ROOTFS}/lib/${KERNEL_MODULES}/fs
-$ cp -rP ${DYNAMIC_LIB_PATH_32}/${KERNEL_MODULES}/fs/xfs ${ROOTFS}/lib/${KERNEL_MODULES}/fs/xfs
-
-$ cd ${ROOTFS}
-$ find . | cpio -o --format=newc > ../initramfs-${KERNEL_VERSION}.img
-$ cd ..
-$ sudo cp initramfs-${KERNEL_VERSION}.img /mnt/boot/
-```
 
 
 If you're already on arm just use dracut and be happy
