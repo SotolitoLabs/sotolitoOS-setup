@@ -156,3 +156,5 @@ https://www.reddit.com/r/Fedora/comments/91tv1f/how_to_create_a_centos_rootfs/
 https://www.raspberrypi.org/documentation/hardware/raspberrypi/bootmodes/bootflow_2711.md
 
 https://www.raspberrypi.org/documentation/linux/kernel/building.md
+
+https://github.com/sakaki-/gentoo-on-rpi-64bit/wiki/Build-an-RPi3-64bit-Kernel-on-your-crossdev-PC
