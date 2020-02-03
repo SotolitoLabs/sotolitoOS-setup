@@ -97,10 +97,45 @@ $ sudo cp arch/arm/boot/dts/overlays/* /mnt/boot/overlays/
 # cat <<EOF>> /mnt/boot/config.txt
 gpu_mem=64
 arm_64bit=1
+initramfs initramfs-4.19.img followkernel
 EOF
 ```
 
 *The arm_64bit option has to be set no zero for the board to boot in 64 bit mode*
+
+**Generate a minimal initramfs**
+If you are in x86_64 you have to create the initramfs image by hand
+```
+$ mkdir -p initramfs/{lib,lib64}
+$ export ROOTFS=initramfs
+$ export GLIBC_VERSION=$(ls /mnt/lib64/libc-*.so | cut -d '-' -f 2 | sed s/\.so//)
+$ export DYNAMIC_LIB_PATH_64=/mnt/lib64
+$ export DYNAMIC_LIB_PATH_32=/mnt/lib
+$ export KERNEL_VERSION="4.19"
+
+$ cp -rP ${DYNAMIC_LIB_PATH_64}/libc-${GLIBC_VERSION}.so ${ROOTFS}/lib64/
+$ cp -rP ${DYNAMIC_LIB_PATH_64}/libc.so.6 ${ROOTFS}/lib64/
+
+$ cp -rP ${DYNAMIC_LIB_PATH_64}/libm-${GLIBC_VERSION}.so ${ROOTFS}/lib64/
+$ cp -rP ${DYNAMIC_LIB_PATH_64}/libm.so.6 ${ROOTFS}/lib64/
+
+$ cp -rP ${DYNAMIC_LIB_PATH_64}/librt-${GLIBC_VERSION}.so ${ROOTFS}/lib64/
+$ cp -rP ${DYNAMIC_LIB_PATH_64}/librt.so.1 ${ROOTFS}/lib64/
+
+$ cp -rP ${DYNAMIC_LIB_PATH_64}/libpthread-${GLIBC_VERSION}.so ${ROOTFS}/lib64/
+$ cp -rP ${DYNAMIC_LIB_PATH_64}/libpthread.so.0 ${ROOTFS}/lib64/
+
+$ cp -rP ${DYNAMIC_LIB_PATH_64}/ld-${GLIBC_VERSION}.so ${ROOTFS}/lib64/
+$ cp -rP ${DYNAMIC_LIB_PATH_32}/ld-linux-aarch64.so.1 ${ROOTFS}/lib/
+$ cd ${ROOTFS}
+$ find . | cpio -o --format=newc > ../initramfs-${KERNEL_VERSION}.img
+$ cd ..
+$ sudo cp initramfs-${KERNEL_VERSION}.img /mnt/boot/
+```
+
+
+If you're already on arm just use dracut and be happy
+
 
 **Test installation**
 Unmount the SD card and test it in the Raspberry Pi 4
