@@ -25,6 +25,7 @@ Login as root with the password already provided.
 $ DISPLAY=:0 virt-install --name Centos-8-aarch-Rootfs --ram 1024 --disk path=CentOS-8-GenericCloud-8.1.1911-20200113.3.aarch64.qcow2 --vcpus 1 --os-type linux --os-variant generic --arch aarch64 --import
 # mkdir rootfs
 # dnf --releasever=8 --enablerepo=BaseOS --installroot="$(pwd)/rootfs" groups install 'Minimal Install' 2>&1| tee dnf-rootfs.log
+# echo "root:centos" | chpasswd -R rootfs
 # tar -zc rootfs > centos-8-rootfs.tar.gz
 ```
 
