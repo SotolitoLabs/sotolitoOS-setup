@@ -121,15 +121,17 @@ $ KERNEL=kernel7l ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make -j7 Image mod
 $ sudo mount /dev/mmcblk0p2 /mnt
 $ sudo mount /dev/mmcblk0p1 /mnt/boot/
 $ sudo KERNEL=kernel7l ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- INSTALL_MOD_PATH=/mnt make modules_install
-$ sudo cp arch/arm64/boot/Image /mnt/boot/kernel7.img
+$ sudo cp arch/arm64/boot/Image /mnt/boot/kernel8.img
 $ sudo cp arch/arm/boot/dts/* /mnt/boot/
 $ sudo cp -v Module.symvers System.map /mnt/boot/
 $ sudo cp arch/arm/boot/dts/overlays/* /mnt/boot/overlays/
 # cat <<EOF>> /mnt/boot/config.txt
 gpu_mem=64
-kernel=kernel7.img
+arm_64bit=1
 EOF
 ```
+
+*The arm_64bit option has to be set no zero for the board to boot in 64 bit mode*
 
 
 
@@ -158,3 +160,5 @@ https://www.raspberrypi.org/documentation/hardware/raspberrypi/bootmodes/bootflo
 https://www.raspberrypi.org/documentation/linux/kernel/building.md
 
 https://github.com/sakaki-/gentoo-on-rpi-64bit/wiki/Build-an-RPi3-64bit-Kernel-on-your-crossdev-PC
+
+https://www.raspberrypi.org/documentation/configuration/config-txt/boot.md
