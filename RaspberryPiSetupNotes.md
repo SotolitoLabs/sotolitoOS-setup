@@ -1,14 +1,6 @@
 # Raspberry Pi 4B 64 Bits
 ## Distribution Setup
-Currently there's no CentOS version of aarm64 for the Raspberry pi so we have to base our kernel and boot files from the ArchLinux Raspberry pi distribution.
-We could just use the ArchLinux distro but we want to use CentOS. Right? ;)
-
-**Download ArchLinuxARM-rpi-4-latest.tar.gz**
-```
-$ wget http://os.archlinuxarm.org/os/ArchLinuxARM-rpi-4-latest.tar.gz
-$ mkdir ArchLinuxArm
-$ tar -zxvf ArchLinuxARM-rpi-4-latest.tar.gz -C ArchLinuxArm
-```
+Currently there's no CentOS version of aarm64 for the Raspberry pi so we have to build our kernel and dtb files from the Raspberry Pi Linux sources
 
 **Prepare the image for creating the rootfs**
 The Cloud image starts the cloud-init process so it needs to be disabled.
@@ -52,21 +44,11 @@ Device         Boot   Start     End Sectors  Size Id Type
 /dev/mmcblk0p2      1026048 5220351 4194304    2G 83 Linux
 ```
 
-Format the partitions: `boot` as vfat and `/` xfs
+Format the partitions: `boot` as FAT32 and `/` xfs
 
 ```
 $ sudo mkfs.fat -F32 /dev/mmcblk0p1
 $ sudo mkfs.xfs /dev/mmcblk0p2
-```
-
-**Copy the Arch distribution boot directory to the boot partition**
-```
-$ sudo mount /dev/mmcblk0p1 /mnt
-$ cd ArchLinuxARM-rpi-4-latest/boot/
-$ tar -zc * > ../../arch-rpi4-boot.tar.gz
-$ cd ../..
-$ sudo tar -zxvf arch-rpi4-boot.tar.gz -C /mnt 
-$ sudo umount /mnt
 ```
 
 **Untar the rootfs in the SD card root partition**
@@ -85,19 +67,6 @@ $ sudo tar -zxvf centos-8-rootfs.tar.gz -C /mnt --strip 1
 EOF
 ```
 
-
-**Copy the modules and firmware directories to the rootfs**
-From the Arch distribution copy the /lib/modules and /lib/firmware to the SD card
-
-```
-$ cd ArchLinuxARM-rpi-4-latest
-$ tar -c lib/modules lib/firmware > ../archlinux-modules-firmware.tar
-$ cd ..
-$ sudo tar -xf archlinux-modules-firmware.tar -C /mnt
-```
-
-**Test installation**
-Unmount the SD card and test it in the Raspberry Pi 4
 
 ## Kernel building
 
@@ -132,6 +101,9 @@ EOF
 ```
 
 *The arm_64bit option has to be set no zero for the board to boot in 64 bit mode*
+
+**Test installation**
+Unmount the SD card and test it in the Raspberry Pi 4
 
 
 
