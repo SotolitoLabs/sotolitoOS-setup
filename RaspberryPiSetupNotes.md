@@ -81,7 +81,7 @@ $ sudo dnf install -y gcc-aarch64-linux-gnu binutils-aarch64-linux-gnu
 $ git clone --depth=1 https://github.com/raspberrypi/linux
 ```
 
-(#kernel) **Build the kernel**
+**Build the kernel**
 
 ```
 $ cd linux
