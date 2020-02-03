@@ -97,7 +97,7 @@ $ sudo cp arch/arm/boot/dts/overlays/* /mnt/boot/overlays/
 # cat <<EOF>> /mnt/boot/config.txt
 gpu_mem=64
 arm_64bit=1
-initramfs initramfs-4.19.img followkernel
+initramfs initramfs-4.19.97-v8+.img followkernel
 EOF
 ```
 
@@ -106,12 +106,15 @@ EOF
 **Generate a minimal initramfs**
 If you are in x86_64 you have to create the initramfs image by hand
 ```
-$ mkdir -p initramfs/{lib,lib64}
+fs/xfs}
 $ export ROOTFS=initramfs
 $ export GLIBC_VERSION=$(ls /mnt/lib64/libc-*.so | cut -d '-' -f 2 | sed s/\.so//)
 $ export DYNAMIC_LIB_PATH_64=/mnt/lib64
 $ export DYNAMIC_LIB_PATH_32=/mnt/lib
-$ export KERNEL_VERSION="4.19"
+$ export KERNEL_VERSION="4.19.97-v8+"
+$ export KERNEL_MODULES="lib/modules/${KERNEL_VERSION}/kernel"
+
+$ mkdir -p initramfs/{lib,lib64,$KERNEL_MODULES}
 
 $ cp -rP ${DYNAMIC_LIB_PATH_64}/libc-${GLIBC_VERSION}.so ${ROOTFS}/lib64/
 $ cp -rP ${DYNAMIC_LIB_PATH_64}/libc.so.6 ${ROOTFS}/lib64/
@@ -127,6 +130,10 @@ $ cp -rP ${DYNAMIC_LIB_PATH_64}/libpthread.so.0 ${ROOTFS}/lib64/
 
 $ cp -rP ${DYNAMIC_LIB_PATH_64}/ld-${GLIBC_VERSION}.so ${ROOTFS}/lib64/
 $ cp -rP ${DYNAMIC_LIB_PATH_32}/ld-linux-aarch64.so.1 ${ROOTFS}/lib/
+
+$ mkdir -p ${ROOTFS}/lib/${KERNEL_MODULES}/fs
+$ cp -rP ${DYNAMIC_LIB_PATH_32}/${KERNEL_MODULES}/fs/xfs ${ROOTFS}/lib/${KERNEL_MODULES}/fs/xfs
+
 $ cd ${ROOTFS}
 $ find . | cpio -o --format=newc > ../initramfs-${KERNEL_VERSION}.img
 $ cd ..
