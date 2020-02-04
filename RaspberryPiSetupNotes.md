@@ -86,12 +86,12 @@ $ git clone --depth=1 https://github.com/raspberrypi/linux
 
 ```
 $ cd linux
-$ KERNEL=kernel7l ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make bcm2711_defconfig
+$ ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make bcm2711_defconfig
 $ sed -i s/CONFIG_XFS_FS=m/CONFIG_XFS_FS=y/ .config
-$ KERNEL=kernel7l ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make -j7 Image modules dtbs
+$ ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make -j7 Image modules dtbs
 $ sudo mount /dev/mmcblk0p2 /mnt
 $ sudo mount /dev/mmcblk0p1 /mnt/boot/
-$ sudo KERNEL=kernel7l ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- INSTALL_MOD_PATH=/mnt make modules_install
+$ sudo ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- INSTALL_MOD_PATH=/mnt make modules_install
 $ sudo cp arch/arm64/boot/Image /mnt/boot/kernel8.img
 $ sudo cp arch/arm/boot/dts/* /mnt/boot/
 $ sudo cp -v Module.symvers System.map /mnt/boot/
