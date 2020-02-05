@@ -99,7 +99,7 @@ $ sudo cp arch/arm/boot/dts/overlays/* /mnt/boot/overlays/
 # cat <<EOF>> /mnt/boot/config.txt
 gpu_mem=64
 arm_64bit=1
-initramfs initramfs-4.19.97-v8+.img followkernel
+#initramfs initramfs-4.19.97-v8+.img followkernel
 EOF
 ```
 
