@@ -1,6 +1,12 @@
 ---
-- hosts: all
+- hosts: nodes
   tasks:
   - name: "Shutdown Node"
-    command: shutdown -h now
+    command: shutdown -h 1 'SotolitoOS is shutting down'
+    ignore_errors: yes
+- hosts: masters
+  tasks:
+  - name: "Shutdown Master"
+    command: shutdown -h 1 'SotolitoOS is shutting down'
+    ignore_errors: yes
 

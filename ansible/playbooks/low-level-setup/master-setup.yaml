@@ -1,0 +1,90 @@
+---
+- hosts: all
+  vars:
+    node_ip_address: 10.253.0.1
+  tasks:
+  - name: Install Master Packages
+    package:
+      name:
+        #- kernel-ml
+        - ansible
+        - pcp
+        - cockpit
+        - cockpit-dashboard
+        - cockpit-docker
+        - cockpit-pcp
+        - docker
+        - git
+        - dhcp-common
+        - dhcp
+        - NetworkManager-glib
+        - nm-connection-editor
+        - libsemanage-python
+        - policycoreutils-python
+      state: present
+  - name: Configure DHCP for internal cluster
+    copy:
+      src: ../../../sotolitoOS-remix/files/dhcpd.conf
+      dest: /etc/dhcp/
+  - name: Copy DHCP setup script for nodes
+    copy:
+      src: ../../setup_sotolito_node.sh
+      dest: /etc/dhcp/scripts
+      mode: '0755'
+  - name: Create Sotolito Ansible directory
+    file:
+      path: /etc/ansible/sotolito/playbooks
+      state: directory
+      recurse: yes
+      mode: '0755'
+  - name: Copy DHCP setup ansible playbook for nodes
+    copy:
+      src: ../add-node.yaml
+      dest: /etc/ansible/sotolito/playbooks
+  - name: Create master ssh key
+    openssh_keypair:
+      path: /root/.ssh/id_rsa
+      size: 2048
+  - name: Create cluster bootstrap ssh key
+    openssh_keypair:
+      path: /root/.ssh/sotolito_id_rsa
+      size: 2048
+  - name: Put SELinux in permissive mode, logging actions that would be blocked.
+    selinux:
+      policy: targeted
+      state: permissive
+  - name: Add cluster VLAN interface
+    nmcli:
+      conn_name: eth0-vlan1
+      vlandev: eth0
+      type: ethernet
+      ip4: "{{ node_ip_address }}/24"
+      type: vlan
+      vlanid: 1
+      state: present
+  - name: Fix network manager bug for VLANs and DHCP
+    replace:
+      path: /etc/sysconfig/network-scripts/ifcfg-eth0-vlan1
+      regexp: '^VLAN_FLAGS="NO_REORDER_HDR"$'
+      replace: ''
+  - name: Stop VLAN interface
+    command: ifdown eth0-vlan1
+  - name: Start VLAN interface to reload configuration
+    command: ifup eth0-vlan1
+  - name: Start Services
+    systemd:
+      state: started
+      enabled: yes
+      name: "{{ item }}"
+    with_items:
+        - sshd 
+        - dhcpd
+        - pmlogger
+        - pmcd
+        - cockpit.socket
+        - cockpit.service
+  - name: Setup Branding for Cockpit
+    copy:
+      src: ../../../usr/share/cockpit/branding/sotolito/
+      dest: /usr/share/cockpit/branding/sotolito
+

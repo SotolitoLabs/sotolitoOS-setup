@@ -183,7 +183,10 @@ rm -rf %{buildroot}
 
 #TODO /etc/pki/rpm-gpg/
 %config(noreplace) /etc/yum.repos.d/*
+
+%ifarch x86_64
 %config(noreplace) /etc/pki/rpm-gpg/RPM-GPG-KEY-elrepo.org
+%endif
 #/etc/rpm/macros.dist
 %ifarch %{arm}
 #%attr(0755,root,root) %{_bindir}/update-boot
