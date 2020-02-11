@@ -16,7 +16,7 @@
 %define tuned_profile :server
 %endif
 %ifarch ppc64le
-%if "%{dist}" == ".el7a"
+%if "%{dist}" == ".el8a"
 %define dist_suffix .p9
 %define targetdir power9
 %endif
@@ -24,12 +24,12 @@
 %ifarch %{ix86}
 %define dist_suffix .i
 %endif
-%define base_release_version 7
-%define full_release_version 7
-%define dist_release_version 7
-%define upstream_rel_long 7.6-1
-%define upstream_rel 7.6
-%define centos_rel 6.1810
+%define base_release_version 8
+%define full_release_version 8
+%define dist_release_version 8
+%define upstream_rel_long 8.0-0
+%define upstream_rel 8.0
+%define centos_rel 0.1905
 #define beta Beta
 %define dist .el%{dist_release_version}.sotolitoos%{?dist_suffix}
 
@@ -87,10 +87,10 @@ CPE_NAME="cpe:/o:sotolitolabs:sotolitoos:7%{?tuned_profile}"
 HOME_URL="https://www.sotolitolabs.com/"
 BUG_REPORT_URL="https://bugs.sotolitolabs.com/"
 
-CENTOS_MANTISBT_PROJECT="CentOS-7"
-CENTOS_MANTISBT_PROJECT_VERSION="7"
+CENTOS_MANTISBT_PROJECT="CentOS-8"
+CENTOS_MANTISBT_PROJECT_VERSION="8"
 REDHAT_SUPPORT_PRODUCT="centos"
-REDHAT_SUPPORT_PRODUCT_VERSION="7"
+REDHAT_SUPPORT_PRODUCT_VERSION="8"
 
 EOF
 
@@ -191,6 +191,9 @@ rm -rf %{buildroot}
 %endif
 
 %changelog
+* Sun Dec 22 2019 Iván Chavero <ichavero@chavero.com.mx>
+- Update from Centos 8
+
 * Fri Sep 13 2019 Iván Chavero <ichavero@chavero.com.mx>
 - First SotolitoOS release
 - Update Centos brand files
