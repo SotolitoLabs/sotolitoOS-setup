@@ -9,7 +9,6 @@
 # TODO make this a parameters
 PREPARER="imcsk8"
 BASE_IMAGE="CentOS-Stream-x86_64-boot.iso"
-#KICKSTART_FILE="sotolitoOS-master.ks"
 KICKSTART_FILE="sotolitoOS-generic.ks"
 KERNEL_ML_PACKAGE="kernel-ml-5.4.2-1.el7.elrepo.x86_64.rpm "
 KERNEL_ML_TOOLS_PACKAGE="kernel-ml-tools-5.4.2-1.el7.elrepo.x86_64.rpm"
@@ -39,7 +38,6 @@ SQUASHFS_FILE="squashfs-sotolito-stream.img"
 
 if [[ "${1}" != "" ]]; then
 	KICKSTART_FILE="sotolitoOS-${1}.ks"
-	#ISO_NAME="SotolitoOS-7-x86_64-Minimal-1810-node.iso"
     ISO_NAME="SotolitoOS-Stream-x86_64-${VERSION}-${1}.iso"
 fi
 
@@ -47,7 +45,6 @@ echo "Installing required packages"
 sudo dnf install -y createrepo genisoimage podman
 
 echo "Creating the Enterprise SotolitoOS ISO instller"
-#mkdir -p sotolito-iso/isolinux/{images,ks,LiveOS,Packages,postinstall}
 mkdir -p sotolito-iso/iso-dev/{isolinux,images,ks,EFI,postinstall}
 mkdir -p sotolito-iso/iso-dev/isolinux/Packages
 cd sotolito-iso
@@ -58,14 +55,9 @@ echo "Mouting base image"
 sudo mount -o loop $BASE_IMAGE iso
 
 echo "Preparing ISO environment"
-#cp iso/.discinfo isolinux/
 rsync -av iso/isolinux/ iso-dev/isolinux/
 rsync -av iso/images/ iso-dev/images/
 sudo rsync -av iso/EFI/ iso-dev/EFI/
-#cp iso/LiveOS/* isolinux/LiveOS/
-#gunzip -c iso/repodata/*-comps.xml.gz > comps.xml
-#rsync -av iso/Packages/ isolinux/Packages/
-#commented for debugging sudo umount iso
 
 echo "Downloading extra packages"
 cd iso-dev/isolinux/Packages
@@ -80,7 +72,6 @@ podman run --rm -ti --name=tmp-centos-pkgs -v $PACKAGES_PATH:/var/preserve regis
 
 echo "Create image repo"
 cd ..
-#createrepo -g ../comps.xml .
 createrepo .
 
 echo "Adding Sotolito kickstart file to ISO"
