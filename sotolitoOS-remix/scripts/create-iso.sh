@@ -69,7 +69,7 @@ sudo rsync -av iso/EFI/ iso-dev/EFI/
 
 echo "Downloading extra packages"
 cd iso-dev/isolinux/Packages
-cp ../../../../files/RPMPS/sotolitoos-release*8* .
+cp ../../../../files/RPMS/sotolitoos-release*8* .
 wget -c "${EL_REPO}/${EL_REPO_RPM}"
 wget -c "${EL_REPO}/${EL_REPO_RPM_GPG}"
 wget -c $KERNEL_ML_PACKAGE_URL
