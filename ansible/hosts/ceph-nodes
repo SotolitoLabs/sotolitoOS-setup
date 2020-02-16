@@ -15,3 +15,11 @@
 
 [compute1]
 10.253.0.6 node_hostname=sotolito-compute3
+
+[mons]
+10.253.0.1
+
+[osds]
+10.253.0.1
+10.253.0.2
+10.253.0.3
