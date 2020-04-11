@@ -1,5 +1,6 @@
 # SotolitoOS
-SotolitoOS is an CentOS spin that integrates extra configurations and packages for create kubernetes clusters and Sotolito Appliances. 
+SotolitoOS is an CentOS spin that integrates extra configurations and packages for creating hybrid clouds and Sotolito Labs Appliances.
+
 SotolitoOS is proudly maintained by the SotolitoLabs gang from Chihuahua. All the documentation and software around it is Open Source so feel free to use it enhance it and send us patches <3.
 
 ## SotolitoO Distribution
