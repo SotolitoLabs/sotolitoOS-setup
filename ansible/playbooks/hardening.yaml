@@ -1,0 +1,11 @@
+---
+- name: STIG Hardening
+  hosts: all
+  become: yes
+  vars:
+    security_pwquality_apply_rules: yes
+    security_enable_firewalld: yes
+    security_rhel7_initialize_aide: no
+  roles:
+    - ansible-hardening
+
