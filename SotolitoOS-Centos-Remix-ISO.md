@@ -193,6 +193,25 @@ sksb $ isohybrid SotolitoOS-7-custom.iso
 
 ## Brand the squashfs
 
+**Centos 8 based**
+
+```
+
+sksb $ cd ../files
+files $ mkdir tmp-squashfs
+files $ cd tmp-squashfs
+tmp-squashfs $ unsquashfs ../../scripts/sotolito-iso/iso/images/install.img
+tmp-squashfs $ mkdir mnt
+tmp-squashfs $ sudo mount  squashfs-root/LiveOS/rootfs.img -o loop mnt
+tmp-squashfs $ sudo sed -i 's/CentOS/SotolitoOS/' mnt/etc/os-release
+tmp-squashfs $ sudo umount mnt
+tmp-squashfs $ cd ..
+tmp-squashfs $ mksquashfs squashfs-root squashfs-sotolito-stream.img -comp xz
+
+```
+
+
+**Centos 7 based**
 In order for the installer to show the proper brand while booting we need to modify the squashfs.img from the CentOS base ISO.
 
 ```
@@ -210,6 +229,8 @@ In order for the installer to show the proper brand while booting we need to mod
  sotol-squash $ mksquashfs squashfs-root squashfs-sotolito.img -comp xz
  sotol-squash $ cp squashfs-sotolito.img ../../sotolito-iso/isolinux/LiveOS/squashfs.img
 ```
+
+
 
 
 # TODO
