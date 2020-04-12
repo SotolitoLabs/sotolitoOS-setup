@@ -8,7 +8,6 @@ class CustomBaseInstallClass(BaseInstallClass):
     sortPriority = 30000
     if not productName.startswith("CustomBaseInstallClass-SotolitoOS"):
         hidden = True
-    defaultFS = "xfs"
     bootloaderTimeoutDefault = 5
     bootloaderExtraArgs = []
 
