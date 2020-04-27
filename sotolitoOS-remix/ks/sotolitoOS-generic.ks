@@ -72,7 +72,8 @@ cp /run/install/repo/postinstall/sotolito_env.sh /mnt/sysimage/etc/profile.d/sot
 mkdir /mnt/sysimage/root/.ssh
 chmod 0700 /mnt/sysimage/root/.ssh
 cp /run/install/repo/postinstall/sotolito_id_rsa* /mnt/sysimage/root/.ssh/
-cp -rp /run/install/repo/postinstall/ansible /mnt/sysimage/etc/ansible
+cp -rp /run/install/repo/postinstall/ansible/roles/* /mnt/sysimage/etc/ansible/roles/
+cp -rp /run/install/repo/postinstall/ansible/sotolito /mnt/sysimage/etc/ansible/
 cp -rp /run/install/repo/postinstall/selinux /mnt/sysimage/home/sotolito/
 %end
 
