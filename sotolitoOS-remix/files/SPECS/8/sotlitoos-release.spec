@@ -4,9 +4,9 @@
 %define variant_lowercase server
 %define targetdir %{_target_cpu}
 %ifarch x86_64
-%define release_name Horilka
+%define release_name Octagesimal
 %else
-%define release_name Horilka-AltArch
+%define release_name Octagesimal-AltArch
 %endif
 %ifarch aarch64
 %define dist_suffix .a
@@ -39,7 +39,7 @@ Name:           sotolitoos-userland-release
 Name:           sotolitoos-release
 %endif
 Version:        %{base_release_version}
-Release:        %{centos_rel}.3%{?dist}
+Release:        %{centos_rel}.4%{?dist}
 Summary:        %{product_family} release file
 Group:          System Environment/Base
 License:        GPLv2
@@ -103,8 +103,6 @@ mkdir -p -m 755 %{buildroot}/etc/yum.repos.d
 install -m 644 SotolitoOS.repo %{buildroot}/etc/yum.repos.d
 
 %ifarch x86_64
-install -m 644 elrepo.repo %{buildroot}/etc/yum.repos.d
-install -m 644 RPM-GPG-KEY-elrepo.org %{buildroot}/etc/pki/rpm-gpg
 %endif
 
 
@@ -185,7 +183,6 @@ rm -rf %{buildroot}
 %config(noreplace) /etc/yum.repos.d/*
 
 %ifarch x86_64
-%config(noreplace) /etc/pki/rpm-gpg/RPM-GPG-KEY-elrepo.org
 %endif
 #/etc/rpm/macros.dist
 %ifarch %{arm}
@@ -194,6 +191,9 @@ rm -rf %{buildroot}
 %endif
 
 %changelog
+* Sun Apr 26 2020 Iván Chavero <ichavero@chavero.com.mx>
+- Remove elrepo files
+
 * Mon Feb 17 2020 Iván Chavero <ichavero@chavero.com.mx>
 - Fix repo file names 
 
