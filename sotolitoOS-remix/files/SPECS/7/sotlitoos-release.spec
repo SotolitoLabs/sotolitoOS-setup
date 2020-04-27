@@ -1,5 +1,5 @@
 %define debug_package %{nil}
-%define product_family StolitoOS Linux
+%define product_family SotolitoOS Linux
 %define variant_titlecase Server
 %define variant_lowercase server
 %define targetdir %{_target_cpu}
