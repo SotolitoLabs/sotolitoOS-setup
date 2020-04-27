@@ -29,7 +29,7 @@
 %define dist_release_version 8
 %define upstream_rel_long 8.0-0
 %define upstream_rel 8.0
-%define centos_rel 0.1905
+%define centos_rel 1.1905
 #define beta Beta
 %define dist .el%{dist_release_version}.sotolitoos%{?dist_suffix}
 
@@ -39,7 +39,7 @@ Name:           sotolitoos-userland-release
 Name:           sotolitoos-release
 %endif
 Version:        %{base_release_version}
-Release:        %{centos_rel}.4%{?dist}
+Release:        %{centos_rel}.5%{?dist}
 Summary:        %{product_family} release file
 Group:          System Environment/Base
 License:        GPLv2
@@ -191,6 +191,9 @@ rm -rf %{buildroot}
 %endif
 
 %changelog
+* Sun Apr 26 2020 Iván Chavero <ichavero@chavero.com.mx>
+- Update version
+
 * Sun Apr 26 2020 Iván Chavero <ichavero@chavero.com.mx>
 - Remove elrepo files
 
