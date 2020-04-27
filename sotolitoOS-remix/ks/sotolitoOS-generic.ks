@@ -8,19 +8,19 @@ graphical
 # Run the Setup Agent on first boot
 firstboot --enable
 # Keyboard layouts
-keyboard --vckeymap=us --xlayouts='us'
+#keyboard --vckeymap=us --xlayouts='us'
 # System language
 lang en_US.UTF-8
 
 # Drive setup
 #ignoredisk --only-use=vda
 # System bootloader configuration
-bootloader --disabled
-autopart --type=plain --fstype=ext4 --nohome --noboot --noswap
+#bootloader --disabled
+#autopart --type=plain --fstype=ext4 --nohome --noboot --noswap
 # Clear the Master Boot Record
-zerombr
+#zerombr
 # Partition clearing information
-clearpart --all --initlabel
+#clearpart --all --initlabel
 
 # Network information
 # Main interface
@@ -30,8 +30,10 @@ network --bootproto=dhcp --ipv6=auto --activate --hostname=sotolito
 services --disabled="chronyd"
 
 %packages
-@^minimal
+#@^minimal
 @core
+elrepo-release
+epel-release
 kernel-ml
 ansible
 pcp
@@ -39,15 +41,19 @@ cockpit
 cockpit-dashboard 
 cockpit-podman
 cockpit-pcp
-docker
-sotolitoos-release
+#cockpit-selinux
+cockpit-packagekit
+cockpit-machines
+#cockpit-networkmanager
 podman
 git
+#ntp
 dhcp-common
-dhcp
+dhcp-client
+sotolitoos-release
 %end
 
-services --enable=sshd,dhcpd,pmlogger,pmcd,cockpit.socket,cockpit.service
+services --enable=sshd,pmlogger,pmcd,cockpit.socket,cockpit.service
 #firewall --enabled --service=dhcp --service=cockpit --service=ceph --service=ceph-mon --service=http --service=https
 firewall --enabled --service=dhcp --service=cockpit --service=http --service=https
 
@@ -66,7 +72,7 @@ cp /run/install/repo/postinstall/sotolito_env.sh /mnt/sysimage/etc/profile.d/sot
 mkdir /mnt/sysimage/root/.ssh
 chmod 0700 /mnt/sysimage/root/.ssh
 cp /run/install/repo/postinstall/sotolito_id_rsa* /mnt/sysimage/root/.ssh/
-cp -rp /run/install/repo/postinstall/ansible /mnt/sysimage/etc/ansible/sotolito
+cp -rp /run/install/repo/postinstall/ansible /mnt/sysimage/etc/ansible
 cp -rp /run/install/repo/postinstall/selinux /mnt/sysimage/home/sotolito/
 %end
 
@@ -74,12 +80,13 @@ cp -rp /run/install/repo/postinstall/selinux /mnt/sysimage/home/sotolito/
 # enable elrepo for kernel updates
 %post
 sed -i 's/Cent/Sotolito/' /boot/grub2/grub.cfg
-sed -i 's/Core/Horilka/' /boot/grub2/grub.cfg
+#Changed the name in honor of Octavio Mendez (octagesimal) sed -i 's/Core/Horilka/' /boot/grub2/grub.cfg
+sed -i 's/Core/Octagesimal/' /boot/grub2/grub.cfg
 # Fix DHCPD problem
 ln -s /etc/centos-release /etc/sotolitoos-release
 #rpm --import /root/RPM-GPG-KEY-elrepo.org
 #rpm -Uvh /root/elrepo-release-7.0-4.el7.elrepo.noarch.rpm
-yum --enablerepo=elrepo-kernel
+dnf --enablerepo=elrepo-kernel
 # the service directiva can't enable cockpit.socket so we have to do it manually
 systemctl enable cockpit.socket
 systemctl enable cockpit.service
