@@ -1,4 +1,4 @@
-== Create SotolitoOS ISO
+# Create SotolitoOS ISO
 
 The `create-iso.sh` script downloads the CentOS 8 stream ISO
 and modifies it with: packages, kicksart files and branding
@@ -10,7 +10,7 @@ To create the SotolitoOS ISO Run:
 ./create-iso.sh generic 2>&1 | tee log-sotolito.log
 ```
 
-=== Current SotolitoOS Features
+## Current SotolitoOS Features
 
 - Based on CentOS 8 Stream
 - Preconfigure elrepo repository
@@ -19,6 +19,6 @@ To create the SotolitoOS ISO Run:
 - Cockpit web manager
 
 
-TODO: 
+## TODO: 
 - Update kickstart files for automatic installations
 - Change instalation workflow to use lorax
