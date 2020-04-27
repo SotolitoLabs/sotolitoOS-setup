@@ -3,17 +3,26 @@ SotolitoOS is an CentOS spin that integrates extra configurations and packages f
 
 SotolitoOS is proudly maintained by the SotolitoLabs gang from Chihuahua. All the documentation and software around it is Open Source so feel free to use it enhance it and send us patches <3.
 
-## SotolitoO Distribution
+## SotolitoOS Distribution
 There are three versions of SotolitoOS:
 
 * **Basic**: Adds extra packages to the CentOS 8 stream installation
 * **Master**: Installs a kubernetes master cluster and Ceph Configurations
 * **Node**: Installs a kubernetes and Ceph node.
 
+### Features
+
+- Based on CentOS 8 Stream
+- Preconfigure elrepo repository
+- Pre-loaded Ansible Hardening playbooks with Security Technical Implementation Guide (STIG)
+- Update to elrepo kernel-ml 5.6.2
+- Cockpit web manager
+
+
 ### ISO: Download
 The SotolitoOS x86_64 ISO can be downloaded from this location:
 
-* https://sotolitolabs.com/dist/centos/8/x86_64/iso/SotolitoOS-Stream-x86_64-8-Stream-generic.iso
+* https://sotolitolabs.com/dist/centos/8/x86_64/iso/SotolitoOS-Stream-x86_64-8.1-Stream-generic.iso
 
 
 ### ISO: Creation
