@@ -30,7 +30,7 @@ BASE_IMAGE_URL="http://mirror.keystealth.org/centos/8-stream/isos/x86_64/CentOS-
 KERNEL_ML_PACKAGE_URL="${KERNEL_MIRROR}/${KERNEL_ML_PACKAGE}"
 KERNEL_ML_TOOLS_PACKAGE_URL="${KERNEL_MIRROR}/${KERNEL_ML_TOOLS_PACKAGE}"
 # We use the same version as the centos base image
-VERSION="8.1-Stream"
+VERSION="8.3-Stream"
 
 DATE=`date +%Y-%m-%d`
 APPID="SotolitoLabs - ${DATE} - ${VERSION}"
@@ -79,7 +79,7 @@ sudo rsync -av iso/EFI/ iso-dev/EFI/
 echo "Downloading extra packages"
 #cd iso-dev/isolinux/Packages
 cd iso-dev/Packages
-cp ../../../../files/RPMS/sotolitoos-release-8-1* .
+cp ../../../../files/RPMS/sotolitoos-release* .
 wget -c "${EL_REPO}/${EL_REPO_RPM}"
 wget -c "${EL_REPO}/${EL_REPO_RPM_GPG}"
 #wget -c $KERNEL_ML_PACKAGE_URL
