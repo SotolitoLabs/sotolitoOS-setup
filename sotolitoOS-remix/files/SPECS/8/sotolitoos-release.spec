@@ -29,9 +29,9 @@
 %define dist_release_version 8
 %define upstream_rel_long 8.0-0
 %define upstream_rel 8.0
-%define centos_rel 1.1905
+%define centos_rel 3.1905
 #define beta Beta
-%define dist .el%{dist_release_version}.sotolitoos%{?dist_suffix}
+%define dist .el%{dist_release_version}%{?dist_suffix}
 
 %ifarch %{arm}
 Name:           sotolitoos-userland-release
@@ -39,7 +39,7 @@ Name:           sotolitoos-userland-release
 Name:           sotolitoos-release
 %endif
 Version:        %{base_release_version}
-Release:        %{centos_rel}.5%{?dist}
+Release:        %{centos_rel}.6%{?dist}
 Summary:        %{product_family} release file
 Group:          System Environment/Base
 License:        GPLv2
@@ -94,9 +94,9 @@ REDHAT_SUPPORT_PRODUCT_VERSION="8"
 
 EOF
 
-pushd %{targetdir}
 # copy GPG keys
 mkdir -p -m 755 %{buildroot}/etc/pki/rpm-gpg
+install -m 644 RPM-GPG-KEY-SotolitoOS-8 %{buildroot}/etc/pki/rpm-gpg
 
 # copy yum repos
 mkdir -p -m 755 %{buildroot}/etc/yum.repos.d
@@ -104,10 +104,6 @@ install -m 644 SotolitoOS.repo %{buildroot}/etc/yum.repos.d
 
 %ifarch x86_64
 %endif
-
-
-popd
-
 
 # use unbranded datadir
 #mkdir -p -m 755 %{buildroot}/%{_datadir}/centos-release
@@ -165,10 +161,7 @@ cat >> /etc/rpm/macros.dist << EOF
 %%el%{base_release_version} 1
 EOF
 
-
-
 /usr/bin/uname -m | grep -q 'x86_64'  && echo 'sotolito' >/etc/yum/vars/contentdir || echo 'altarch' > /etc/yum/vars/contentdir
-
 
 %clean
 rm -rf %{buildroot}
@@ -178,9 +171,8 @@ rm -rf %{buildroot}
 %config /etc/sotolitoos-release
 %config /etc/sotolitoos-release-upstream
 %config /etc/sotolito-os-release
-
-#TODO /etc/pki/rpm-gpg/
-%config(noreplace) /etc/yum.repos.d/*
+/etc/pki/rpm-gpg/
+%config /etc/yum.repos.d/*
 
 %ifarch x86_64
 %endif
@@ -191,6 +183,11 @@ rm -rf %{buildroot}
 %endif
 
 %changelog
+* Mon Apr 27 2020 Iván Chavero <ichavero@chavero.com.mx>
+- Fix repo paths
+- Add GPG key
+- Fix package name
+
 * Sun Apr 26 2020 Iván Chavero <ichavero@chavero.com.mx>
 - Update version
 
