@@ -1,6 +1,6 @@
 ---
-- name: STIG Hardening
-  hosts: all
+- name: SotolitoOS Enterprise STIG Hardening
+  hosts: localhost
   become: yes
   vars:
     security_pwquality_apply_rules: yes
