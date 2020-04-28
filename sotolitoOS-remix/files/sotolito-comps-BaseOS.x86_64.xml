@@ -1,0 +1,856 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE comps
+  PUBLIC '-//Red Hat, Inc.//DTD Comps info//EN'
+  'comps.dtd'>
+<comps>
+  <group>
+    <id>base</id>
+    <name>Base</name>
+    <name xml:lang="af">Basis</name>
+    <name xml:lang="am">መሠረት</name>
+    <name xml:lang="ar">أساسيّة</name>
+    <name xml:lang="as">ভিত্তি</name>
+    <name xml:lang="bal">اساس</name>
+    <name xml:lang="be">Падмурак</name>
+    <name xml:lang="bg">Основа</name>
+    <name xml:lang="bn">ভিত্তি (Base)</name>
+    <name xml:lang="bs">Osnova</name>
+    <name xml:lang="ca">Bàsic</name>
+    <name xml:lang="cs">Základ</name>
+    <name xml:lang="cy">Sail</name>
+    <name xml:lang="da">Base</name>
+    <name xml:lang="de">Basis</name>
+    <name xml:lang="de_CH">Basis</name>
+    <name xml:lang="el">Βάση</name>
+    <name xml:lang="en_GB">Base</name>
+    <name xml:lang="es">Base</name>
+    <name xml:lang="et">Baas</name>
+    <name xml:lang="fa">پایه</name>
+    <name xml:lang="fa_IR">پایه</name>
+    <name xml:lang="fi">Peruspaketit</name>
+    <name xml:lang="fr">Base</name>
+    <name xml:lang="gu">આધાર</name>
+    <name xml:lang="he">בסיס</name>
+    <name xml:lang="hi">आधार</name>
+    <name xml:lang="hr">Osnova</name>
+    <name xml:lang="hu">Alap</name>
+    <name xml:lang="hy">բազա</name>
+    <name xml:lang="ia">Base</name>
+    <name xml:lang="id">Dasar</name>
+    <name xml:lang="is">Grunnur</name>
+    <name xml:lang="it">Base</name>
+    <name xml:lang="ja">ベース</name>
+    <name xml:lang="ka">ძირითადი</name>
+    <name xml:lang="kn">ಮೂಲ</name>
+    <name xml:lang="ko">기본</name>
+    <name xml:lang="lv">Pamatsistēma</name>
+    <name xml:lang="mai">आधार</name>
+    <name xml:lang="mk">Основни</name>
+    <name xml:lang="ml">ബെയ്സ്</name>
+    <name xml:lang="mr">आधार</name>
+    <name xml:lang="ms">Asas</name>
+    <name xml:lang="nb">Grunnpakker</name>
+    <name xml:lang="ne">आधार</name>
+    <name xml:lang="nl">Basis</name>
+    <name xml:lang="no">Grunnpakker</name>
+    <name xml:lang="nso">Motheo</name>
+    <name xml:lang="or">ଆଧାର</name>
+    <name xml:lang="pa">ਮੂਲ</name>
+    <name xml:lang="pl">Część podstawowa</name>
+    <name xml:lang="pt">Base</name>
+    <name xml:lang="pt_BR">Base</name>
+    <name xml:lang="ro">Bază</name>
+    <name xml:lang="ru">Основные</name>
+    <name xml:lang="si">පාදම</name>
+    <name xml:lang="sk">Základ</name>
+    <name xml:lang="sl">Osnovno</name>
+    <name xml:lang="sq">Bazë</name>
+    <name xml:lang="sr">Основа</name>
+    <name xml:lang="sr@Latn">Osnova</name>
+    <name xml:lang="sr@latin">Osnova</name>
+    <name xml:lang="sv">Bas</name>
+    <name xml:lang="ta">அடிப்படை</name>
+    <name xml:lang="te">ఆధారం</name>
+    <name xml:lang="tg">Асосҳо</name>
+    <name xml:lang="th">พื้นฐาน</name>
+    <name xml:lang="tr">Temel</name>
+    <name xml:lang="uk">Основа</name>
+    <name xml:lang="ur">مرکز</name>
+    <name xml:lang="vi">Cở sở</name>
+    <name xml:lang="zh">基礎</name>
+    <name xml:lang="zh_CN">基本</name>
+    <name xml:lang="zh_TW">基礎</name>
+    <name xml:lang="zu">Isiqu</name>
+    <description>The standard installation of SotolitoOS Linux.</description>
+    <default>true</default>
+    <uservisible>false</uservisible>
+    <packagelist>
+      <packagereq type="mandatory">acl</packagereq>
+      <packagereq type="mandatory">at</packagereq>
+      <packagereq type="mandatory">attr</packagereq>
+      <packagereq type="mandatory">bc</packagereq>
+      <packagereq type="mandatory">centos-release</packagereq>
+      <packagereq type="mandatory">centos-release-eula</packagereq>
+      <packagereq type="mandatory">cpio</packagereq>
+      <packagereq type="mandatory">crontabs</packagereq>
+      <packagereq type="mandatory">cyrus-sasl-plain</packagereq>
+      <packagereq type="mandatory">dbus</packagereq>
+      <packagereq type="mandatory">ed</packagereq>
+      <packagereq type="mandatory">file</packagereq>
+      <packagereq type="mandatory">iptstate</packagereq>
+      <packagereq type="mandatory">irqbalance</packagereq>
+      <packagereq type="mandatory">kpatch</packagereq>
+      <packagereq type="mandatory">logrotate</packagereq>
+      <packagereq type="mandatory">lsof</packagereq>
+      <packagereq type="mandatory">mcelog</packagereq>
+      <packagereq type="mandatory">microcode_ctl</packagereq>
+      <packagereq type="mandatory">net-tools</packagereq>
+      <packagereq type="mandatory">pciutils</packagereq>
+      <packagereq type="mandatory">psacct</packagereq>
+      <packagereq type="mandatory">quota</packagereq>
+      <packagereq type="mandatory">sudo</packagereq>
+      <packagereq type="mandatory">symlinks</packagereq>
+      <packagereq type="mandatory">systemd-udev</packagereq>
+      <packagereq type="mandatory">tar</packagereq>
+      <packagereq type="mandatory">tree</packagereq>
+      <packagereq type="mandatory">util-linux-user</packagereq>
+      <packagereq type="default">bash-completion</packagereq>
+      <packagereq type="default">blktrace</packagereq>
+      <packagereq type="default">bpftool</packagereq>
+      <packagereq type="default">bzip2</packagereq>
+      <packagereq type="default">chrony</packagereq>
+      <packagereq type="default">cockpit</packagereq>
+      <packagereq type="default">cryptsetup</packagereq>
+      <packagereq type="default">dos2unix</packagereq>
+      <packagereq type="default">dosfstools</packagereq>
+      <packagereq type="default">ethtool</packagereq>
+      <packagereq type="default">gnupg2</packagereq>
+      <packagereq type="default">kmod-kvdo</packagereq>
+      <packagereq type="default">ledmon</packagereq>
+      <packagereq type="default">libstoragemgmt</packagereq>
+      <packagereq type="default">lvm2</packagereq>
+      <packagereq type="default">mailcap</packagereq>
+      <packagereq type="default">man-pages</packagereq>
+      <packagereq type="default">mdadm</packagereq>
+      <packagereq type="default">mlocate</packagereq>
+      <packagereq type="default">mtr</packagereq>
+      <packagereq type="default">nano</packagereq>
+      <packagereq type="default">realmd</packagereq>
+      <packagereq type="default">rng-tools</packagereq>
+      <packagereq type="default">rsync</packagereq>
+      <packagereq type="default">smartmontools</packagereq>
+      <packagereq type="default">sos</packagereq>
+      <packagereq type="default">sssd</packagereq>
+      <packagereq type="default">strace</packagereq>
+      <packagereq type="default">teamd</packagereq>
+      <packagereq type="default">time</packagereq>
+      <packagereq type="default">unzip</packagereq>
+      <packagereq type="default">usbutils</packagereq>
+      <packagereq type="default">vdo</packagereq>
+      <packagereq type="default">virt-what</packagereq>
+      <packagereq type="default">which</packagereq>
+      <packagereq type="default">words</packagereq>
+      <packagereq type="default">xfsdump</packagereq>
+      <packagereq type="default">zip</packagereq>
+      <packagereq type="optional">cifs-utils</packagereq>
+      <packagereq type="optional">cockpit-doc</packagereq>
+      <packagereq type="optional">fwupd</packagereq>
+      <packagereq type="optional">fwupdate</packagereq>
+      <packagereq type="optional">ima-evm-utils</packagereq>
+      <packagereq type="optional">nfs-utils</packagereq>
+      <packagereq type="optional">nvmetcli</packagereq>
+      <packagereq type="optional">traceroute</packagereq>
+      <packagereq type="optional">zsh</packagereq>
+    </packagelist>
+  </group>
+  <group>
+    <id>conflicts-baseos</id>
+    <name>Conflicts BaseOS</name>
+    <name xml:lang="de">Konflikte BaseOS</name>
+    <name xml:lang="es">Conflictos BaseOS</name>
+    <name xml:lang="fr">Conflits BaseOS</name>
+    <name xml:lang="it">Conflitti BaseOS</name>
+    <name xml:lang="ja">BaseOS と競合</name>
+    <name xml:lang="ko">BaseOS와 충돌 </name>
+    <name xml:lang="pt_BR">Conflitos BaseOS</name>
+    <name xml:lang="ru">Конфликты BaseOS</name>
+    <name xml:lang="zh_CN">与 BaseOS 冲突</name>
+    <name xml:lang="zh_TW">衝突BaseOS</name>
+    <description>This group includes packages conflicting with an everything installation from the BaseOS repo</description>
+    <description xml:lang="de">Diese Gruppe umfasst Pakete, die mit einer Komplettinstallation aus dem BaseOS-Repository in Konflikt stehen</description>
+    <description xml:lang="es">Este grupo incluye paquetes que entran en conflicto con una instalación de todo desde el repositorio de BaseOS</description>
+    <description xml:lang="fr">Ce groupe inclut des packages en conflit avec une installation de tous les packages à partir du dépôt BaseOS</description>
+    <description xml:lang="it">Questo gruppo include pacchetti in conflitto con un'installazione completa dal repository BaseOS</description>
+    <description xml:lang="ja">このグループには、BaseOS リポジトリーからの everything インストールと競合するパッケージが含まれています。</description>
+    <description xml:lang="ko">이 그룹에는 BaseOS 리포지터리를 통해 설치된 소프트웨어와 충돌하는 패키지가 포함되어 있습니다. </description>
+    <description xml:lang="pt_BR">Este grupo inclui pacotes em conflito com uma instalação de tudo a partir do repositório BaseOS</description>
+    <description xml:lang="ru">Эта группа включает пакеты, противоречащие всем установкам из репо BaseOS</description>
+    <description xml:lang="zh_CN">这个组包括了与通过 BaseOS repo 安装的软件冲突的软件包</description>
+    <description xml:lang="zh_TW">該組包括與BaseOS存儲庫中的所有安裝衝突的包</description>
+    <default>false</default>
+    <uservisible>false</uservisible>
+    <packagelist>
+      <packagereq type="mandatory">coreutils-single</packagereq>
+      <packagereq type="mandatory">libcurl-minimal</packagereq>
+    </packagelist>
+  </group>
+  <group>
+    <id>core</id>
+    <name>Core</name>
+    <name xml:lang="af">Kern</name>
+    <name xml:lang="am">ማዕከላዊ ቦታ</name>
+    <name xml:lang="ar">اللبّ</name>
+    <name xml:lang="as">ভিত্তি</name>
+    <name xml:lang="bal">هستگ</name>
+    <name xml:lang="be">Падмурак</name>
+    <name xml:lang="bg">Основа</name>
+    <name xml:lang="bn">কোর</name>
+    <name xml:lang="bs">Jezgra</name>
+    <name xml:lang="ca">Nucli</name>
+    <name xml:lang="cs">Úplný základ</name>
+    <name xml:lang="cy">Craidd</name>
+    <name xml:lang="da">Grundlæggende</name>
+    <name xml:lang="de">Kern</name>
+    <name xml:lang="de_CH">Kern</name>
+    <name xml:lang="el">Πυρήνας</name>
+    <name xml:lang="en_GB">Core</name>
+    <name xml:lang="es">Núcleo</name>
+    <name xml:lang="et">Tuum</name>
+    <name xml:lang="fa">اصل</name>
+    <name xml:lang="fa_IR">اصل</name>
+    <name xml:lang="fi">Keskeiset</name>
+    <name xml:lang="fr">Core</name>
+    <name xml:lang="gl">Núcleo</name>
+    <name xml:lang="gu">મૂળ</name>
+    <name xml:lang="he">ליבה</name>
+    <name xml:lang="hi">कोर</name>
+    <name xml:lang="hr">Jezgra</name>
+    <name xml:lang="hu">Mag</name>
+    <name xml:lang="hy">Հիմք</name>
+    <name xml:lang="ia">Nucleo</name>
+    <name xml:lang="id">Inti</name>
+    <name xml:lang="ilo">Bugas</name>
+    <name xml:lang="is">Lágmarkskerfi</name>
+    <name xml:lang="it">Principale</name>
+    <name xml:lang="ja">コア</name>
+    <name xml:lang="ka">ბირთვი</name>
+    <name xml:lang="kn">ಅಂತಸ್ಸಾರ</name>
+    <name xml:lang="ko">핵심</name>
+    <name xml:lang="lv">Pamatsistēma</name>
+    <name xml:lang="mai">कोर</name>
+    <name xml:lang="mk">Основни</name>
+    <name xml:lang="ml">കോറ്‍</name>
+    <name xml:lang="mr">कोर</name>
+    <name xml:lang="ms">Teras</name>
+    <name xml:lang="nb">Kjerne</name>
+    <name xml:lang="ne">कोर</name>
+    <name xml:lang="nl">Kern</name>
+    <name xml:lang="no">Kjerne</name>
+    <name xml:lang="nso">Bogare</name>
+    <name xml:lang="or">ପ୍ରମୂଖ</name>
+    <name xml:lang="pa">ਮੂਲ</name>
+    <name xml:lang="pl">Rdzeń</name>
+    <name xml:lang="pt">Núcleo</name>
+    <name xml:lang="pt_BR">Núcleo</name>
+    <name xml:lang="ro">Nucleu</name>
+    <name xml:lang="ru">Основа</name>
+    <name xml:lang="si">න්‍යෂ්ඨිය</name>
+    <name xml:lang="sk">Jadro</name>
+    <name xml:lang="sl">Jedro</name>
+    <name xml:lang="sq">Bërthama</name>
+    <name xml:lang="sr">Срж</name>
+    <name xml:lang="sr@Latn">Srž</name>
+    <name xml:lang="sr@latin">Srž</name>
+    <name xml:lang="sv">Grund</name>
+    <name xml:lang="ta">கோர்</name>
+    <name xml:lang="te">అంతర్భాగం</name>
+    <name xml:lang="tg">Система</name>
+    <name xml:lang="th">แกนหลัก</name>
+    <name xml:lang="tr">Çekirdek</name>
+    <name xml:lang="uk">Основа</name>
+    <name xml:lang="ur">مرکز</name>
+    <name xml:lang="vi">Lõi</name>
+    <name xml:lang="zh">核心</name>
+    <name xml:lang="zh_CN">核心</name>
+    <name xml:lang="zh_TW">核心</name>
+    <name xml:lang="zu">Okuyikhona</name>
+    <description>Smallest possible installation</description>
+    <description xml:lang="af">Kleinste moontlike installasie</description>
+    <description xml:lang="am">ትንሹ የሚቻለው የማስገባት ሥራ</description>
+    <description xml:lang="ar">أصغر تثبيت متاح</description>
+    <description xml:lang="as">ক্ষুদ্ৰতম সম্ভৱ ইনস্টল</description>
+    <description xml:lang="bal">هوردترین نصب ممکن</description>
+    <description xml:lang="be">Найменшая з магчымых усталёўка</description>
+    <description xml:lang="bg">Най-малката възможна инсталация</description>
+    <description xml:lang="bn">ন্যূনতম ইনস্টলেশন</description>
+    <description xml:lang="bs">Najmanja moguća instalacija</description>
+    <description xml:lang="ca">La instal·lació més petita possible</description>
+    <description xml:lang="cs">Nejmenší možná instalace</description>
+    <description xml:lang="cy">Arsefydliad lleiaf posib</description>
+    <description xml:lang="da">Mindst mulige installation</description>
+    <description xml:lang="de">Kleinstmögliche Installation</description>
+    <description xml:lang="de_CH">Kleinstmögliche Installation</description>
+    <description xml:lang="el">Μικρότερη δυνατή εγκατάσταση</description>
+    <description xml:lang="en_GB">Smallest possible installation</description>
+    <description xml:lang="es">Instalación lo más pequeña posible</description>
+    <description xml:lang="et">Väikseim võimalik installatsioon</description>
+    <description xml:lang="fa">کوچکترین نصب ممکن</description>
+    <description xml:lang="fa_IR">کوچکترین نصب ممکن</description>
+    <description xml:lang="fi">Pienin mahdollinen asennus</description>
+    <description xml:lang="fr">Installation minimale</description>
+    <description xml:lang="gu">નાનામાં નાના શક્ય સ્થાપનો</description>
+    <description xml:lang="he">התקנה מזערית</description>
+    <description xml:lang="hi">सबसे छोटा संभावित अधिष्ठापन</description>
+    <description xml:lang="hr">Najmanja moguća instalacija</description>
+    <description xml:lang="hu">Minimális telepítés</description>
+    <description xml:lang="hy">Փոքրագույն հնարավոր տեղադրում</description>
+    <description xml:lang="ia">Le plus parve installation possibile</description>
+    <description xml:lang="id">Instalasi sekecil mungkin</description>
+    <description xml:lang="is">Lágmarks uppsetning</description>
+    <description xml:lang="it">Installazione minima</description>
+    <description xml:lang="ja">最小限のインストール</description>
+    <description xml:lang="ka">უმცირესი შესაძლო ჩადგმა</description>
+    <description xml:lang="kn">ಕನಿಷ್ಟ ಸಾಧ್ಯವಿರುವ ಅನುಸ್ಥಾಪನೆ</description>
+    <description xml:lang="ko">가능한 최소 설치</description>
+    <description xml:lang="lv">Vismazākā iespējamā instalācija</description>
+    <description xml:lang="mai">सबसँ छोट संभावित संस्थापन</description>
+    <description xml:lang="mk">Најмалата можна инсталација</description>
+    <description xml:lang="ml">സാധ്യമായ ഏറ്റവും ചെറിയ ഇന്‍സ്റ്റലേഷന്‍</description>
+    <description xml:lang="mr">सर्वात लहान शक्य प्रतिष्ठापन</description>
+    <description xml:lang="ms">Pemasangan sekecil mungkin</description>
+    <description xml:lang="nb">Minste mulige installering</description>
+    <description xml:lang="ne">सम्भावित सबैभन्दा सानो स्थापना</description>
+    <description xml:lang="nl">Kleinst mogelijke installatie</description>
+    <description xml:lang="no">Minste mulige installering</description>
+    <description xml:lang="nso">Go tsenya mo go kgonegago go gonyenyane kudu</description>
+    <description xml:lang="or">କ୍ଷୁଦ୍ରତମ ସମ୍ଭାବ୍ଯ ସ୍ଥାପନ</description>
+    <description xml:lang="pa">ਘੱਟੋ-ਘੱਟ ਸੰਭਵ ਇੰਸਟਾਲੇਸ਼ਨ</description>
+    <description xml:lang="pl">Najmniejsza możliwa instalacja</description>
+    <description xml:lang="pt">A mais pequena instalação possível</description>
+    <description xml:lang="pt_BR">A mais pequena instalação possível</description>
+    <description xml:lang="ro">Cea mai mică instalare posibilă</description>
+    <description xml:lang="ru">Минимальная установка</description>
+    <description xml:lang="si">සිදුකල හැකි ඉතාම කුඩා ස්ථාපනය</description>
+    <description xml:lang="sk">Najmenšia možná inštalácia</description>
+    <description xml:lang="sl">Najmanjša možna namestitev</description>
+    <description xml:lang="sq">Instalimi më i vogël i mundshëm</description>
+    <description xml:lang="sr">Најмања могућа инсталација</description>
+    <description xml:lang="sr@Latn">Najmanja moguća instalacija</description>
+    <description xml:lang="sr@latin">Najmanja moguća instalacija</description>
+    <description xml:lang="sv">Minsta möjliga installation</description>
+    <description xml:lang="ta">மிக சிறிய நிறுவல்</description>
+    <description xml:lang="te">సాధ్యమగు చిన్న సంస్థాపన</description>
+    <description xml:lang="tg">Сабткунии оддӣ</description>
+    <description xml:lang="th">ติดตั้งให้มีขนาดเล็กที่สุดที่เป็นไปได้</description>
+    <description xml:lang="tr">Olası en küçük kurulum</description>
+    <description xml:lang="uk">Мінімально можливе встановлення</description>
+    <description xml:lang="ur">چھو ٹی ممکن انسٹللشن </description>
+    <description xml:lang="vi">Cài đặt nhỏ tối thiểu</description>
+    <description xml:lang="zh">最小安裝</description>
+    <description xml:lang="zh_CN">最小安装</description>
+    <description xml:lang="zh_TW">最小安裝</description>
+    <description xml:lang="zu">Ukufakwa okuncane</description>
+    <default>true</default>
+    <uservisible>false</uservisible>
+    <packagelist>
+      <packagereq type="mandatory">audit</packagereq>
+      <packagereq type="mandatory">basesystem</packagereq>
+      <packagereq type="mandatory">bash</packagereq>
+      <packagereq type="mandatory">coreutils</packagereq>
+      <packagereq type="mandatory">cronie</packagereq>
+      <packagereq type="mandatory">curl</packagereq>
+      <packagereq type="mandatory">dnf</packagereq>
+      <packagereq type="mandatory">e2fsprogs</packagereq>
+      <packagereq type="mandatory">filesystem</packagereq>
+      <packagereq type="mandatory">firewalld</packagereq>
+      <packagereq type="mandatory">glibc</packagereq>
+      <packagereq type="mandatory">grubby</packagereq>
+      <packagereq type="mandatory">hostname</packagereq>
+      <packagereq type="mandatory">initscripts</packagereq>
+      <packagereq type="mandatory">iproute</packagereq>
+      <packagereq type="mandatory">iprutils</packagereq>
+      <packagereq type="mandatory">iputils</packagereq>
+      <packagereq type="mandatory">irqbalance</packagereq>
+      <packagereq type="mandatory">kbd</packagereq>
+      <packagereq type="mandatory">kexec-tools</packagereq>
+      <packagereq type="mandatory">less</packagereq>
+      <packagereq type="mandatory">man-db</packagereq>
+      <packagereq type="mandatory">ncurses</packagereq>
+      <packagereq type="mandatory">openssh-clients</packagereq>
+      <packagereq type="mandatory">openssh-server</packagereq>
+      <packagereq type="mandatory">parted</packagereq>
+      <packagereq type="mandatory">passwd</packagereq>
+      <packagereq type="mandatory">policycoreutils</packagereq>
+      <packagereq type="mandatory">procps-ng</packagereq>
+      <packagereq type="mandatory">rng-tools</packagereq>
+      <packagereq type="mandatory">rootfiles</packagereq>
+      <packagereq type="mandatory">rpm</packagereq>
+      <packagereq type="mandatory">selinux-policy-targeted</packagereq>
+      <packagereq type="mandatory">setup</packagereq>
+      <packagereq type="mandatory">shadow-utils</packagereq>
+      <packagereq type="mandatory">sssd-common</packagereq>
+      <packagereq type="mandatory">sssd-kcm</packagereq>
+      <packagereq type="mandatory">sudo</packagereq>
+      <packagereq type="mandatory">systemd</packagereq>
+      <packagereq type="mandatory">tuned</packagereq>
+      <packagereq type="mandatory">util-linux</packagereq>
+      <packagereq type="mandatory">vim-minimal</packagereq>
+      <packagereq type="mandatory">xfsprogs</packagereq>
+      <packagereq type="mandatory">yum</packagereq>
+      <packagereq type="default">NetworkManager</packagereq>
+      <packagereq type="default">NetworkManager-team</packagereq>
+      <packagereq type="default">NetworkManager-tui</packagereq>
+      <packagereq type="default">authselect</packagereq>
+      <packagereq type="default">biosdevname</packagereq>
+      <packagereq type="default">dnf-plugins-core</packagereq>
+      <packagereq type="default">dracut-config-rescue</packagereq>
+      <packagereq type="default">iwl100-firmware</packagereq>
+      <packagereq type="default">iwl1000-firmware</packagereq>
+      <packagereq type="default">iwl105-firmware</packagereq>
+      <packagereq type="default">iwl135-firmware</packagereq>
+      <packagereq type="default">iwl2000-firmware</packagereq>
+      <packagereq type="default">iwl2030-firmware</packagereq>
+      <packagereq type="default">iwl3160-firmware</packagereq>
+      <packagereq type="default">iwl3945-firmware</packagereq>
+      <packagereq type="default">iwl4965-firmware</packagereq>
+      <packagereq type="default">iwl5000-firmware</packagereq>
+      <packagereq type="default">iwl5150-firmware</packagereq>
+      <packagereq type="default">iwl6000-firmware</packagereq>
+      <packagereq type="default">iwl6000g2a-firmware</packagereq>
+      <packagereq type="default">iwl6050-firmware</packagereq>
+      <packagereq type="default">iwl7260-firmware</packagereq>
+      <packagereq type="default">kernel-tools</packagereq>
+      <packagereq type="default">libsysfs</packagereq>
+      <packagereq type="default">linux-firmware</packagereq>
+      <packagereq type="default">lshw</packagereq>
+      <packagereq type="default">lsscsi</packagereq>
+      <packagereq type="default">microcode_ctl</packagereq>
+      <packagereq type="default">prefixdevname</packagereq>
+      <packagereq type="default">sg3_utils</packagereq>
+      <packagereq type="default">sg3_utils-libs</packagereq>
+      <packagereq type="optional">dracut-config-generic</packagereq>
+      <packagereq type="optional">dracut-network</packagereq>
+      <packagereq type="optional">rdma-core</packagereq>
+      <packagereq type="optional">selinux-policy-mls</packagereq>
+      <packagereq type="optional">tboot</packagereq>
+    </packagelist>
+  </group>
+  <group>
+   <id>sotolito-core</id>
+   <default>false</default>
+   <uservisible>true</uservisible>
+   <display_order>1024</display_order>
+   <name>Sotolito Core</name>
+   <description>SotolitoOS Basic Installation</description>
+    <packagelist>
+      <packagereq type="mandatory">ansible</packagereq>
+      <packagereq type="mandatory">cockpit</packagereq>
+      <packagereq type="mandatory">git</packagereq>
+      <packagereq type="mandatory">podman</packagereq>
+      <packagereq type="mandatory">skopeo</packagereq>
+      <packagereq type="mandatory">elrepo-release</packagereq>
+      <packagereq type="mandatory">epel-release</packagereq>
+      <packagereq type="mandatory">kernel-ml</packagereq>
+      <packagereq type="mandatory">pcp</packagereq>
+      <packagereq type="mandatory">cockpit-dashboard </packagereq>
+      <packagereq type="mandatory">cockpit-podman</packagereq>
+      <packagereq type="mandatory">cockpit-pcp</packagereq>
+      <packagereq type="mandatory">cockpit-packagekit</packagereq>
+      <packagereq type="mandatory">cockpit-machines</packagereq>
+      <packagereq type="mandatory">sotolitoos-release</packagereq>
+      <packagereq type="mandatory">dhcp-common</packagereq>
+      <packagereq type="mandatory">dhcp-client</packagereq>
+    </packagelist>
+  </group>
+  <group>
+    <id>headless-management</id>
+    <name>Headless Management</name>
+    <name xml:lang="de">Kopfloses Management</name>
+    <name xml:lang="es">Gestión sin Cabeza</name>
+    <name xml:lang="fr">Gestion à distance sans périphérique de contrôle</name>
+    <name xml:lang="it">Gestione Headless</name>
+    <name xml:lang="ja">ヘッドレス管理</name>
+    <name xml:lang="ko">헤드리스 관리 </name>
+    <name xml:lang="pt_BR">Gestão sem Cabeça</name>
+    <name xml:lang="ru">Безголовое управление</name>
+    <name xml:lang="zh_CN">无头系统管理</name>
+    <name xml:lang="zh_TW">無頭管理</name>
+    <description>Tools for managing the system without an attached graphical console.</description>
+    <description xml:lang="de">Tools zur Verwaltung des Systems ohne angeschlossene Grafikkonsole.</description>
+    <description xml:lang="es">Herramientas para gestionar el sistema sin una consola gráfica adjunta.</description>
+    <description xml:lang="fr">Outils pour gérer le système sans console graphique associée</description>
+    <description xml:lang="it">Strumenti per la gestione del sistema senza una console grafica collegata.</description>
+    <description xml:lang="ja">グラフィカルコンソールがないシステムを管理するためのツール</description>
+    <description xml:lang="ko">그래픽 콘솔이 없는 시스템을 관리하기 위한 툴입니다. </description>
+    <description xml:lang="pt">Ferramentas para gerenciar o sistema sem um console gráfico anexado.</description>
+    <description xml:lang="pt_BR">Ferramentas para gerenciar o sistema sem um console gráfico anexado.</description>
+    <description xml:lang="ru">Инструменты для управления системой без подключенной графической консоли.</description>
+    <description xml:lang="zh_CN">管理没有附加图形显示终端的系统</description>
+    <description xml:lang="zh_TW">無需附加圖形控制台即可管理系統的工具。</description>
+    <default>true</default>
+    <uservisible>true</uservisible>
+    <packagelist>
+      <packagereq type="mandatory">cockpit-bridge</packagereq>
+      <packagereq type="mandatory">cockpit-system</packagereq>
+      <packagereq type="mandatory">cockpit-ws</packagereq>
+      <packagereq type="mandatory">openssh-server</packagereq>
+    </packagelist>
+  </group>
+  <group>
+    <id>network-tools</id>
+    <name>Networking Tools</name>
+    <name xml:lang="as">নেটৱাৰ্ক ব্যৱস্থাৰ বিভিন্ন সঁজুলিসমূহ</name>
+    <name xml:lang="bn">নেটওয়ার্ক ব্যবস্থার বিভিন্ন সরঞ্জাম</name>
+    <name xml:lang="cs">Nástroje pro práci v síti</name>
+    <name xml:lang="de">Netzwerk-Tools</name>
+    <name xml:lang="de_CH">Netzwerk-Tools</name>
+    <name xml:lang="es">Herramientas de red</name>
+    <name xml:lang="fr">Outils réseau</name>
+    <name xml:lang="gu">નેટવર્કિંગ સાધનો</name>
+    <name xml:lang="hi">संजालन औजार</name>
+    <name xml:lang="ia">Instrumentos de rete</name>
+    <name xml:lang="it">Tool per il networking</name>
+    <name xml:lang="ja">ネットワーキングツール</name>
+    <name xml:lang="kn">ಜಾಲಬಂಧ ಉಪಕರಣಗಳು</name>
+    <name xml:lang="ko">네트워킹 툴 </name>
+    <name xml:lang="ml">നെറ്റ്‌വര്‍ക്കിങ് ഉപകരണങ്ങള്‍</name>
+    <name xml:lang="mr">नेटवर्किंग साधने</name>
+    <name xml:lang="or">ନେଟୱର୍କିଙ୍ଗ ସାଧନଗୁଡ଼ିକ</name>
+    <name xml:lang="pa">ਨੈੱਟਵਰਕਿੰਗ ਟੂਲ</name>
+    <name xml:lang="pl">Narzędzia sieciowe</name>
+    <name xml:lang="pt">Ferramentas de rede</name>
+    <name xml:lang="pt_BR">Ferramentas de rede</name>
+    <name xml:lang="ru">Сетевые инструменты</name>
+    <name xml:lang="sv">Nätverksverktyg</name>
+    <name xml:lang="ta">பிணையத்தின் கருவிகள்</name>
+    <name xml:lang="te">నెట్వర్కింగ్ సాధనములు</name>
+    <name xml:lang="uk">Програми для роботи у мережі</name>
+    <name xml:lang="zh">網路作業工具</name>
+    <name xml:lang="zh_CN">联网工具</name>
+    <name xml:lang="zh_TW">網路作業工具</name>
+    <description>Tools for configuring and analyzing computer networks.</description>
+    <description xml:lang="as">কমপিউটাৰ নেটৱাৰ্ক সংৰূপণ আৰু বিশ্লেষণৰ বাবে বিভিন্ন সঁজুলিসমূহ।</description>
+    <description xml:lang="bn">কম্পিউটার নেটওয়ার্ক কনফিগার ও বিশ্লেষণের জন্য বিভিন্ন সরঞ্জাম।</description>
+    <description xml:lang="cs">Nástroje pro konfiguraci a analýzu počítačových sítí.</description>
+    <description xml:lang="de">Tools zur Konfiguration und Analyse von Computer-Netzwerken.</description>
+    <description xml:lang="de_CH">Tools zur Konfiguration und Analyse von Computer-Netzwerken.</description>
+    <description xml:lang="es">Herramientas para configurar y analizar redes informáticas.</description>
+    <description xml:lang="fr">Outils pour configurer et analyser des réseaux informatiques.</description>
+    <description xml:lang="gu">કમ્પ્યૂટર નેટવર્કોનું પૃથ્થકરણ અને રૂપરેખાંકિત કરવા માટેનાં સાધનો.</description>
+    <description xml:lang="hi">कंप्यूटर संजाल के विन्यास और विश्लेषण के लिए औज़ार.</description>
+    <description xml:lang="ia">Utensiles pro configurar e analysar retes de computatores.</description>
+    <description xml:lang="it">Tool per la configurazione e l'analisi delle reti del computer.</description>
+    <description xml:lang="ja">コンピュータネットワークを設定し分析するためのツールです。</description>
+    <description xml:lang="kn">ಗಣಕದ ಜಾಲಬಂಧಗಳನ್ನು ಸಂರಚಿಸಲು ಹಾಗು ವಿಶ್ಲೇಷಿಸಲು ಸಲುವಾಗಿನ ಉಪಕರಣಗಳು.</description>
+    <description xml:lang="ko">컴퓨터 네트워크를 설정하고 분석하기 위한 툴 </description>
+    <description xml:lang="ml">കമ്പ്യൂട്ടര്‍ നെറ്റ്‌വര്‍ക്കുകള്‍ ക്രമീകരിക്കുന്നതിനും നിരീക്ഷിക്കുന്നതിനുമുള്ള ഉപകരണങ്ങള്‍.</description>
+    <description xml:lang="mr">कम्पुटर नेटवर्कस् संरचीत व विश्लेषीत करण्यासाठी साधने.</description>
+    <description xml:lang="or">କମ୍ପୁଟର ନେଟୱର୍କକୁ ବିନ୍ୟାସ ଏବଂ ବିଶ୍ଳେଷଣ କରିବା ପାଇଁ ସାଧନଗୁଡ଼ିକ।</description>
+    <description xml:lang="pa">ਕੰਪਿਊਟਰ ਨੈੱਟਵਰਕ ਸੰਰਚਿਤ ਅਤੇ ਪੜਤਾਲ ਕਰਨ ਲਈ ਟੂਲ।</description>
+    <description xml:lang="pl">Narzędzia do konfigurowania i analizowania sieci komputerowych.</description>
+    <description xml:lang="pt">Ferramentas para configurar e analizar rede de computador.</description>
+    <description xml:lang="pt_BR">Ferramentas para configurar e analizar rede de computador.</description>
+    <description xml:lang="ru">Средства конфигурации и анализа компьютерных сетей.</description>
+    <description xml:lang="sv">Verktyg för att konfigurera och analysera datornätverk.</description>
+    <description xml:lang="ta">கணினி பிணையங்களை கட்டமைக்க மற்றும் ஆய்வுசெய்யவதற்கான கருவிகள்.</description>
+    <description xml:lang="te">కంప్యూటర్ నెట్వర్కులను ఆకృతీకరించుటకు మరియు విశ్లేషించుటకు సాధనములు.</description>
+    <description xml:lang="uk">Програми для налаштування та аналізу комп’ютерних мереж.</description>
+    <description xml:lang="zh">配置和分析電腦網路的工具。</description>
+    <description xml:lang="zh_CN">配置和分析计算机网络的工具。</description>
+    <description xml:lang="zh_TW">配置和分析電腦網路的工具。</description>
+    <default>true</default>
+    <uservisible>false</uservisible>
+    <packagelist>
+      <packagereq type="optional">arpwatch</packagereq>
+      <packagereq type="optional">ipset</packagereq>
+      <packagereq type="optional">iptraf-ng</packagereq>
+      <packagereq type="optional">iptstate</packagereq>
+      <packagereq type="optional">lksctp-tools</packagereq>
+      <packagereq type="optional">netlabel_tools</packagereq>
+      <packagereq type="optional">stunnel</packagereq>
+    </packagelist>
+  </group>
+  <group>
+    <id>networkmanager-submodules</id>
+    <name>Common NetworkManager submodules</name>
+    <name xml:lang="fr">Sous-modules de NetworkManager communément utilisés</name>
+    <name xml:lang="ja">一般的な NetworkManager サブモジュール</name>
+    <name xml:lang="ko">일반적인 NetworkManager 서브 모듈 </name>
+    <name xml:lang="zh_CN">常用 NetworkManager 子模块</name>
+    <description>This group contains NetworkManager submodules that are commonly used, but may not be wanted in some streamlined configurations.</description>
+    <description xml:lang="fr">Ce groupe contient des sous-modules de NetworkManager communément utilisés, mais qui risquent de ne pas être désirables pour certaines configurations simplifiées. </description>
+    <description xml:lang="ja">このグループには、一般的に使用されており複雑な設定が可能な NetworkManager サブモジュールが含まれます。</description>
+    <description xml:lang="ko">이 그룹에는 일부 단순화된 구성에서는 필요하지 않을 수 있는 일반적으로 사용되는 NetworkManager 서브 모듈이 포함되어 있습니다. </description>
+    <description xml:lang="zh_CN">常用的、但可能在一些简化配置中不需要的 NetworkManager 子模块。</description>
+    <default>true</default>
+    <uservisible>false</uservisible>
+    <packagelist>
+      <packagereq type="default">NetworkManager-bluetooth</packagereq>
+      <packagereq type="default">NetworkManager-wifi</packagereq>
+      <packagereq type="default">NetworkManager-wwan</packagereq>
+      <packagereq type="default">iptables</packagereq>
+    </packagelist>
+  </group>
+  <group>
+    <id>performance</id>
+    <name>Performance Tools</name>
+    <name xml:lang="as">কাৰ্য্যক্ষমতা সম্বন্ধীয় সঁজুলিসমূহ</name>
+    <name xml:lang="bn">কর্মক্ষমতা সম্বন্ধীয় সরঞ্জাম</name>
+    <name xml:lang="cs">Nástroje pro správu výkonu</name>
+    <name xml:lang="de">Performanz-Tools</name>
+    <name xml:lang="de_CH">Performanz-Tools</name>
+    <name xml:lang="es">Herramientas de rendimiento</name>
+    <name xml:lang="fr">Outils de performance</name>
+    <name xml:lang="gu">પ્રભાવ સાધનો</name>
+    <name xml:lang="hi">प्रदर्शन औजार</name>
+    <name xml:lang="ia">Instrumentos de rendimento</name>
+    <name xml:lang="it">Tool di prestazione</name>
+    <name xml:lang="ja">パフォーマンスツール</name>
+    <name xml:lang="kn">ಕಾರ್ಯನಿರ್ವಾಹಣಾ ಉಪಕರಣಗಳು</name>
+    <name xml:lang="ko">성능 툴 </name>
+    <name xml:lang="ml">പ്രവര്‍ത്തന ഉപകരണങ്ങള്‍</name>
+    <name xml:lang="mr">क्षमता साधने</name>
+    <name xml:lang="or">କାର୍ଯ୍ୟକ୍ଷମତା ସାଧନମାନ</name>
+    <name xml:lang="pa">ਕਾਰਜਕੁਸ਼ਲਤਾ ਸੰਦ</name>
+    <name xml:lang="pl">Narzędzia wydajności</name>
+    <name xml:lang="pt">Ferramentas de desempenho</name>
+    <name xml:lang="pt_BR">Ferramentas de desempenho</name>
+    <name xml:lang="ru">Средства контроля производительности</name>
+    <name xml:lang="sv">Prestandaverktyg</name>
+    <name xml:lang="ta">செயற்படுத்தக்கூடிய கருவிகள்.</name>
+    <name xml:lang="te">పనితనపు సాధనములు</name>
+    <name xml:lang="uk">Підтримання швидкодії</name>
+    <name xml:lang="zh">效能工具</name>
+    <name xml:lang="zh_CN">性能工具</name>
+    <name xml:lang="zh_TW">效能工具</name>
+    <description>Tools for diagnosing system and application-level performance problems.</description>
+    <description xml:lang="as">চিস্টেম আৰু এপ্লিকেচন স্তৰত কাৰ্য্যক্ষমতা সংক্ৰান্ত সমস্যাৰ কাৰণ নিৰ্ণয় কৰাৰ বিভিন্ন সঁজুলিসমূহ।</description>
+    <description xml:lang="bn">সিস্টেম ও অ্যাপ্লিকেশন স্তরে কর্মক্ষমতা সংক্রান্ত সমস্যার কারণনির্ণয় করার বিভিন্ন সরঞ্জাম।</description>
+    <description xml:lang="cs">Nástroje pro diagnostiku potíží s výkonem na úrovni aplikací a systému.</description>
+    <description xml:lang="de">Tools für die Diagnose von Performanzproblemen auf System- und Applikationslevel.</description>
+    <description xml:lang="de_CH">Tools für die Diagnose von Performanzproblemen auf System- und Applikationslevel.</description>
+    <description xml:lang="es">Herramientas para sistemas de diagnóstico y problemas de rendimiento a nivel de aplicación.</description>
+    <description xml:lang="fr">Outils pour diagnostiquer le système et les problèmes de performance au niveau des applications.</description>
+    <description xml:lang="gu">સિસ્ટમ અને કાર્યક્રમ-સ્તર પ્રભાવ સમસ્યાઓનું નિદારન કરવા માટે સાધનો.</description>
+    <description xml:lang="hi">तंत्र और अनुप्रयोग स्तर के प्रदर्शन की समस्या के निदान के लिए औज़ार.</description>
+    <description xml:lang="ia">Instrumentos pro diagnosticar problemas in le rendimento del systema o de applicationes.</description>
+    <description xml:lang="it">Tool per la diagnosi dei problemi di prestazione del sistema e livello-applicazione.</description>
+    <description xml:lang="ja">システムおよびアプリケーションレベルのパフォーマンス問題を分析するツールです。</description>
+    <description xml:lang="kn">ವ್ಯವಸ್ಥೆಯ ಹಾಗು ಅನ್ವಯ ಮಟ್ಟದ ಕಾರ್ಯನಿರ್ವಹಣೆಯಲ್ಲಿ ಉಂಟಾಗುವ ತೊಂದರೆಗಳನ್ನು ಪತ್ತೆ ಮಾಡುವ ಉಪಕರಣಗಳು.</description>
+    <description xml:lang="ko">시스템과 어플리케이션 수준의 성능 문제를 진단하기 위한 툴 </description>
+    <description xml:lang="ml">സിസ്റ്റത്തിനും പ്രയോഗത്തിനുമുള്ള പ്രവര്‍ത്തന തകരാറുകള്‍ കണ്ടുപിടിക്കുന്നതിനുള്ള പ്രയോഗങ്ങള്‍.</description>
+    <description xml:lang="mr">प्रणाली व ऍप्लिकेशन-स्तरीय क्षमता अडचणींच्या विश्लेषणकरीता साधने.</description>
+    <description xml:lang="or">ତନ୍ତ୍ର ଏବଂ ପ୍ରୟୋଗ-ସ୍ତରୀୟ କାର୍ଯ୍ୟକ୍ଷମତା ସମସ୍ୟାଗୁଡ଼ିକୁ ବିଶ୍ଳେଷଣ କରିବା ପାଇଁ ସାଧନଗୁଡ଼ିକ।</description>
+    <description xml:lang="pa">ਸਿਸਟਮ ਅਤੇ ਐਪਲੀਕੇਸ਼ਨ-ਪੱਧਰ ਦੀਆਂ ਕਾਰਜਕੁਸ਼ਲਤਾ ਸਮੱਸਿਆਵਾਂ ਲਈ ਟੂਲ।</description>
+    <description xml:lang="pl">Narzędzia do diagnozowania problemów z wydajnością na poziomie systemu i aplikacji.</description>
+    <description xml:lang="pt">Ferramentas para diagnosticar problemas de desempenho de sistema e nível de aplicativo.</description>
+    <description xml:lang="pt_BR">Ferramentas para diagnosticar problemas de desempenho de sistema e nível de aplicativo.</description>
+    <description xml:lang="ru">Средства диагностики системы и производительности на уровне приложений.</description>
+    <description xml:lang="sv">Verktyg för diagnostik av prestandaproblem på system- och programnivå.</description>
+    <description xml:lang="ta">கணினியை பரிசோதிக்க மற்றும் பயன்பாடு-மட்ட செயற்படுத்தல் சிக்கலுகளுக்கான கருவிகள்.</description>
+    <description xml:lang="te">సిస్టమ్ మరియు అనువర్తన-స్థాయి పనితనపు సమస్యలను విశ్లేషించుటకు సాధనములు.</description>
+    <description xml:lang="uk">Програми для діагностування проблем швидкодії системи та програмного рівня.</description>
+    <description xml:lang="zh">用來為系統和應用程式層級效能問題進行診斷的工具。</description>
+    <description xml:lang="zh_CN">诊断系统和程序级别性能问题的工具。</description>
+    <description xml:lang="zh_TW">用來為系統和應用程式層級效能問題進行診斷的工具。</description>
+    <default>true</default>
+    <uservisible>false</uservisible>
+    <packagelist>
+      <packagereq type="mandatory">blktrace</packagereq>
+      <packagereq type="default">elfutils</packagereq>
+      <packagereq type="default">iotop</packagereq>
+      <packagereq type="default">perf</packagereq>
+      <packagereq type="default">strace</packagereq>
+      <packagereq type="optional">hdparm</packagereq>
+      <packagereq type="optional">tuned-profiles-cpu-partitioning</packagereq>
+    </packagelist>
+  </group>
+  <category>
+    <id>base-system</id>
+    <name>System</name>
+    <name xml:lang="af">Rekenaar</name>
+    <name xml:lang="am">ሲስተም</name>
+    <name xml:lang="ar">نظام</name>
+    <name xml:lang="as">চিস্টেম</name>
+    <name xml:lang="be">Сытэма</name>
+    <name xml:lang="bn">সিস্টেম</name>
+    <name xml:lang="bs">Sustav</name>
+    <name xml:lang="ca">Sistema</name>
+    <name xml:lang="cs">Systém</name>
+    <name xml:lang="cy">System</name>
+    <name xml:lang="de">System</name>
+    <name xml:lang="de_CH">System</name>
+    <name xml:lang="en_GB">System</name>
+    <name xml:lang="es">Sistema</name>
+    <name xml:lang="eu">Sistema</name>
+    <name xml:lang="fa">سیستم</name>
+    <name xml:lang="fa_IR">سیستم</name>
+    <name xml:lang="fi">Järjestelmä</name>
+    <name xml:lang="fr">Système</name>
+    <name xml:lang="gl">Sistema</name>
+    <name xml:lang="gu">સિસ્ટમ</name>
+    <name xml:lang="hi">तंत्र</name>
+    <name xml:lang="hr">Sustav</name>
+    <name xml:lang="hu">Rendszer</name>
+    <name xml:lang="hy">Համակարգ</name>
+    <name xml:lang="id">Sistem</name>
+    <name xml:lang="ilo">Sistema</name>
+    <name xml:lang="it">Sistema</name>
+    <name xml:lang="ja">システム</name>
+    <name xml:lang="ka">სისტემა</name>
+    <name xml:lang="kn">ವ್ಯವಸ್ಥೆ</name>
+    <name xml:lang="ko">시스템</name>
+    <name xml:lang="lv">Sistēma</name>
+    <name xml:lang="mk">Систем</name>
+    <name xml:lang="ml">സിസ്റ്റം</name>
+    <name xml:lang="mr">प्रणाली</name>
+    <name xml:lang="no">System</name>
+    <name xml:lang="nso">Tshepedišo</name>
+    <name xml:lang="or">ତନ୍ତ୍ର</name>
+    <name xml:lang="pa">ਸਿਸਟਮ</name>
+    <name xml:lang="pl">System</name>
+    <name xml:lang="pt">Sistema </name>
+    <name xml:lang="pt_BR">Sistema </name>
+    <name xml:lang="ru">Система</name>
+    <name xml:lang="si">පද්ධතිය</name>
+    <name xml:lang="sl">Sistem</name>
+    <name xml:lang="sq">Sistem</name>
+    <name xml:lang="ta">கணினி</name>
+    <name xml:lang="te">వ్యవస్థ</name>
+    <name xml:lang="th">ระบบ</name>
+    <name xml:lang="tr">Sistem</name>
+    <name xml:lang="uk">Система</name>
+    <name xml:lang="ur">نظام</name>
+    <name xml:lang="vi">Hệ thống</name>
+    <name xml:lang="zh">系統</name>
+    <name xml:lang="zh_CN">系统</name>
+    <name xml:lang="zh_TW">系統</name>
+    <name xml:lang="zu">Isistimu</name>
+    <description>Core system components.</description>
+    <description xml:lang="as">চিস্টেমৰ মূখ্য উপাদানসমূহ।</description>
+    <description xml:lang="bn">সিস্টেমের কোর সামগ্রী।</description>
+    <description xml:lang="cs">Základní komponenty systému.</description>
+    <description xml:lang="de">Zentrale Systemkomponenten.</description>
+    <description xml:lang="de_CH">Zentrale Systemkomponenten.</description>
+    <description xml:lang="es">Componentes de sistema Core</description>
+    <description xml:lang="fr">Composants du système de base.</description>
+    <description xml:lang="gu">કોર સિસ્ટમ સાધનો.</description>
+    <description xml:lang="hi">प्रधान सिस्टम घटक</description>
+    <description xml:lang="it">Componenti di base del sistema.</description>
+    <description xml:lang="ja">コアシステムコンポーネント</description>
+    <description xml:lang="kn">ಪ್ರಮುಖ ವ್ಯವಸ್ಥೆಯ ಘಟಕಗಳು.</description>
+    <description xml:lang="ko">핵심 시스템 콤포넌트.</description>
+    <description xml:lang="ml">കോര്‍ സിസ്റ്റം ഘടകങ്ങള്‍.</description>
+    <description xml:lang="mr">कोर प्रणाली घटके.</description>
+    <description xml:lang="or">ମୂଖ୍ୟ ତନ୍ତ୍ର ଉପାଦାନଗୁଡ଼ିକ।</description>
+    <description xml:lang="pa">ਮੁੱਖ ਸਿਸਟਮ ਹਿੱਸੇ।</description>
+    <description xml:lang="pl">Główne składniki systemu.</description>
+    <description xml:lang="pt">Componentes de sistema central</description>
+    <description xml:lang="pt_BR">Componentes de sistema central</description>
+    <description xml:lang="ru">Основные компоненты системы.</description>
+    <description xml:lang="sv">Grundläggande systemkomponenter.</description>
+    <description xml:lang="ta">உள்ளீடு கணினி ஆக்கக்கூறுகள்.</description>
+    <description xml:lang="te">కోర్ సిస్టమ్ మూలకములు.</description>
+    <description xml:lang="uk">Основні компонент систем.</description>
+    <description xml:lang="zh">核心系統元件。</description>
+    <description xml:lang="zh_CN">核新系统组件。</description>
+    <description xml:lang="zh_TW">核心系統元件。</description>
+    <display_order>10</display_order>
+    <grouplist>
+      <groupid>network-tools</groupid>
+      <groupid>performance</groupid>
+    </grouplist>
+  </category>
+  <environment>
+    <id>minimal-environment</id>
+    <name>Minimal Install</name>
+    <name xml:lang="as">নূন্যতম ইনস্টল</name>
+    <name xml:lang="cs">Minimální instalace</name>
+    <name xml:lang="de">Minimale Installation</name>
+    <name xml:lang="de_CH">Minimale Installation</name>
+    <name xml:lang="es">Instalación mínima</name>
+    <name xml:lang="fr">Installation minimale</name>
+    <name xml:lang="gu">ન્યૂનતમ સ્થાપન</name>
+    <name xml:lang="hi">न्यूनतम संस्थापन</name>
+    <name xml:lang="it">Installazione minima</name>
+    <name xml:lang="ja">最小限のインストール</name>
+    <name xml:lang="kn">ಕನಿಷ್ಟ ಅನುಸ್ಥಾಪನೆ</name>
+    <name xml:lang="ko">최소 설치</name>
+    <name xml:lang="ml">ഏറ്റവും കുറഞ്ഞ ഇന്‍സ്റ്റോള്‍</name>
+    <name xml:lang="mr">किमान इंस्टॉल</name>
+    <name xml:lang="or">ସର୍ବନିମ୍ନ ସ୍ଥାପନ</name>
+    <name xml:lang="pa">ਘੱਟ ਤੋਂ ਘੱਟ ਇੰਸਟਾਲ</name>
+    <name xml:lang="pl">Minimalna instalacja</name>
+    <name xml:lang="pt">Instalações Mínimas</name>
+    <name xml:lang="pt_BR">Instalações Mínimas</name>
+    <name xml:lang="ru">Минимальная установка</name>
+    <name xml:lang="ta">குறைந்தபட்ச நிறுவல்</name>
+    <name xml:lang="te">కనీసపు సంస్థాపన</name>
+    <name xml:lang="uk">Мінімальна система</name>
+    <name xml:lang="zh">最小型安裝</name>
+    <name xml:lang="zh_CN">最小安装</name>
+    <name xml:lang="zh_TW">最小型安裝</name>
+    <description>Basic functionality.</description>
+    <description xml:lang="as">মৌলি কাৰ্য্যকৰীতা।</description>
+    <description xml:lang="cs">Základní funkcionalita.</description>
+    <description xml:lang="de">Grundlegende Funktionalität.</description>
+    <description xml:lang="de_CH">Grundlegende Funktionalität.</description>
+    <description xml:lang="es">Funcionalidad básica.</description>
+    <description xml:lang="fr">Fonctionnalité de base.</description>
+    <description xml:lang="gu">મૂળભૂત વિધેય.</description>
+    <description xml:lang="hi">मौलिक प्रकार्यात्मकता.</description>
+    <description xml:lang="it">Funzione di base.</description>
+    <description xml:lang="ja">基本的な機能です。</description>
+    <description xml:lang="kn">ಮೂಲಭೂತ ಕ್ರಿಯಾಶೀಲತೆ.</description>
+    <description xml:lang="ko">기본적인 기능입니다.</description>
+    <description xml:lang="ml">അടിസ്ഥാന പ്രവൃത്തിവിശേഷണം.</description>
+    <description xml:lang="mr">मूळ कार्यक्षमता.</description>
+    <description xml:lang="or">ସାଧାରଣ କାର୍ଯ୍ୟକାରିତା।</description>
+    <description xml:lang="pa">ਮੁੱਢਲੀ ਕਾਰਜਸ਼ੀਲਤਾ।</description>
+    <description xml:lang="pl">Podstawowa funkcjonalność.</description>
+    <description xml:lang="pt">Função básica</description>
+    <description xml:lang="pt_BR">Função básica</description>
+    <description xml:lang="ru">Базовая функциональность.</description>
+    <description xml:lang="ta">அடிப்படை செயலம்சம்.</description>
+    <description xml:lang="te">ప్రాథమిక ఫంక్షనాలిటి.</description>
+    <description xml:lang="uk">Основні можливості.</description>
+    <description xml:lang="zh">基本功能。</description>
+    <description xml:lang="zh_CN">基本功能。</description>
+    <description xml:lang="zh_TW">基本功能。</description>
+    <display_order>3</display_order>
+    <grouplist>
+      <groupid>core</groupid>
+    </grouplist>
+    <optionlist>
+      <groupid>sotolito-core</groupid>
+    </optionlist>
+  </environment>
+  <environment>
+    <id>server-product-environment</id>
+    <name>Server</name>
+    <name xml:lang="fr">Serveurs</name>
+    <name xml:lang="ja">サーバー</name>
+    <name xml:lang="ko">서버</name>
+    <name xml:lang="zh_CN">服务器</name>
+    <description>An integrated, easy-to-manage server.</description>
+    <description xml:lang="de">Ein integrierter, einfach zu verwaltender Server.</description>
+    <description xml:lang="es">Un servidor integrado y fácil de administrar.</description>
+    <description xml:lang="fr">Un serveur intégré, facile à gérer.</description>
+    <description xml:lang="it">Un server integrato e facile da gestire.</description>
+    <description xml:lang="ja">統合された、管理が容易なサーバーです。</description>
+    <description xml:lang="ko">통합되고 관리가 쉬운 서버 </description>
+    <description xml:lang="pt">Um servidor integrado e fácil de gerir.</description>
+    <description xml:lang="pt_BR">Um servidor integrado e fácil de gerir.</description>
+    <description xml:lang="ru">Интегрированный, простой в управлении сервер.</description>
+    <description xml:lang="zh_CN">集成的易于管理的服务器</description>
+    <description xml:lang="zh_TW">一個集成，易於管理的服務器。</description>
+    <display_order>1</display_order>
+    <grouplist>
+      <groupid>core</groupid>
+      <groupid>headless-management</groupid>
+    </grouplist>
+    <optionlist>
+      <groupid>performance</groupid>
+    </optionlist>
+  </environment>
+</comps>
