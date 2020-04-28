@@ -22,7 +22,8 @@ There are three versions of SotolitoOS:
 ### ISO: Download
 The SotolitoOS x86_64 ISO can be downloaded from this location:
 
-* https://sotolitolabs.com/dist/centos/8/x86_64/iso/SotolitoOS-Stream-x86_64-8.1-Stream-generic.iso
+* https://sotolitolabs.com/dist/centos/8/x86_64/iso/SotolitoOS-Stream-x86_64-8.3-Stream-generic.iso
+* https://sotolitolabs.com/dist/centos/8/aarch64/Centos-8-aarch64-RaspberryPi.img.xz
 
 
 ### ISO: Creation
