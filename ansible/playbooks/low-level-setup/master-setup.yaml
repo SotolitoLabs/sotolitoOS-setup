@@ -31,6 +31,19 @@
       src: ../../setup_sotolito_node.sh
       dest: /etc/dhcp/scripts
       mode: '0755'
+
+  - name: Change dhcpd user settings for node bootstrap
+    user:
+      name: dhcpd
+      shell: /bin/bash
+      home: /etc/dhcp/scripts/
+      groups: admins,developers
+      append: yes
+
+  - name: Create dhcpd ssh directory
+    command: mkdir /etc/dhcp/scripts/.ssh
+
+
   - name: Create Sotolito Ansible directory
     file:
       path: /etc/ansible/sotolito/playbooks
@@ -41,13 +54,23 @@
     copy:
       src: ../add-node.yaml
       dest: /etc/ansible/sotolito/playbooks
+  - name: Copy cockpit template
+    copy:
+      src: /home/sotolito/moximo-setup/ansible/playbooks/templates/cockpit-machine.j2
+      dest: /etc/ansible/sotolito/playbooks
   - name: Create master ssh key
     openssh_keypair:
       path: /root/.ssh/id_rsa
       size: 2048
+  - name: Copy master public key for nodes
+    copy:
+      src: /root/.ssh/id_rsa.pub
+      dest: /etc/ansible/sotolito/playbooks/master_id_rsa.pub
+      mode: '0755'
+
   - name: Create cluster bootstrap ssh key
     openssh_keypair:
-      path: /root/.ssh/sotolito_id_rsa
+      path: /etc/dhcp/scripts/.ssh/sotolito_id_rsa
       size: 2048
   - name: Put SELinux in permissive mode, logging actions that would be blocked.
     selinux:

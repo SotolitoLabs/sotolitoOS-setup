@@ -6,6 +6,7 @@
     with_items:
        - chrony
        - tar
+       - dosfstools
   - name: Set timezone to America/Chihuahua
     timezone:
       name: America/Chihuahua
@@ -96,7 +97,7 @@
       - unpack-stage3   
   - name: "Copy fstab to Hard Drive"
     copy:
-      src: /home/sotolito/sotolitoOS-setup/etc/fstab
+      src: /home/sotolito/sotolitoOS-setup/etc/fstab.rpi
       dest: /mnt/sotolito/etc/fstab
       owner: root
       group: root
