@@ -49,7 +49,7 @@
         }
 
         function shutdown_nodes() {
-            var proc = cockpit.spawn(["/usr/bin/ansible-playbook", "-i", "/home/sotolito/moximo-setup/ansible/hosts/cluster_common", "/home/sotolito/moximo-setup/ansible/playbooks/shutdown.yaml"]);
+            var proc = cockpit.spawn(["/usr/bin/ansible-playbook", "-i", "/home/sotolito/sotolitoOS-setup/ansible/hosts/cluster_common", "/home/sotolito/sotolitoOS-setup/ansible/playbooks/shutdown.yaml"]);
             proc.done(shutdown_success);
             proc.stream(shutdown_output);
             proc.fail(shutdown_fail);
