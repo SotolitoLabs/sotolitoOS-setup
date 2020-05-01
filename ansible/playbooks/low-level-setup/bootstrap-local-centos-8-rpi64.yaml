@@ -101,13 +101,20 @@
       owner: root
       group: root
       mode: 0755
-#  - name: "Copy extlinux configuration"
-#    copy:
-#      src: /home/sotolito/moximo-setup/boot/extlinux/extlinux.conf
-#      dest: /boot/extlinux/extlinux.conf
-#      owner: root
-#      group: root
-#      mode: 0755     
+  - name: "Backup SD boot configuration"
+    copy:
+      src: /boot/cmdline.txt
+      dest: /boot/cmdline.txt.orig
+      owner: root
+      group: root
+      mode: 0755     
+  - name: "Copy boot configuration"
+    copy:
+      src: cmdline.txt
+      dest: /boot/cmdline.txt
+      owner: root
+      group: root
+      mode: 0755     
   - name: "Setting autorelabel for SELinux"
     copy:
       content: ""
