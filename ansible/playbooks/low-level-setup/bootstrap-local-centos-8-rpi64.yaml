@@ -96,7 +96,7 @@
       - unpack-stage3   
   - name: "Copy fstab to Hard Drive"
     copy:
-      src: /home/sotolito/moximo-setup/etc/fstab
+      src: /home/sotolito/sotolitoOS-setup/etc/fstab
       dest: /mnt/sotolito/etc/fstab
       owner: root
       group: root
