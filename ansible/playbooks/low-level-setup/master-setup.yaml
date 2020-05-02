@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: 127.0.0.1
   vars:
     node_ip_address: 10.253.0.1
   tasks:
@@ -14,35 +14,35 @@
         - cockpit-dashboard
         - cockpit-podman
         - cockpit-pcp
-        - docker
         - git
-        - dhcp-common
-        - dhcp
-        - NetworkManager-glib
+        #- dhcp-common
+        #- dhcp
+        #- NetworkManager-glib
+        - NetworkManager-libnm
         - nm-connection-editor
-        - libsemanage-python
-        - policycoreutils-python
+        #- libsemanage-python
+        #- policycoreutils-python
       state: present
-  - name: Configure DHCP for internal cluster
-    copy:
-      src: ../../../sotolitoOS-remix/files/dhcpd.conf
-      dest: /etc/dhcp/
-  - name: Copy DHCP setup script for nodes
-    copy:
-      src: ../../setup_sotolito_node.sh
-      dest: /etc/dhcp/scripts
-      mode: '0755'
+#  - name: Configure DHCP for internal cluster
+#    copy:
+#      src: ../../../sotolitoOS-remix/files/dhcpd.conf
+#      dest: /etc/dhcp/
+#  - name: Copy DHCP setup script for nodes
+#    copy:
+#      src: ../../setup_sotolito_node.sh
+#      dest: /etc/dhcp/scripts
+#      mode: '0755'
 
-  - name: Change dhcpd user settings for node bootstrap
-    user:
-      name: dhcpd
-      shell: /bin/bash
-      home: /etc/dhcp/scripts/
-      groups: admins,developers
-      append: yes
+#  - name: Change dhcpd user settings for node bootstrap
+#    user:
+#      name: dhcpd
+#      shell: /bin/bash
+#      home: /etc/dhcp/scripts/
+#      groups: admins,developers
+#      append: yes
 
-  - name: Create dhcpd ssh directory
-    command: mkdir /etc/dhcp/scripts/.ssh
+#  - name: Create dhcpd ssh directory
+#    command: mkdir /etc/dhcp/scripts/.ssh
 
 
   - name: Create Sotolito Ansible directory
@@ -57,7 +57,7 @@
       dest: /etc/ansible/sotolito/playbooks
   - name: Copy cockpit template
     copy:
-      src: /home/sotolito/moximo-setup/ansible/playbooks/templates/cockpit-machine.j2
+      src: /home/sotolito/sotolitoOS-setup/ansible/playbooks/templates/cockpit-machine.j2
       dest: /etc/ansible/sotolito/playbooks
   - name: Create master ssh key
     openssh_keypair:
@@ -69,10 +69,10 @@
       dest: /etc/ansible/sotolito/playbooks/master_id_rsa.pub
       mode: '0755'
 
-  - name: Create cluster bootstrap ssh key
-    openssh_keypair:
-      path: /etc/dhcp/scripts/.ssh/sotolito_id_rsa
-      size: 2048
+#  - name: Create cluster bootstrap ssh key
+#    openssh_keypair:
+#      path: /etc/dhcp/scripts/.ssh/sotolito_id_rsa
+#      size: 2048
   - name: Put SELinux in permissive mode, logging actions that would be blocked.
     selinux:
       policy: targeted
@@ -102,7 +102,7 @@
       name: "{{ item }}"
     with_items:
         - sshd 
-        - dhcpd
+        #- dhcpd
         - pmlogger
         - pmcd
         - cockpit.socket
