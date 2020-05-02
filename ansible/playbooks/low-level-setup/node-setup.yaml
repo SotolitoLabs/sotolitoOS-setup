@@ -12,7 +12,6 @@
         - podman
         - cockpit
         - cockpit-pcp
-        - docker
         - git
         - NetworkManager-glib
         - nm-connection-editor
