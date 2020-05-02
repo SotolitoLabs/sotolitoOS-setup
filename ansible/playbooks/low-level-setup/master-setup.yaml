@@ -9,9 +9,10 @@
         #- kernel-ml
         - ansible
         - pcp
+        - podman
         - cockpit
         - cockpit-dashboard
-        - cockpit-docker
+        - cockpit-podman
         - cockpit-pcp
         - docker
         - git
