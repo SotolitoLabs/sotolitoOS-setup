@@ -13,10 +13,8 @@
         - cockpit
         - cockpit-pcp
         - git
-        - NetworkManager-glib
+        - NetworkManager-libnm
         - nm-connection-editor
-        - libsemanage-python
-        - policycoreutils-python
       state: present
   - name: Create Sotolito Ansible directory
     file:
