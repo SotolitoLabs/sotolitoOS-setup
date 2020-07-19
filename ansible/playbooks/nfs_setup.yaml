@@ -1,0 +1,25 @@
+---
+- hosts: nodes
+  tasks:
+  - name: Install NFS utils
+    action: package name={{item}} state=installed
+    with_items:
+      - nfs-utils
+
+  - name: Create data directory
+    file:
+      path: /var/data
+      state: directory
+      mode: '0755'
+
+  - name: Add directory to exports file
+    command: "echo '/var/data      10.253.0.0/24(rw,sync,no_all_squash,no_root_squash'  >  /etc/exports"
+
+  - name: Enable NFS service
+    systemd:
+      name: nfs-server
+      enabled: yes
+      state: started
+
+  - name: "Export filesystems"
+    command: "exportfs -arv"
