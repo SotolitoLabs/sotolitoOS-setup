@@ -19,10 +19,14 @@ There are three versions of SotolitoOS:
 - Cockpit web manager
 
 
+## Download
+
 ### ISO: Download
 The SotolitoOS x86_64 ISO can be downloaded from this location:
 
 * https://sotolitolabs.com/dist/centos/8/x86_64/iso/SotolitoOS-Stream-x86_64-8.3-Stream-generic.iso
+
+### RaspberryPi 3 and 4 image
 * https://sotolitolabs.com/dist/centos/8/aarch64/Centos-8-aarch64-RaspberryPi.img.xz
 
 
