@@ -1,0 +1,137 @@
+---
+- hosts: masters
+  tasks:
+  - name: Install nginx
+    action: package name={{item}} state=installed
+    with_items:
+      - nginx
+
+  - name: Create data directory
+    file:
+      path: /var/sotolito/node_3/html
+      owner: nginx
+      group: nginx
+      state: directory
+      mode: '0755'
+
+  - name: Create a symbolic link to html directory
+    file:
+      src: /var/sotolito/node_3/html
+      dest: /var/sotolito/html
+      owner: nginx
+      group: nginx
+      state: link
+
+  - name: Add nginx configuration
+    template:
+      src: nginx-no-container.conf.j2
+      dest: /etc/nginx/nginx.conf
+      owner: root
+      group: wheel
+      mode: '0644'
+
+  - name: Add php-fpm balanced configuration using node2 and node3
+    template:
+      src: nginx-php-fpm-no-container.j2
+      dest: /etc/nginx/conf.d/php-fpm.conf
+      owner: root
+      group: wheel
+      mode: '0644'
+
+  - name: Add nextcloud configuration
+    template:
+      src: conf.d-nextcloud_nginx-no-container.j2
+      dest: /etc/nginx/conf.d/nextcloud_nginx.conf
+      owner: root
+      group: wheel
+      mode: '0644'
+
+  - name: Enable nginx Service
+    systemd:
+      name: nginx
+      enabled: yes
+      state: started
+
+  - name: Open HTTPS port 
+    firewalld:
+      service: https
+      permanent: yes
+      state: enabled
+
+  - name: Open HTTP port 
+    firewalld:
+      service: http
+      permanent: yes
+      state: enabled
+
+
+# Node configuration
+
+- hosts: nodes
+  tasks:
+  - name: Install php-fpm and mariadb
+    action: package name={{item}} state=installed
+    with_items:
+      - php-fpm
+      - mariadb-server
+
+  - name: Create a symbolic link to html directory
+    file:
+      src: /var/sotolito/node_3/html
+      dest: /var/sotolito/html
+      owner: nginx
+      group: nginx
+      state: link
+
+  - name: Add php-fpm www pool configuration
+    template:
+      src: php-fpm-no-container-www.conf.j2
+      dest: /etc/php-fpm.d/www.conf
+      owner: root
+      group: wheel
+      mode: '0644'
+
+  - name: Ensure the nginx group exists
+    group:
+      name: nginx
+      gid: 979
+      state: present
+
+  - name: Ensure the nginx user exists
+    user:
+      name: nginx
+      shell: /sbin/nologin
+      home: /var/sotolito/node_3/html
+      comment: Nginx web server (Created by Ansible)
+      uid: 979
+      group: nginx
+
+  - name: Create a symbolic link to html directory
+    file:
+      src: /var/sotolito/node_3/html
+      dest: /var/sotolito/html
+      owner: nginx
+      group: nginx
+      state: link
+
+  - name: Enable php-fpm Service
+    systemd:
+      name: php-fpm
+      enabled: yes
+      state: restarted
+
+  - name: Enable mariadb Service
+    systemd:
+      name: mariadb
+      enabled: yes
+      state: restarted
+
+  - name: Open php-fpm port
+    firewalld:
+      port: 9000/tcp
+      permanent: yes
+      immediate: yes
+      state: enabled
+    tags:
+      - network
+

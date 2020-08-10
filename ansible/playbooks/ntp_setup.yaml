@@ -1,0 +1,19 @@
+---
+- hosts: all
+  tasks:
+  - name: Install NTP utils
+    action: package name={{item}} state=installed
+    with_items:
+      - chrony
+
+  - name: Enable NTP client service
+    systemd:
+      name: chronyd
+      enabled: yes
+      state: restarted
+
+  - name: Set timezone to America/Chihuahua
+    timezone:
+      name: America/Chihuahua
+
+

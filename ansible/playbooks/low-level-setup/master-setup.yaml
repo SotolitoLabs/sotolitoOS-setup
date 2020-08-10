@@ -99,6 +99,7 @@
     systemd:
       state: started
       enabled: yes
+      no_block: yes
       name: "{{ item }}"
     with_items:
         - sshd 
