@@ -8,6 +8,13 @@
       owner: root
       group: root
       mode: 0644
+  - name: Copy hosts file
+    copy:
+      src: /etc/hosts
+      dest: /etc/hosts
+      owner: root
+      group: root
+      mode: 0644
   - name: Copy cockpit branding directory
     copy:
       src: ../../usr/share/cockpit/branding/sotolito/
