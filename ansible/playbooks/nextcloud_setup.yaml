@@ -1,0 +1,38 @@
+---
+- hosts: masters
+  tasks:
+  - name: Download NextCloud
+    get_url:
+      url: https://download.nextcloud.com/server/releases/latest.tar.bz2
+      dest: /var/sotolito/html
+
+  - name: Extract NextCloud
+    unarchive:
+      src: /var/sotolito/html/latest.tar.bz2
+      dest: /var/sotolito/html
+
+- hosts: 10.253.0.2
+  vars:
+    nextcloud_db: nextcloud_db
+    nextcloud_user: nextcloud_user
+    nextcloud_user_pw: prueba123
+    mysql_root_pw: prueba123
+  tasks:
+  - name: Create the nextcloud database
+    mysql_db:
+      login_user: root
+      login_password: "{{ mysql_root_pw }}"
+      name: "{{ nextcloud_db }}"
+      state: present
+
+  - name: Create NextCloud databse user
+    mysql_user:
+      login_user: root
+      login_password: "{{ mysql_root_pw }}"
+      name: "{{ nextcloud_user }}"
+      password: "{{ nextcloud_user_pw }}"
+      priv: "{{ nextcloud_db }}.*:ALL"
+      state: present
+
+
+
