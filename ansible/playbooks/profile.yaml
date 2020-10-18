@@ -1,0 +1,11 @@
+---
+- hosts: nodes
+  tasks:
+  - name: Copy environment file to cluster nodes
+    copy:
+      src: /etc/profile.d/sotolito_env.sh
+      dest: /etc/profile.d/sotolito_env.sh
+      owner: root
+      group: root
+      mode: 0644
+
