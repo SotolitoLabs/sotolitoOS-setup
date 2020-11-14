@@ -36,8 +36,22 @@
   - name: "Bootstrap galera cluster"
     command: "galera_new_cluster"
 
+
+
 - hosts: nodes
   tasks:
+  - name: Allow access to the Galera TCP ports
+    action: seport ports={{ item }} proto=tcp setype=mysqld_port_t state=present
+    with_items:
+      - 4567
+      - 4568
+      - 4444
+  - name: Allow access to the Galera UDP port
+    seport:
+      ports: 4567
+      proto: tcp
+      setype: http_port_t
+      state: present
   - name: Start MariaDB services
     systemd:
       name: mariadb
