@@ -8,23 +8,14 @@ The Cloud image starts the cloud-init process so it needs to be disabled.
 ```
 $ mkdir qcow
 $ wget https://cloud.centos.org/centos/8/aarch64/images/https://cloud.centos.org/centos/8/aarch64/images/CentOS-8-GenericCloud-8.3.2011-20201204.2.aarch64.qcow2
-
-<!--- $ qemu-img resize CentOS-8-GenericCloud-8.1.1911-20200113.3.aarch64.qcow2 +3G --->
-
-$ virt-customize -a CentOS-8-GenericCloud-8.1.1911-20200113.3.aarch64.qcow2 --root-password password:rootpw
-$ guestfish <<_EOF_
-add CentOS-8-GenericCloud-8.1.1911-20200113.3.aarch64.qcow2
-run
-mount /dev/sda2 /
-touch /etc/cloud/cloud-init.disabled
-_EOF_
+$ virt-customize -a CentOS-8-GenericCloud-8.1.1911-20200113.3.aarch64.qcow2 --root-password password:rootpw --uninstall cloud-init
 ```
 
 **Genrate the rootfs from the CentOS repos**
 Login as root with the password already provided.
 
 ```
-$ DISPLAY=:0 virt-install --name Centos-8-aarch-Rootfs --ram 1024 --disk path=CentOS-8-GenericCloud-8.1.1911-20200113.3.aarch64.qcow2 --vcpus 1 --os-type linux --os-variant generic --arch aarch64 --import
+$ DISPLAY=:0 virt-install --name Centos-8-aarch-Rootfs --ram 1024 --disk path=CentOS-8-GenericCloud-8.3.2011-20201204.2.aarch64.qcow2 --vcpus 1 --os-type linux --os-variant generic --arch aarch64 --import
 # mkdir rootfs
 # dnf --releasever=8 --enablerepo=BaseOS --installroot="$(pwd)/rootfs" groupinstall 'Minimal Install' 2>&1| tee dnf-rootfs.log
 # echo "root:centos" | chpasswd -R rootfs
@@ -143,3 +134,5 @@ https://www.raspberrypi.org/documentation/linux/kernel/building.md
 https://github.com/sakaki-/gentoo-on-rpi-64bit/wiki/Build-an-RPi3-64bit-Kernel-on-your-crossdev-PC
 
 https://www.raspberrypi.org/documentation/configuration/config-txt/boot.md
+
+http://www.rootzilopochtli.com/2019/09/laboratorio-de-pruebas/
