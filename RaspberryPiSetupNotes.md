@@ -7,8 +7,10 @@ The Cloud image starts the cloud-init process so it needs to be disabled.
 
 ```
 $ mkdir qcow
-$ wget https://cloud.centos.org/centos/8/aarch64/images/CentOS-8-GenericCloud-8.1.1911-20200113.3.aarch64.qcow2
+$ wget https://cloud.centos.org/centos/8/aarch64/images/https://cloud.centos.org/centos/8/aarch64/images/CentOS-8-GenericCloud-8.3.2011-20201204.2.aarch64.qcow2
+<!--
 $ qemu-img resize CentOS-8-GenericCloud-8.1.1911-20200113.3.aarch64.qcow2 +3G
+-->
 $ virt-customize -a CentOS-8-GenericCloud-8.1.1911-20200113.3.aarch64.qcow2 --root-password password:rootpw
 $ guestfish <<_EOF_
 add CentOS-8-GenericCloud-8.1.1911-20200113.3.aarch64.qcow2
