@@ -81,6 +81,7 @@ $ git clone --depth=1 https://github.com/raspberrypi/linux
 $ cd linux
 $ ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make bcm2711_defconfig
 $ sed -i s/CONFIG_XFS_FS=m/CONFIG_XFS_FS=y/ .config
+$ echo "CONFIG_PCIEPORTBUS=y" >> .config
 $ ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make LOCALVERSION= -j7 Image modules dtbs
 $ sudo mount /dev/mmcblk0p2 /mnt
 $ sudo mount /dev/mmcblk0p1 /mnt/boot/
