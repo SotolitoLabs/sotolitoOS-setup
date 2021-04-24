@@ -26,7 +26,7 @@ PACKAGES_PATH="${FULL_PATH}/sotolito-iso/iso-dev/Packages/"
 echo "DEBUG: PACKAGES PATH: ${PACKAGES_PATH}"
 
 #BASE_IMAGE_URL="http://mirrors.usc.edu/pub/linux/distributions/centos/7.6.1810/isos/x86_64/${BASE_IMAGE}"
-BASE_IMAGE_URL="http://mirror.keystealth.org/centos/8-stream/isos/x86_64/CentOS-Stream-8-x86_64-20191219-boot.iso"
+BASE_IMAGE_URL="http://mirror.keystealth.org/centos/8-stream/isos/x86_64/CentOS-Stream-8-x86_64-20210421-boot.iso"
 KERNEL_ML_PACKAGE_URL="${KERNEL_MIRROR}/${KERNEL_ML_PACKAGE}"
 KERNEL_ML_TOOLS_PACKAGE_URL="${KERNEL_MIRROR}/${KERNEL_ML_TOOLS_PACKAGE}"
 # We use the same version as the centos base image
@@ -129,7 +129,11 @@ sed -i 's/CentOS/SotolitoOS/' isolinux.cfg
 sed -i 's/CentOS/SotolitoOS/' grub.conf
 #sed -i 's/-x86_64-dvd/ rd.retry=10 rd.timeout=15 \n menu default/' isolinux.cfg
 sed -i 's/menu default//' isolinux.cfg
-sed -i 's/-x86_64-dvd quiet/ quiet rd.retry=10 rd.timeout=15  ks=cdrom:\/ks\/sotolitoOS.ks\n  menu default/' isolinux.cfg
+if [[ "${1}" == "generic" ]]; then
+    sed -i 's/-x86_64-dvd quiet/ quiet rd.retry=10 rd.timeout=15\n  menu default/' isolinux.cfg
+else
+    sed -i 's/-x86_64-dvd quiet/ quiet rd.retry=10 rd.timeout=15  ks=cdrom:\/ks\/sotolitoOS.ks\n  menu default/' isolinux.cfg
+fi
 
 # poor man's branding
 echo "Branding Initrd"
