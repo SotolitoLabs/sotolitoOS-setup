@@ -44,4 +44,5 @@ After a succesful execution you shuld have the `SotolitoOS-Stream-x86_64-8-Strea
 
 
 ### RaspberryPi 3 and 4 Image creation
-TODO
+
+https://github.com/SotolitoLabs/sotolitoOS-setup/blob/master/RaspberryPiSetupNotes.md
