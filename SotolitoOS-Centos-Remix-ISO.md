@@ -2,6 +2,22 @@
 
 The SotolitoOS Enterprise edition is a CentOS derivative.
 
+## Lorax Composer
+
+Lorax Composer is a tool for creatin CentOS remixes.
+
+## Prepare Builder VM
+
+```
+[root@centos8 ~]# dnf install -y yum-utils createrepo httpd lorax-composer
+[root@centos8 ~]# setenforce 0
+[root@centos8 ~]# systemctl enable httpd
+[root@centos8 ~]# systemctl start httpd
+```
+https://docs.centos.org/en-US/centos/install-guide/Composer/
+
+## Manual
+
 ## Setup Build Environment
 
 **Download centos**
