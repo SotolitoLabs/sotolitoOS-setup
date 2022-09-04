@@ -2,6 +2,8 @@
 ## Distribution Setup
 Currently there's no CentOS version of aarch64 for the Raspberry pi so we have to build our kernel and dtb files from the Raspberry Pi Linux sources
 
+
+### CentOS (server)
 **Prepare the image for creating the rootfs**
 The Cloud image starts the cloud-init process so it needs to be disabled.
 
@@ -28,6 +30,8 @@ Copy the centos-8-rootfs.tar.gz from the host
 ```
 $ virt-copy-out -d Centos-8-aarch-Rootfs /root/centos-8-rootfs.tar.gz .
 ```
+
+
 
 **Create partitions on the SD Card**
 Use fdisk, sfdisk or cfdisk to create this partition schema:
@@ -60,6 +64,29 @@ $ sudo tar -zxvf centos-8-rootfs.tar.gz -C /mnt --strip 1
 /dev/mmcblk0p1  /boot   vfat    defaults        0       0
 EOF
 ```
+
+### Fedora (Desktop)
+
+Fedora installation is a bit different since the image is ready to use. 
+The only thing missing is the Raspberry Pi Kernel
+
+** Download the Fedora aarch64 image **
+
+Download the image and uncompress it
+
+```
+$ wget https://download.fedoraproject.org/pub/alt/iot/36/IoT/aarch64/images/Fedora-IoT-36-20220618.0.aarch64.raw.xz
+$ xz -d Fedora-IoT-36-20220618.0.aarch64.raw.xz
+```
+
+** Mount the image **
+
+```
+$ mkdir mnt
+$ 
+```
+
+
 
 
 ## Kernel building
