@@ -114,9 +114,11 @@ $ sudo mount /dev/mmcblk0p2 /mnt
 $ sudo mount /dev/mmcblk0p1 /mnt/boot/
 $ sudo ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- INSTALL_MOD_PATH=/mnt make modules_install
 $ sudo cp arch/arm64/boot/Image.gz /mnt/boot/kernel8.img
-$ sudo cp arch/arm/boot/dts/* /mnt/boot/
+$ sudo cp arch/arm64/boot/dts/broadcom/*.dtb /mnt/boot/
+$ sudo cp arch/arm64/boot/dts/overlays/*.dtb* /mnt/boot/overlays/
+$ sudo cp arch/arm64/boot/dts/overlays/README /mnt/boot/overlays/
 $ sudo cp -v Module.symvers System.map /mnt/boot/
-$ sudo cp arch/arm/boot/dts/overlays/* /mnt/boot/overlays/
+
 # cat <<EOF>> /mnt/boot/config.txt
 gpu_mem=64
 arm_64bit=1
@@ -124,7 +126,7 @@ arm_64bit=1
 EOF
 ```
 
-*The arm_64bit option has to be set no zero for the board to boot in 64 bit mode*
+*The arm_64bit option has to be set to one for the board to boot in 64 bit mode*
 
 
 If you're already on arm just use dracut and be happy
