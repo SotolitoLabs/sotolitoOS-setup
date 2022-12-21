@@ -106,7 +106,7 @@ $ git clone --depth=1 https://github.com/raspberrypi/linux
 
 ```
 $ cd linux
-$ ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make bcm2711_defconfig
+$ ARCH=arm64 KERNEL=kernel8 CROSS_COMPILE=aarch64-linux-gnu- make bcm2711_defconfig
 $ sed -i s/CONFIG_XFS_FS=m/CONFIG_XFS_FS=y/ .config
 $ sed -i 's/# CONFIG_PCIEPORTBUS is not set/CONFIG_PCIEPORTBUS=y/' .config
 $ ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make LOCALVERSION= -j7 Image modules dtbs
