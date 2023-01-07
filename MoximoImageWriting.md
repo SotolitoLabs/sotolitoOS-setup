@@ -18,9 +18,6 @@ THIS DOC NEEDS A LOT OF LOVE
 ```
 dd if=SotolitoOS-1.28-SD.img of=/dev/sda bs=16M
 ```
-
-
-<<<<<<< HEAD
 [root@airsk8 fedora]# cd /run/media/ichavero/
 [root@airsk8 ]# ls
 bin   dev  home  lost+found  mnt   opt   root  sbin  sys  usb  var
@@ -47,11 +44,7 @@ Unread messages
 
 
 
-
-
-=======
 ### Use Fedora upstream
->>>>>>> 402fd30962601f6b457e3a40971b101b55c35870
 
 ```
 $ wget https://download.fedoraproject.org/pub/fedora/linux/releases/29/Server/armhfp/images/Fedora-Server-armhfp-29-1.2-sda.raw.xz
