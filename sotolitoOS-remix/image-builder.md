@@ -9,7 +9,7 @@ Instead of using a bash script we'll use lorax `image-composer`
 
 ```
 ### Install elrepo to allow composer to install it to the image
-```
+```bash
 # dnf install -y   https://www.elrepo.org/elrepo-release-9.el9.elrepo.noarch.rpm
 # dnf config-manager --set-enabled elrepo --set-enabled elrepo-kernel
 ```
@@ -17,6 +17,5 @@ Instead of using a bash script we'll use lorax `image-composer`
 ## Create blueprint
 
 ```bash
-
 # cp /usr/share/doc/weldr-client/examples/example-custom-base.toml chaveros-live-install.toml
 ```
