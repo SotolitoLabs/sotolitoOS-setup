@@ -3,7 +3,7 @@
 Instead of using a bash script we'll use lorax `image-composer`
 
 ## Install `image-composer`
-```console
+```shell
 # dnf install -y osbuild-composer composer-cli cockpit-composer lorax-templates-generic.x86_64
 
 
