@@ -3,7 +3,7 @@
 Instead of using a bash script we'll use lorax `image-composer`
 
 ## Install `image-composer`
-```bash
+```console
 # dnf install -y osbuild-composer composer-cli cockpit-composer lorax-templates-generic.x86_64
 
 
@@ -45,3 +45,7 @@ Instead of using a bash script we'll use lorax `image-composer`
 ```bash
 # composer-cli compose start ChaverOS-base image-installer
 ```
+
+# References
+* https://weldr.io/lorax/lorax-composer/composer-cli.html
+* https://weldr.io/lorax/lorax-composer/product-images.html
