@@ -3,13 +3,12 @@
 Instead of using a bash script we'll use lorax `image-composer`
 
 ## Install `image-composer`
-```
+```console
 # dnf install -y osbuild-composer composer-cli cockpit-composer lorax-templates-generic.x86_64
-
-
 ```
+
 ### Install elrepo to allow composer to install it to the image
-```bash
+```console
 # dnf install -y   https://www.elrepo.org/elrepo-release-9.el9.elrepo.noarch.rpm
 # dnf config-manager --set-enabled elrepo --set-enabled elrepo-kernel
 ```
@@ -18,14 +17,14 @@ Instead of using a bash script we'll use lorax `image-composer`
 
 ### Branding
 
-```bash
+```console
 # mkdir /usr/share/lorax/product
 # cp anaconda/branding/product/* /usr/share/lorax/product/.
 ```
 
 ## Create Blueprint
 
-```bash
+```console
 # cp /usr/share/doc/weldr-client/examples/example-custom-base.toml chaveros-live-install.toml
 # add personalizaton
 # composer-cli blueprints push chaveros-live-install.toml
@@ -33,7 +32,7 @@ Instead of using a bash script we'll use lorax `image-composer`
 
 ## List Type of Images (optional)
 
-```bash
+```console
 # composer-cli compose types
 ...
 *image-installer*
@@ -42,7 +41,7 @@ Instead of using a bash script we'll use lorax `image-composer`
 
 ## Create Image
 
-```bash
+```console
 # composer-cli compose start ChaverOS-base image-installer
 ```
 
