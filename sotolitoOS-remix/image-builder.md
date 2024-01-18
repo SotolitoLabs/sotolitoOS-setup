@@ -14,8 +14,34 @@ Instead of using a bash script we'll use lorax `image-composer`
 # dnf config-manager --set-enabled elrepo --set-enabled elrepo-kernel
 ```
 
-## Create blueprint
+## Create Image
+
+### Branding
+
+```bash
+# mkdir /usr/share/lorax/product
+# cp anaconda/branding/product/* /usr/share/lorax/product/.
+```
+
+## Create Blueprint
 
 ```bash
 # cp /usr/share/doc/weldr-client/examples/example-custom-base.toml chaveros-live-install.toml
+# add personalizaton
+# composer-cli blueprints push chaveros-live-install.toml
+```
+
+## List Type of Images (optional)
+
+```bash
+# composer-cli compose types
+...
+*image-installer*
+...
+```
+
+## Create Image
+
+```bash
+# composer-cli compose start ChaverOS-base image-installer
 ```
