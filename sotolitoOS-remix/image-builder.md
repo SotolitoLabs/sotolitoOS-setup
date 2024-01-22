@@ -45,6 +45,19 @@ Instead of using a bash script we'll use lorax `image-composer`
 # composer-cli compose start ChaverOS-base image-installer
 ```
 
+### Verify image creation
+
+```
+# composer-cli compose status
+```
+
+
+### Check logs
+```
+composer-cli compose logs <image uuid>
+```
+
+
 # References
 * https://weldr.io/lorax/lorax-composer/composer-cli.html
 * https://weldr.io/lorax/lorax-composer/product-images.html
