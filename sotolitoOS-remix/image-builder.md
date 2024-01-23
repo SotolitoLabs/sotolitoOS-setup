@@ -13,6 +13,34 @@ Instead of using a bash script we'll use lorax `image-composer`
 # dnf config-manager --set-enabled elrepo --set-enabled elrepo-kernel
 ```
 
+## Create the blueprint
+
+```console
+cat chaveros-live-install.toml 
+name = "ChaverOS-base"
+description = "ChaverOS Enterprise Base System"
+version = "0.0.1"
+arch = x86_64
+
+[[packages]]
+name = "bash"
+version = "*"
+
+[customizations]
+hostname = "chaverOS"
+
+[[customizations.user]]
+name = "chaveros"
+password = "prueba123"
+description = "ChaverOS User"
+home = "/home/chaveros/"
+shell = "/usr/bin/bash"
+groups = ["chaveros", "wheel"]
+
+[[customizations.group]]
+name = "chaveros"
+```
+
 ## Create Image
 
 ### Branding
