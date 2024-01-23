@@ -47,16 +47,21 @@ Instead of using a bash script we'll use lorax `image-composer`
 
 ### Verify image creation
 
-```
+```console
 # composer-cli compose status
 ```
 
 
 ### Check logs
-```
-composer-cli compose logs <image uuid>
+```console
+composer-cli compose logs <image UUID>
 ```
 
+## Get the image
+
+```console
+# composer-cli compose image <image UUID>
+```
 
 # References
 * https://weldr.io/lorax/lorax-composer/composer-cli.html
