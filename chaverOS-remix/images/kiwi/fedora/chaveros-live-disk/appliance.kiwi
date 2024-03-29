@@ -5,14 +5,14 @@
 
 <image schemaversion="7.5" name="chaveros-image-live-disk">
     <description type="system">
-        <author>Marcus Schaefer</author>
-        <contact>ms@suse.com</contact>
-        <specification>Fedora Appliance</specification>
+        <author>Iván Chavero</author>
+        <contact>ichavero@chavero.com.mx</contact>
+        <specification>ChaverOS Appliance</specification>
     </description>
     <profiles>
-        <profile name="Live" description="Live image of Fedora"/>
-        <profile name="Virtual" description="Virtual image of Fedora"/>
-        <profile name="Disk" description="OEM image of Fedora"/>
+        <profile name="Live" description="Live image of ChaverOS"/>
+        <profile name="Virtual" description="Virtual image of ChaverOS"/>
+        <profile name="Disk" description="OEM image of ChaverOS"/>
     </profiles>
     <preferences>
         <version>2.0.0</version>
@@ -57,9 +57,6 @@
     <users>
         <user password="$5$cJFIJlzXFdcH.2Xd$HHbremTwKt9qGqTmMSoteehg/efRFh7dwHFSqc8Z1b8" home="/root" name="root" groups="root"/>
     </users>
-    <repository type="rpm-md">
-        <source path="obsrepositories:/"/>
-    </repository>
     <packages type="image">
         <package name="grub2"/>
         <package name="grubby"/>
